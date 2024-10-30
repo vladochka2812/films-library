@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Tooltip } from '../../../../shared/Tooltip/Tooltip';
+import classNames from 'classnames';
 
 export const User = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -13,9 +14,13 @@ export const User = () => {
       >
         <div className="w-7 h-7 rounded-full bg-red-300"></div>
         <span
-          className={`${
-            isHovered ? 'inline-block' : 'hidden'
-          } absolute top-8 left-[calc(50%-4px)] w-[10px] h-[10px] rotate-45 bg-white`}
+          className={classNames(
+            `absolute top-8 left-[calc(50%-4px)] w-[10px] h-[10px] rotate-45 bg-white`,
+            {
+              'inline-block': isHovered,
+              hidden: !isHovered,
+            }
+          )}
         ></span>
         {isHovered && (
           <div className="absolute top-full mt-2 text-center bg-white px-2 py-1 border rounded shadow-md text-nowrap text-[14px] font-medium">
@@ -26,9 +31,3 @@ export const User = () => {
     </Tooltip>
   );
 };
-
-// const [isHovered, setIsHovered] = useState(false);
-
-//   return (
-
-//   );

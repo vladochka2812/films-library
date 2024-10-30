@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 import { TooltipType } from './model/model';
 
 export const Tooltip = ({
@@ -35,35 +36,33 @@ export const Tooltip = ({
       <div onClick={handleToggle}>
         {children}
         <span
-          className={`${
-            isVisible ? 'inline-block' : 'hidden'
-          } absolute top-8 left-[calc(50%-4px)] w-[10px] h-[10px] rotate-45 bg-white`}
+          className={classNames(
+            'absolute top-8 left-[calc(50%-4px)] w-[10px] h-[10px] rotate-45 bg-white',
+            {
+              'inline-block': isVisible,
+              hidden: !isVisible,
+            }
+          )}
         ></span>
 
         <span
           ref={tooltipRef}
-          className={`${style} w-auto absolute z-50 py-2 px-0.5 rounded shadow-md bg-white ${
-            isVisible ? 'inline-block' : 'hidden'
-          } opacity-100 ${
-            position === 'top'
-              ? 'left-1/2 -translate-x-1/2 bottom-[calc(100%)]'
-              : ''
-          }
-          ${
-            position === 'bottom'
-              ? 'left-1/2 -translate-x-1/2 top-9 w-[500px]'
-              : ''
-          }
-          ${
-            position === 'left'
-              ? 'top-1/2 -translate-y-1/2 right-[calc(100%)]'
-              : ''
-          }
-          ${
-            position === 'right'
-              ? 'top-1/2 -translate-y-1/2 left-[calc(100%)]'
-              : ''
-          }`}
+          className={classNames(
+            style,
+            'w-auto absolute z-50 py-2 px-0.5 rounded shadow-md bg-white',
+            {
+              'inline-block': isVisible,
+              hidden: !isVisible,
+              'left-1/2 -translate-x-1/2 bottom-[calc(100%)]':
+                position === 'top',
+              'left-1/2 -translate-x-1/2 top-9 w-[500px]':
+                position === 'bottom',
+              'top-1/2 -translate-y-1/2 right-[calc(100%)]':
+                position === 'left',
+              'top-1/2 -translate-y-1/2 left-[calc(100%)]':
+                position === 'right',
+            }
+          )}
         >
           {content}
         </span>

@@ -9,13 +9,20 @@ export const FilmCard = () => {
   const { vote_average, id, title, release_date, poster_path, media_type } =
     film;
 
-  const linkHref = `/${media_type}/${id}-${title.toLowerCase().split(':').join('').split(' ').join('-')}`;
+  const linkHref = useMemo(() => {
+    return `/${media_type}/${id}-${title.toLowerCase().split(':').join('').split(' ').join('-')}`;
+  }, [media_type, id, title]);
+
+  const formattedDate = useMemo(() => {
+    return new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+    }).format(new Date(release_date));
+  }, [release_date]);
+
   const imageHref = `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardSize}/${poster_path}`;
-  const formattedDate = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-  }).format(new Date(release_date));
+
   const percent = vote_average * 10;
 
   return (

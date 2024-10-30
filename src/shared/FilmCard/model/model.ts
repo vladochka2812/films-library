@@ -17,7 +17,14 @@ export type FilmCardType = {
   vote_average: number;
   vote_count: number;
 };
+
 export const imageCardSize = '/w220_and_h330_face';
+
+export const colorRingSets = {
+  small: { main: '#e01919', sub: '#300b0b' },
+  medium: { main: '#d2d531', sub: '#423d0f' },
+  high: { main: '#21d07a', sub: '#204529' },
+};
 
 export const film = {
   backdrop_path: '/uGmYqxh8flqkudioyFtD7IJSHxK.jpg',

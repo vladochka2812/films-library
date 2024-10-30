@@ -9,18 +9,14 @@ export const FilmCard = () => {
   const { vote_average, id, title, release_date, poster_path, media_type } =
     film;
 
-  const { linkHref, imageHref, formattedDate, percent } = useMemo(() => {
-    const linkHref = `/${media_type}/${id}-${title.toLowerCase().split(':').join('').split(' ').join('-')}`;
-    const imageHref = `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardSize}/${poster_path}`;
-    const formattedDate = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-    }).format(new Date(release_date));
-    const percent = vote_average * 10;
-
-    return { linkHref, imageHref, formattedDate, percent };
-  }, [film]);
+  const linkHref = `/${media_type}/${id}-${title.toLowerCase().split(':').join('').split(' ').join('-')}`;
+  const imageHref = `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardSize}/${poster_path}`;
+  const formattedDate = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+  }).format(new Date(release_date));
+  const percent = vote_average * 10;
 
   return (
     <div className="w-[150px] min-w-[150px]">

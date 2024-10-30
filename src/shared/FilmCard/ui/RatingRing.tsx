@@ -1,22 +1,13 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
+import { colorRingSets } from '../model/model';
 
-interface RatingRingProps {
-  percent: number;
-}
-
-export const RatingRing: React.FC<RatingRingProps> = ({ percent }) => {
-  const colors = {
-    small: { main: '#e01919', sub: '#300b0b' },
-    medium: { main: '#d2d531', sub: '#423d0f' },
-    high: { main: '#21d07a', sub: '#204529' },
-  };
-
+export const RatingRing = ({ percent }: { percent: number }) => {
   const colorSet = useMemo(() => {
     return percent <= 30
-      ? colors.small
+      ? colorRingSets.small
       : percent <= 70
-        ? colors.medium
-        : colors.high;
+        ? colorRingSets.medium
+        : colorRingSets.high;
   }, [percent]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);

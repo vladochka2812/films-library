@@ -6,7 +6,10 @@ export const User = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Tooltip position="bottom" content={'avatar'}>
+    <Tooltip
+      position="bottom"
+      content={<div className="w-[180px] text-[16px] p-[10px]">Logout</div>}
+    >
       <div
         className="relative flex flex-col items-center"
         onMouseEnter={() => setIsHovered(true)}
@@ -24,7 +27,7 @@ export const User = () => {
         ></span>
         {isHovered && (
           <div className="absolute top-full mt-2 text-center bg-white px-2 py-1 border rounded shadow-md text-nowrap text-[14px] font-medium">
-            Profile and Settings
+            Profile
           </div>
         )}
       </div>

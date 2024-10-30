@@ -33,12 +33,7 @@ export const NavigationList: NavigationListType = [
   },
   {
     mainCategory: 'More',
-    subCategories: [
-      { link: '/discuss', name: 'Discussions' },
-      { link: '/leaderboard', name: 'Leader board' },
-      { link: '/talk', name: 'Support' },
-      { link: '/docs/getting-started', name: 'API' },
-    ],
+    subCategories: [{ link: '/talk', name: 'Support' }],
   },
 ];
 

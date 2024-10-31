@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       colors: {
         darkBlue: 'rgb(3, 37, 65, 1)',
+        lightBlue: 'rgb(1, 180, 228)',
+        lightGreen: 'rgb(30, 213, 169)',
         text: 'rgba(0, 0, 0, .6)',
       },
       transitionProperty: {

@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import { Tooltip } from '../../../../shared/Tooltip/Tooltip';
 import classNames from 'classnames';
+import { useLogout } from '../../../../features/Logout/useLogout';
 
 export const User = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const logout = useLogout();
 
   return (
     <Tooltip
       position="bottom"
-      content={<div className="w-[180px] text-[16px] p-[10px]">Logout</div>}
+      content={
+        <div className="w-[180px] text-[16px] p-[10px]" onClick={logout}>
+          Logout
+        </div>
+      }
     >
       <div
         className="relative flex flex-col items-center"

@@ -6,7 +6,7 @@ export const Navbar = () => {
   return (
     <div>
       <div className="md:flex hidden">
-        <div className="flex relative justify-between top-0 left-0 px-10  w-maxPrimaryPageWidth ">
+        <div className="flex relative justify-between top-0 left-0 px-10 w-maxPrimaryPageWidth ">
           <DesktopNav />
           <RightBar />
         </div>

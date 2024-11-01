@@ -38,9 +38,11 @@ export const RightBar = () => {
         <li className="md:ml-[30px] ml-[14px] py-1">
           <Notification />
         </li>
+
         <li className="md:ml-[30px] ml-[14px] py-1">
           <User />
         </li>
+
         <li className="md:ml-[30px] ml-[14px] py-1">
           <Search />
         </li>

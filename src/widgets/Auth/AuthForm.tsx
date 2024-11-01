@@ -2,7 +2,7 @@ import {
   AuthFormType,
   AuthType,
   FormType,
-  signInFormComponents,
+  loginFormComponents,
   signUpFormComponents,
 } from './model/model';
 import { Formik, Form, Field } from 'formik';
@@ -16,13 +16,15 @@ import {
 } from './model/validation';
 import { useMemo } from 'react';
 import { useAuth } from './api/useAuth';
+import { routes } from '../../app/routes/routes';
+import { Link } from 'react-router-dom';
 
 export const AuthForm = ({ formType }: AuthFormType) => {
   const { sign } = useAuth({ formType });
   const initialValues: AuthType = { email: '', password: '', name: '' };
 
   const cacheFormText = useMemo(() => {
-    return formType === 'login' ? signInFormComponents : signUpFormComponents;
+    return formType === 'login' ? loginFormComponents : signUpFormComponents;
   }, [formType]);
 
   const validate = (values: AuthType) => {
@@ -46,11 +48,11 @@ export const AuthForm = ({ formType }: AuthFormType) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h1 className="text-[28px] font-semibold text-nowrap my-3">
+    <div className="flex flex-col w-full">
+      <h2 className="font-bold text-nowrap text-[24px]">
         {cacheFormText.title}
-      </h1>
-
+      </h2>
+      <p className="mt-2.5 text-[16px]">{cacheFormText.subTitleText}</p>
       <Formik
         initialValues={initialValues}
         validate={validate}
@@ -60,42 +62,29 @@ export const AuthForm = ({ formType }: AuthFormType) => {
       >
         {({ errors, touched, isValid, dirty }) => (
           <Form>
-            <div className="flex flex-col gap-5 w-full">
-              {formType === FormType.REGISTER && (
-                <div>
+            <div className="flex flex-col mt-2.5 ">
+              {formType === FormType.SIGNUP && (
+                <label className="mt-4" htmlFor="name">
+                  <span>Username</span>
                   <Field
                     id="name"
                     name="name"
                     as={Input}
-                    className="shadow-md"
-                    placeholder="Enter your name"
+                    placeholder=""
                     type="text"
                   />
                   {errors.name && touched.name && (
                     <ErrorMessage className="ml-4">{errors.name}</ErrorMessage>
                   )}
-                </div>
+                </label>
               )}
-              <div>
-                <Field
-                  id="email"
-                  name="email"
-                  as={Input}
-                  className="shadow-md"
-                  placeholder="Enter your email"
-                  type="email"
-                />
-                {errors.email && touched.email && (
-                  <ErrorMessage className="ml-4">{errors.email}</ErrorMessage>
-                )}
-              </div>
-              <div>
+              <label className="mt-4" htmlFor="name">
+                <span>Password (6 characters minimum)</span>
                 <Field
                   id="password"
                   name="password"
                   as={Input}
-                  className="shadow-md"
-                  placeholder="Enter your password"
+                  placeholder=""
                   type="password"
                 />
                 {errors.password && touched.password && (
@@ -103,18 +92,36 @@ export const AuthForm = ({ formType }: AuthFormType) => {
                     {errors.password}
                   </ErrorMessage>
                 )}
-              </div>
+              </label>
+              <label className="mt-4" htmlFor="name">
+                <span>Email</span>
+                <Field
+                  id="email"
+                  name="email"
+                  as={Input}
+                  placeholder=""
+                  type="email"
+                />
+                {errors.email && touched.email && (
+                  <ErrorMessage className="ml-4">{errors.email}</ErrorMessage>
+                )}
+              </label>
             </div>
-            <div className="text-center text-[14px] font-light hover:underline">
-              {cacheFormText.description}
+            <p className="mt-[30px] text-[14px] font-light">
+              {cacheFormText?.description}
+            </p>
+            <div className="flex items-center max-w-[150px] mt-[20px]">
+              <Button
+                type="submit"
+                className="my-4"
+                disabled={!isValid || !dirty}
+              >
+                {cacheFormText.button}
+              </Button>
+              <Link className="ml-2.5 text-lightBlue" to={routes.home}>
+                Cancel
+              </Link>
             </div>
-            <Button
-              type="submit"
-              className="my-4"
-              disabled={!isValid || !dirty}
-            >
-              {cacheFormText.button}
-            </Button>
           </Form>
         )}
       </Formik>

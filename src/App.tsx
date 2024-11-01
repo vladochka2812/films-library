@@ -1,11 +1,13 @@
+import { RoutesList } from './app/routes/RoutesList';
 import { Header } from './widgets/Header/Header';
-import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
       <Header />
-      <Routes></Routes>
+
+      <RoutesList />
     </Router>
   );
 }

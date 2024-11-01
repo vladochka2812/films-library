@@ -5,7 +5,7 @@ import { TooltipType } from './model/model';
 export const Tooltip = ({
   position,
   content,
-  style,
+  className,
   children,
 }: TooltipType) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,7 +32,7 @@ export const Tooltip = ({
   }, []);
 
   return (
-    <div className="md:relative flex cursor-pointer group">
+    <div className="relative flex cursor-pointer group">
       <div onClick={handleToggle}>
         {children}
         <span
@@ -48,7 +48,7 @@ export const Tooltip = ({
         <span
           ref={tooltipRef}
           className={classNames(
-            style,
+            className,
             'w-auto absolute z-50 py-2 px-0.5 rounded shadow-md bg-white',
             {
               'inline-block': isVisible,

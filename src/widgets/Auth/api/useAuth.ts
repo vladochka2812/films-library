@@ -1,0 +1,46 @@
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { auth, db } from '../../../features/AuthFirebase/firebaseConfig';
+import { AuthFormType, AuthType } from '../model/model';
+import { doc, setDoc } from 'firebase/firestore';
+import { handleSaveAccessToken } from '../../../features/AuthFirebase/accessToken';
+
+export const useAuth = ({ formType }: AuthFormType) => {
+  const registrateUser = async ({ email, password, name }: AuthType) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (userCredential) {
+        await setDoc(doc(db, 'Users', userCredential.user.uid), {
+          email: email,
+          name: name,
+        });
+      }
+      const token = await userCredential.user.getIdToken();
+      handleSaveAccessToken({ token });
+    } catch (error) {
+      console.error("Error in user's auth", (error as Error).message);
+    }
+  };
+
+  const loginUser = async ({ email, password }: AuthType) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const token = await userCredential.user.getIdToken();
+      handleSaveAccessToken({ token });
+    } catch (error) {
+      console.error("Error in user's auth", (error as Error).message);
+    }
+  };
+
+  return formType === 'login' ? { sign: loginUser } : { sign: registrateUser };
+};

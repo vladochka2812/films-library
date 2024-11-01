@@ -3,10 +3,10 @@ export const handleSaveAccessToken = ({
   name,
 }: {
   token: string;
-  name?: string;
+  name: string;
 }) => {
   localStorage.setItem('accessToken', token);
-  // localStorage.setItem('userName', name);
+  localStorage.setItem('username', name);
 };
 
 export const handleDeleteAccessToken = () => {

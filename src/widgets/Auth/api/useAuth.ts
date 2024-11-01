@@ -22,7 +22,9 @@ export const useAuth = ({ formType }: AuthFormType) => {
         });
       }
       const token = await userCredential.user.getIdToken();
-      handleSaveAccessToken({ token, name });
+      if (name) {
+        handleSaveAccessToken({ token, name });
+      }
     } catch (error) {
       console.error("Error in user's auth", (error as Error).message);
     }
@@ -39,7 +41,10 @@ export const useAuth = ({ formType }: AuthFormType) => {
       const docRef = doc(db, 'Users', userCredential.user.uid);
       const docSnap = await getDoc(docRef);
       console.log(docSnap.data());
-      handleSaveAccessToken({ token });
+      if (docSnap.data()) {
+        const name = docSnap.data()?.name;
+        handleSaveAccessToken({ token, name });
+      }
     } catch (error) {
       console.error("Error in user's auth", (error as Error).message);
     }

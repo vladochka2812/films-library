@@ -6,9 +6,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <Header />
-      <RoutesList />
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <RoutesList />
+        <Footer />
+      </div>
     </Router>
   );
 }

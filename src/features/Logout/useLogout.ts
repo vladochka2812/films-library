@@ -7,5 +7,5 @@ export const useLogout = () => {
     await signOut(auth);
     handleDeleteAccessToken();
   };
-  return { logout };
+  return logout;
 };

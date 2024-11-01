@@ -4,7 +4,10 @@ export type AuthType = {
   password: string;
 };
 
-export type FormType = 'login' | 'register';
+export enum FormType {
+  LOGIN = 'login',
+  REGISTER = 'register',
+}
 
 export type AuthFormType = {
   formType: FormType;

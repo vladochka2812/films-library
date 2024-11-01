@@ -1,6 +1,7 @@
 import {
   AuthFormType,
   AuthType,
+  FormType,
   signInFormComponents,
   signUpFormComponents,
 } from './model/model';
@@ -60,7 +61,7 @@ export const AuthForm = ({ formType }: AuthFormType) => {
         {({ errors, touched, isValid, dirty }) => (
           <Form>
             <div className="flex flex-col gap-5 w-full">
-              {formType === 'register' && (
+              {formType === FormType.REGISTER && (
                 <div>
                   <Field
                     id="name"

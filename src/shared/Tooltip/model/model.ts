@@ -4,5 +4,5 @@ export type TooltipType = {
   position: TooltipPosition;
   content: React.ReactNode;
   children: React.ReactNode;
-  style?: string;
+  className?: string;
 };

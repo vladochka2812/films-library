@@ -1,23 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Navbar } from './ui/Navbar';
 
 export const Header = () => {
   const [showHeader, setShowHeader] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY < lastScrollY || currentScrollY <= 50) {
-        setShowHeader(true);
-      } else {
-        setShowHeader(false);
-      }
-      setLastScrollY(currentScrollY);
+      const isShowHeaderState =
+        currentScrollY < lastScrollY.current || currentScrollY <= 50;
+      setShowHeader(isShowHeaderState);
+      lastScrollY.current = currentScrollY;
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <header

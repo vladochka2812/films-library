@@ -13,7 +13,7 @@ const Auth = () => {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col md:flex-row items-start md:px-5 ">
+    <div className="flex flex-col md:flex-row items-start md:px-5 md:mt-6 mt-16 my-5">
       {pathname === routes.signUp && <BenefitsList />}
       <div className="pl-[30px] mt-5 md:mt-0 px-5">
         <AuthForm formType={formType} />

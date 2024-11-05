@@ -40,7 +40,6 @@ export const useAuth = ({ formType }: AuthFormType) => {
       const token = await userCredential.user.getIdToken();
       const docRef = doc(db, 'Users', userCredential.user.uid);
       const docSnap = await getDoc(docRef);
-      console.log(docSnap.data());
       if (docSnap.data()) {
         const name = docSnap.data()?.name;
         handleSaveAccessToken({ token, name });

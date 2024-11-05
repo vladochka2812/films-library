@@ -15,6 +15,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-mdoothing: antialiased;
   -moz-osx-font-mdoothing: grayscale;
+
+  scrollbar-width: thin;
 }
 
 body {
@@ -35,5 +37,29 @@ h1 {
   :root {
     color: #213547;
     background-color: #ffffff;
+  }
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 9999px;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background-color: #374151;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #6b7280;
   }
 }

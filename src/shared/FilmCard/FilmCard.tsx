@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { film, imageCardSize } from './model/model';
+import { FilmCardType, imageCardSize } from './model/model';
 import { CgMoreO } from 'react-icons/cg';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { RatingRing } from './ui/RatingRing';
 
-export const FilmCard = () => {
+export const FilmCard = ({ film }: FilmCardType) => {
   const { vote_average, id, title, release_date, poster_path, media_type } =
     film;
 
@@ -23,7 +23,7 @@ export const FilmCard = () => {
 
   const imageHref = `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardSize}/${poster_path}`;
 
-  const percent = vote_average * 10;
+  const percent = Math.round(vote_average * 10);
 
   return (
     <div className="w-[150px] min-w-[150px]">

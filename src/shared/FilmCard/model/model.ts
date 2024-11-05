@@ -1,6 +1,6 @@
 type MediaType = 'tv' | 'movie';
 
-export type FilmCardType = {
+export type FilmType = {
   backdrop_path: string;
   id: number;
   title: string;
@@ -16,6 +16,10 @@ export type FilmCardType = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+};
+
+export type FilmCardType = {
+  film: FilmType;
 };
 
 export const imageCardSize = '/w220_and_h330_face';

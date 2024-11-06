@@ -1,30 +1,34 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { TabMenu } from '../../shared/TabMenu/TabMenu';
-import { TrendingDate, TrendingSectionType } from './model/model';
+import {
+  PathType,
+  TrendingDate,
+  TrendingSectionType,
+  bgImage,
+} from './model/model';
 import { apiClient } from '../../features/AuthInterceptor/apiClient';
 import { FilmCard } from '../../shared/FilmCard/FilmCard';
 import { HorizontalScrollWrapper } from '../../shared/HorizontalScrollWrapper/HorizontalScrollWrapper';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTrending } from './api/getTrending';
+import { AppDispatch, RootState } from '../../app/store/store';
 
 export const TrendingSection = () => {
   const [selectedTab, setSelectedTab] = useState<string>(TrendingDate[0]);
-  const [data, setData] = useState<TrendingSectionType>();
 
   const path = useMemo(() => {
-    return selectedTab === TrendingDate[0] ? 'day' : 'week';
+    return selectedTab === TrendingDate[0] ? PathType.day : PathType.week;
   }, [selectedTab]);
 
-  const fetchTrending = useCallback(async () => {
-    try {
-      const response = await apiClient.get(`/trending/movie/${path}`);
-      setData(response.data);
-    } catch (error) {
-      console.error('Error fetching movies:', error);
-    }
-  }, [path]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { trendingItems, loading } = useSelector(
+    (state: RootState) => state.trendingItems
+  );
 
   useEffect(() => {
-    fetchTrending();
-  }, [path]);
+    dispatch(getTrending(path));
+  }, [path, dispatch]);
 
   return (
     <div className="flex flex-col lg:max-w-[1400px] max-w-[100vw] py-[30px] px-10">
@@ -36,9 +40,9 @@ export const TrendingSection = () => {
           onSelect={(tab) => setSelectedTab(tab)}
         />
       </div>
-      <HorizontalScrollWrapper bgImage="https://www.themoviedb.org/assets/2/v4/misc/trending-bg-39afc2a5f77e31d469b25c187814c0a2efef225494c038098d62317d923f8415.svg">
-        {data &&
-          data.results.map((item) => (
+      <HorizontalScrollWrapper bgImage={bgImage}>
+        {!loading &&
+          trendingItems?.results?.map((item) => (
             <div className="ml-5" key={item.id}>
               <FilmCard film={item} />
             </div>

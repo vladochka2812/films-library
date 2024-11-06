@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { TabMenuType } from './model/model';
 import { FiChevronDown } from 'react-icons/fi';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +17,10 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
       onSelect(option);
     }
   };
+
+  const itemsFilter = useMemo(() => {
+    return items.filter((item) => item !== selectedOption);
+  }, [selectedOption]);
 
   useEffect(() => {
     const selectedIndex = items.indexOf(selectedItem);
@@ -45,17 +49,15 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
         </button>
         {isOpen && (
           <span className="absolute w-full border-l border-r border-b rounded-b-[15px] border-darkBlue z-10 bg-gradient-to-r from-extraLightGreen to-lightGreen ">
-            {items
-              .filter((item) => item !== selectedOption)
-              .map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleSelect(item)}
-                  className="z-10 cursor-pointer text-darkBlue font-medium py-2 px-4 hover:bg-lightBlue hover:text-white"
-                >
-                  {item}
-                </div>
-              ))}
+            {itemsFilter.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => handleSelect(item)}
+                className="z-10 cursor-pointer text-darkBlue font-medium py-2 px-4 hover:bg-lightBlue hover:text-white"
+              >
+                {item}
+              </div>
+            ))}
           </span>
         )}
       </div>

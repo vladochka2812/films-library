@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightStyle, setHighlightStyle] = useState({});
-
   const [selectedOption, setSelectedOption] = useState(
     selectedItem || items[0]
   );
@@ -25,6 +24,7 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
       left: `${(selectedIndex * 100) / items.length}%`,
     });
   }, [selectedItem, items]);
+
   return (
     <>
       <div

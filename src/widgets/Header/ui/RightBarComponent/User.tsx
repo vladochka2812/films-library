@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Tooltip } from '../../../../shared/Tooltip/Tooltip';
 import classNames from 'classnames';
+import { useLogout } from '../../../../features/Logout/useLogout';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../../features/AuthFirebase/firebaseConfig';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,8 @@ import { FaUser } from 'react-icons/fa';
 export const User = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
+
+  const logout = useLogout();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -25,7 +28,11 @@ export const User = () => {
   return isAuth ? (
     <Tooltip
       position="bottom"
-      content={<div className="w-[180px] text-[16px] p-[10px]">Logout</div>}
+      content={
+        <div className="w-[180px] text-[16px] p-[10px]" onClick={logout}>
+          Logout
+        </div>
+      }
     >
       <div
         className="relative flex flex-col items-center"
@@ -78,7 +85,7 @@ export const User = () => {
                 Login
               </Link>
               <Link to={routes.signUp} className="text-[16px] px-5 py-2">
-                Register
+                Sign up
               </Link>
             </div>
           }

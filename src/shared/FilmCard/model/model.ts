@@ -20,9 +20,13 @@ export type FilmType = {
 
 export type FilmCardType = {
   film: FilmType;
+  variant?: FilmCardVariant;
+  setCurrentImage?: (img: string) => void;
 };
 
-export const imageCardSize = '/w220_and_h330_face';
+export const imageCardVerticalSize = '/w220_and_h330_face';
+export const imageCardHorizontalSize = 'w355_and_h200_multi_faces';
+export const imageBgSize = 'w1920_and_h427_multi_faces';
 
 export const colorRingSets = {
   small: { main: '#e01919', sub: '#300b0b' },
@@ -30,21 +34,7 @@ export const colorRingSets = {
   high: { main: '#21d07a', sub: '#204529' },
 };
 
-export const film = {
-  backdrop_path: '/uGmYqxh8flqkudioyFtD7IJSHxK.jpg',
-  id: 889737,
-  title: 'Joker: Folie à Deux',
-  original_title: 'Joker: Folie à Deux',
-  overview:
-    "While struggling with his dual identity, Arthur Fleck not only stumbles upon true love, but also finds the music that's always been inside him.",
-  poster_path: '/aciP8Km0waTLXEYf5ybFK5CSUxl.jpg',
-  media_type: 'movie',
-  adult: false,
-  original_language: 'en',
-  genre_ids: [18, 80, 53],
-  popularity: 1080.437,
-  release_date: '2024-10-01',
-  video: false,
-  vote_average: 5.8,
-  vote_count: 1048,
-};
+export enum FilmCardVariant {
+  vertical = 'vertical',
+  horizontal = 'horizontal',
+}

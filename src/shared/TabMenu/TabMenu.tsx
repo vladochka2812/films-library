@@ -1,9 +1,14 @@
 import classNames from 'classnames';
-import { TabMenuType } from './model/model';
+import { TabMenuType, TabMenuVariant } from './model/model';
 import { FiChevronDown } from 'react-icons/fi';
 import { useEffect, useMemo, useState } from 'react';
 
-export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
+export const TabMenu = ({
+  items,
+  selectedItem,
+  onSelect,
+  variant = TabMenuVariant.default,
+}: TabMenuType) => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightStyle, setHighlightStyle] = useState({});
   const [selectedOption, setSelectedOption] = useState(
@@ -29,31 +34,56 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
     });
   }, [selectedItem, items]);
 
+  const gradient = ' bg-gradient-to-r from-extraLightGreen to-lightGreen';
+
   return (
     <>
       <div
         className={classNames(
           'relative leading-6 inline-block text-left lg:hidden text-nowrap',
           {
-            'rounded-t-[15px] border-l border-r border-darkBlue bg-gradient-to-r from-extraLightGreen to-lightGreen':
-              isOpen,
+            'rounded-t-[15px] border-l border-r': isOpen,
+            [gradient]: isOpen,
+            'border-darkBlue': variant === TabMenuVariant.default,
+            'border-lightGreen': variant === TabMenuVariant.green,
           }
         )}
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-darkBlue text-lightGreen font-semibold w-full py-2 px-4 rounded-[15px] flex items-center"
+          className={classNames(
+            'font-semibold w-full py-2 px-4 rounded-[15px] flex items-center',
+            {
+              'bg-darkBlue text-lightGreen ':
+                variant === TabMenuVariant.default,
+              [gradient]: variant === TabMenuVariant.green,
+            }
+          )}
         >
           {selectedOption}
           <FiChevronDown className="ml-2" />
         </button>
         {isOpen && (
-          <span className="absolute w-full border-l border-r border-b rounded-b-[15px] border-darkBlue z-10 bg-gradient-to-r from-extraLightGreen to-lightGreen ">
+          <span
+            className={classNames(
+              'absolute w-full border-l border-r border-b rounded-b-[15px]  z-10 bg-gradient-to-r from-extraLightGreen to-lightGreen ',
+              {
+                'border-darkBlue': variant === TabMenuVariant.default,
+                'border-lightGreen': variant === TabMenuVariant.green,
+              }
+            )}
+          >
             {itemsFilter.map((item, index) => (
               <div
                 key={index}
                 onClick={() => handleSelect(item)}
-                className="z-10 cursor-pointer text-darkBlue font-medium py-2 px-4 hover:bg-lightBlue hover:text-white"
+                className={classNames(
+                  'z-10 cursor-pointer  font-semibold py-2 px-4',
+                  {
+                    'text-darkBlue': variant === TabMenuVariant.default,
+                    'text-white': variant === TabMenuVariant.green,
+                  }
+                )}
               >
                 {item}
               </div>
@@ -62,9 +92,23 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
         )}
       </div>
 
-      <div className="hidden lg:flex border border-darkBlue rounded-[30px] overflow-hidden text-[14px] leading-6 items-center font-semibold relative">
+      <div
+        className={classNames(
+          'hidden lg:flex border rounded-[30px] overflow-hidden text-[14px] leading-6 items-center font-semibold relative',
+          {
+            ' border-darkBlue': variant === TabMenuVariant.default,
+            'border-lightGreen': variant === TabMenuVariant.green,
+          }
+        )}
+      >
         <div
-          className="absolute top-0 left-0 h-full bg-darkBlue rounded-[30px] transition-all duration-300"
+          className={classNames(
+            'absolute top-0 left-0 h-full rounded-[30px] transition-all duration-300',
+            {
+              'bg-darkBlue': variant === TabMenuVariant.default,
+              [gradient]: variant === TabMenuVariant.green,
+            }
+          )}
           style={{
             width: `${100 / items.length}%`,
             ...highlightStyle,
@@ -78,9 +122,16 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
           >
             <h3
               className={classNames('transition-colors duration-500', {
-                'bg-gradient-to-r from-[#c0fecf] to-[#1ed5a9] bg-clip-text text-transparent':
-                  item === selectedItem,
-                'text-darkBlue': item !== selectedItem,
+                [gradient]:
+                  item === selectedItem && variant === TabMenuVariant.default,
+                'bg-clip-text text-transparent':
+                  item === selectedItem && variant === TabMenuVariant.default,
+                'text-darkBlue':
+                  item !== selectedItem && variant === TabMenuVariant.default,
+                'text-darkBlue font-medium':
+                  item === selectedItem && variant === TabMenuVariant.green,
+                'text-white':
+                  item !== selectedItem && variant === TabMenuVariant.green,
               })}
             >
               {item}

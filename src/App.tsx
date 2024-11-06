@@ -1,17 +1,19 @@
 import { RoutesList } from './app/routes/RoutesList';
+import { Provider } from 'react-redux';
+import { store } from './app/store/store';
 import { Footer } from './widgets/Footer/Footer';
 import { Header } from './widgets/Header/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
+    <Provider store={store}>
+      <Router>
         <Header />
         <RoutesList />
-        <Footer />
-      </div>
-    </Router>
+      </Router>
+    </Provider>
+
   );
 }
 

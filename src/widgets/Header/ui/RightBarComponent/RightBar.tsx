@@ -28,22 +28,22 @@ export const RightBar = () => {
               </div>
             ))}
           >
-            <FaPlus className="text-white hidden md:flex" size={20} />
+            <FaPlus className="text-white hidden lg:flex" size={20} />
           </Tooltip>
         </li>
-        <li className="ml-[30px] py-1 hidden md:flex">
+        <li className="ml-[30px] py-1 hidden lg:flex">
           <LanguageButton />
         </li>
 
-        <li className="md:ml-[30px] ml-[14px] py-1">
+        <li className="lg:ml-[30px] ml-[14px] py-1">
           <Notification />
         </li>
 
-        <li className="md:ml-[30px] ml-[14px] py-1">
+        <li className="lg:ml-[30px] ml-[14px] py-1">
           <User />
         </li>
 
-        <li className="md:ml-[30px] ml-[14px] py-1">
+        <li className="lg:ml-[30px] ml-[14px] py-1">
           <Search />
         </li>
       </ul>

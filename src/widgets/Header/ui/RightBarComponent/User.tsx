@@ -58,7 +58,7 @@ export const User = () => {
     </Tooltip>
   ) : (
     <>
-      <div className="md:flex gap-5 hidden">
+      <div className="lg:flex gap-5 hidden">
         <Link
           to={routes.login}
           className="text-white text-[16px] font-semibold"
@@ -72,7 +72,7 @@ export const User = () => {
           Join TMBD
         </Link>
       </div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <Tooltip
           position="bottom"
           className="w-32"

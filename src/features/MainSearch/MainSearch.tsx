@@ -1,16 +1,30 @@
-import React from 'react';
 import { Input } from '../../shared/Input/Input';
 import { VariantType as InputVariantType } from '../../shared/Input/model/model';
 import { Button } from '../../shared/Button/Button';
 import { VariantType as ButtonVariantType } from '../../shared/Button/model/model';
 import { useRandomImage } from './api/useRandomImage';
 import { mainImageSize, mainImages } from './model/model';
+import { useEffect, useState } from 'react';
 
 export const MainSearch = () => {
   const randomImage = useRandomImage({ images: mainImages });
+  const [placeholder, setPlaceholder] = useState('Search...');
+
+  useEffect(() => {
+    const updatePlaceholder = () => {
+      if (window.innerWidth >= 1024) {
+        setPlaceholder('Search for a movie, tv show, person......');
+      }
+    };
+    window.addEventListener('resize', updatePlaceholder);
+    updatePlaceholder();
+    return () => {
+      window.removeEventListener('resize', updatePlaceholder);
+    };
+  }, []);
 
   return (
-    <div className="flex md:w-maxPrimaryPageWidth w-full relative min-h-[300px] h-[calc(100vh / 2.5)] max-h-[360px]">
+    <div className="flex justify-center lg:max-w-[1400px] w-full relative min-h-[300px] h-[calc(100vh / 2.5)] max-h-[360px]">
       <div
         className="absolute inset-0 bg-cover bg-center filter brightness-50"
         style={{
@@ -28,7 +42,7 @@ export const MainSearch = () => {
         </div>
         <div className="flex w-full relative">
           <Input
-            placeholder="Search for a movie, tv show, person......"
+            placeholder={placeholder}
             type="text"
             variant={InputVariantType.ROUNDED}
           />

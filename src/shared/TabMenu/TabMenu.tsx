@@ -1,10 +1,12 @@
 import classNames from 'classnames';
 import { TabMenuType } from './model/model';
 import { FiChevronDown } from 'react-icons/fi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [highlightStyle, setHighlightStyle] = useState({});
+
   const [selectedOption, setSelectedOption] = useState(
     selectedItem || items[0]
   );
@@ -16,6 +18,13 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
       onSelect(option);
     }
   };
+
+  useEffect(() => {
+    const selectedIndex = items.indexOf(selectedItem);
+    setHighlightStyle({
+      left: `${(selectedIndex * 100) / items.length}%`,
+    });
+  }, [selectedItem, items]);
   return (
     <>
       <div
@@ -53,29 +62,24 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
 
       <div className="hidden md:flex border border-darkBlue rounded-[30px] overflow-hidden text-[14px] leading-6 items-center font-semibold relative">
         <div
-          className={`absolute top-0 left-0 h-full w-[calc(100%/${items.length})] bg-darkBlue rounded-[30px] transition-transform duration-500 ease-in-out`}
+          className="absolute top-0 left-0 h-full bg-darkBlue rounded-[30px] transition-all duration-300"
           style={{
-            transform: `translateX(${items.indexOf(selectedItem) * 100}%)`,
+            width: `${100 / items.length}%`,
+            ...highlightStyle,
           }}
         ></div>
-
         {items.map((item) => (
           <button
             key={item}
             onClick={() => onSelect(item)}
-            className={classNames('px-5 py-1 relative z-10 ', {
-              'bg-darkBlue rounded-[30px]': item === selectedItem,
-            })}
+            className="px-5 py-1 relative z-10"
           >
             <h3
-              className={classNames(
-                'bg-transparent transition-colors duration-500',
-                {
-                  'bg-gradient-to-r from-[#c0fecf] to-[#1ed5a9] bg-clip-text text-transparent':
-                    item === selectedItem,
-                  'text-darkBlue': item !== selectedItem,
-                }
-              )}
+              className={classNames('transition-colors duration-500', {
+                'bg-gradient-to-r from-[#c0fecf] to-[#1ed5a9] bg-clip-text text-transparent':
+                  item === selectedItem,
+                'text-darkBlue': item !== selectedItem,
+              })}
             >
               {item}
             </h3>

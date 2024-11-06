@@ -6,7 +6,7 @@ export const HorizontalScrollWrapper = ({
   bgImage,
 }: HorizontalScrollWrapperType) => {
   return (
-    <div className="overflow-x-auto scrollbar-hide py-5 transition duration-500 linear relative">
+    <div className="overflow-x-auto scrollbar-hide py-5 transition duration-500 linear relative overflow-y-hidden">
       <div
         style={
           bgImage

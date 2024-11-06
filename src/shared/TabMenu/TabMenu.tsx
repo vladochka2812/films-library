@@ -63,7 +63,9 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
           <button
             key={item}
             onClick={() => onSelect(item)}
-            className="px-5 py-1 relative z-10"
+            className={classNames('px-5 py-1 relative z-10 ', {
+              'bg-darkBlue rounded-[30px]': item === selectedItem,
+            })}
           >
             <h3
               className={classNames(

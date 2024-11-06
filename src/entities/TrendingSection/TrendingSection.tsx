@@ -36,14 +36,6 @@ export const TrendingSection = () => {
           onSelect={(tab) => setSelectedTab(tab)}
         />
       </div>
-      {/* <div className="overflow-x-auto scrollbar-hide py-5 transition duration-500 linear relative">
-        <div
-          style={{
-            backgroundImage: `url(https://www.themoviedb.org/assets/2/v4/misc/trending-bg-39afc2a5f77e31d469b25c187814c0a2efef225494c038098d62317d923f8415.svg)`,
-          }}
-          className="bg-fixed bg-contain bg-no-repeat bg-center w-full"
-        > */}
-      {/* <div className="relative overflow-x-auto scrollbar-hide py-5 flex before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[60px] before:bg-gradient-to-r before:from-white before:to-transparent after:absolute after:right-0 after:top-0 after:bottom-0 after:w-[60px] after:bg-gradient-to-l after:from-white after:to-transparent"> */}
       <HorizontalScrollWrapper bgImage="https://www.themoviedb.org/assets/2/v4/misc/trending-bg-39afc2a5f77e31d469b25c187814c0a2efef225494c038098d62317d923f8415.svg">
         {data &&
           data.results.map((item) => (
@@ -52,10 +44,6 @@ export const TrendingSection = () => {
             </div>
           ))}
       </HorizontalScrollWrapper>
-
-      {/* </div>
-        </div>
-      </div> */}
     </div>
   );
 };

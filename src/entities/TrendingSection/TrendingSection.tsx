@@ -27,8 +27,8 @@ export const TrendingSection = () => {
   }, [path]);
 
   return (
-    <div className="flex flex-col md:max-w-[1400px] max-w-[100vw] py-[30px] px-10">
-      <div className="flex justify-start items-center md:px-20 px-5">
+    <div className="flex flex-col lg:max-w-[1400px] max-w-[100vw] py-[30px] px-10">
+      <div className="flex justify-start items-center px-5">
         <h2 className="text-[24px] font-semibold mr-5">Trending</h2>
         <TabMenu
           items={TrendingDate}

@@ -29,7 +29,7 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
     <>
       <div
         className={classNames(
-          'relative leading-6 inline-block text-left md:hidden text-nowrap',
+          'relative leading-6 inline-block text-left lg:hidden text-nowrap',
           {
             'rounded-t-[15px] border-l border-r border-darkBlue bg-gradient-to-r from-extraLightGreen to-lightGreen':
               isOpen,
@@ -60,7 +60,7 @@ export const TabMenu = ({ items, selectedItem, onSelect }: TabMenuType) => {
         )}
       </div>
 
-      <div className="hidden md:flex border border-darkBlue rounded-[30px] overflow-hidden text-[14px] leading-6 items-center font-semibold relative">
+      <div className="hidden lg:flex border border-darkBlue rounded-[30px] overflow-hidden text-[14px] leading-6 items-center font-semibold relative">
         <div
           className="absolute top-0 left-0 h-full bg-darkBlue rounded-[30px] transition-all duration-300"
           style={{

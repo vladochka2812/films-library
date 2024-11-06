@@ -4,7 +4,7 @@ import {
 } from 'firebase/auth';
 import { auth, db } from '../../../features/AuthFirebase/firebaseConfig';
 import { AuthFormType, AuthType } from '../model/model';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { handleSaveAccessToken } from '../../../features/AuthFirebase/accessToken';
 
 export const useAuth = ({ formType }: AuthFormType) => {
@@ -22,7 +22,9 @@ export const useAuth = ({ formType }: AuthFormType) => {
         });
       }
       const token = await userCredential.user.getIdToken();
-      handleSaveAccessToken({ token });
+      if (name) {
+        handleSaveAccessToken({ token, name });
+      }
     } catch (error) {
       console.error("Error in user's auth", (error as Error).message);
     }
@@ -36,7 +38,12 @@ export const useAuth = ({ formType }: AuthFormType) => {
         password
       );
       const token = await userCredential.user.getIdToken();
-      handleSaveAccessToken({ token });
+      const docRef = doc(db, 'Users', userCredential.user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.data()) {
+        const name = docSnap.data()?.name;
+        handleSaveAccessToken({ token, name });
+      }
     } catch (error) {
       console.error("Error in user's auth", (error as Error).message);
     }

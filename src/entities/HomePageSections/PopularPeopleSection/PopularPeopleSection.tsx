@@ -18,7 +18,7 @@ export const PopularPeopleSection = () => {
   }, [path, dispatch]);
   return (
     <div className="flex flex-col lg:max-w-[1400px] max-w-[100vw] pt-[30px]">
-      <h2 className="text-[24px] font-semibold mr-5">Popular People</h2>
+      <h2 className="text-[24px] font-semibold px-5">Popular People</h2>
       <HorizontalScrollWrapper bgImage={bgImage}>
         {!loading &&
           popularPeopleItems.results?.map((person) => (

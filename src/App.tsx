@@ -4,7 +4,7 @@ import { store } from './app/store/store';
 import { Header } from './widgets/Header/Header';
 import { RoutesList } from './app/routes/RoutesList';
 import { Footer } from './widgets/Footer/Footer';
-
+import { PersonCard } from './shared/PersonCard/model/PersonCard';
 
 function App() {
   return (

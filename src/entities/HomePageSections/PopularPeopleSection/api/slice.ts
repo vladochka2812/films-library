@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getPopular } from './getPopular';
-import { FilmsResponse } from '@/shared/FilmCard/model/model';
+import { PersonsResponse } from '@/shared/PersonCard/model/model';
+import { getPopularPeople } from './getPopularPeople';
 
 const initialState = {
-  popularItems: {} as FilmsResponse,
+  popularPeopleItems: {} as PersonsResponse,
   loading: false,
   error: null,
 };
@@ -14,15 +14,15 @@ const popularSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getPopular.pending, (state) => {
+      .addCase(getPopularPeople.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(getPopular.fulfilled, (state, action) => {
+      .addCase(getPopularPeople.fulfilled, (state, action) => {
         state.loading = false;
-        state.popularItems = action.payload;
+        state.popularPeopleItems = action.payload;
       })
-      .addCase(getPopular.rejected, (state, action) => {
+      .addCase(getPopularPeople.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as null;
       });

@@ -1,5 +1,6 @@
 import { LatestSection } from '@/entities/HomePageSections/LatestSection/LatestSection';
 import { MainSearch } from '@/entities/HomePageSections/MainSearch/MainSearch';
+import { PopularPeopleSection } from '@/entities/HomePageSections/PopularPeopleSection/PopularPeopleSection';
 import { PopularSection } from '@/entities/HomePageSections/PopularSection/PopularSection';
 import { TopRatedSection } from '@/entities/HomePageSections/TopRatedSection/TopRatedSection';
 import { TrendingSection } from '@/entities/HomePageSections/TrendingSection/TrendingSection';
@@ -12,6 +13,7 @@ const Home = () => {
       <LatestSection />
       <PopularSection />
       <TopRatedSection />
+      <PopularPeopleSection />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { topRatedSectionType } from '../model/model';
 import { getTopRated } from './getTopRated';
+import { FilmsResponse } from '@/shared/FilmCard/model/model';
 
 const initialState = {
-  topRatedItems: {} as topRatedSectionType,
+  topRatedItems: {} as FilmsResponse,
   loading: false,
   error: null,
 };

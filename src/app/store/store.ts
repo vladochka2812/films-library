@@ -3,6 +3,7 @@ import trendingItemsReducer from '@/entities/HomePageSections/TrendingSection/ap
 import latestItemsReducer from '@/entities/HomePageSections/LatestSection/api/slice';
 import popularItemsReducer from '@/entities/HomePageSections/PopularSection/api/slice';
 import topRatedItemsReducer from '@/entities/HomePageSections/TopRatedSection/api/slice';
+import popularPeopleItemsReducer from '@/entities/HomePageSections/PopularPeopleSection/api/slice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     trendingItems: trendingItemsReducer,
     latestItems: latestItemsReducer,
     topRatedItems: topRatedItemsReducer,
+    popularPeopleItems: popularPeopleItemsReducer,
   },
 });
 

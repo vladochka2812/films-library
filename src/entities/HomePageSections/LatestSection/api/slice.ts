@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getLatest } from './getLatest';
-import { LatestSectionType } from '../model/model';
+import { FilmsResponse } from '@/shared/FilmCard/model/model';
 
 const initialState = {
-  latestItems: {} as LatestSectionType,
+  latestItems: {} as FilmsResponse,
   loading: false,
   error: null,
 };

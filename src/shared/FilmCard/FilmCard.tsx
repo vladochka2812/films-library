@@ -100,7 +100,7 @@ export const FilmCard = ({
       </div>
       <div
         className={classNames(
-          'flex items-start relative px-[10px]flex-wrap whitespace-normal',
+          'flex flex-col items-start relative px-[10px]flex-wrap whitespace-normal',
           {
             'pt-[26px]': variant === FilmCardVariant.vertical,
           }

@@ -8,7 +8,7 @@ const initialState = {
   error: null,
 };
 
-const trendingSlice = createSlice({
+const popularSlice = createSlice({
   name: 'trending',
   initialState,
   reducers: {},
@@ -29,4 +29,4 @@ const trendingSlice = createSlice({
   },
 });
 
-export default trendingSlice.reducer;
+export default popularSlice.reducer;

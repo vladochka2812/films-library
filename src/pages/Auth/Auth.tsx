@@ -1,8 +1,8 @@
+import { routes } from '@/app/routes/routes';
+import { AuthForm } from '@/widgets/Auth/AuthForm';
+import { FormType } from '@/widgets/Auth/model/model';
 import { useMemo } from 'react';
-import { AuthForm } from '../../widgets/Auth/AuthForm';
-import { FormType } from '../../widgets/Auth/model/model';
 import { useLocation } from 'react-router-dom';
-import { routes } from '../../app/routes/routes';
 import { BenefitsList } from './ui/BenefitsList';
 
 const Auth = () => {

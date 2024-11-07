@@ -114,6 +114,7 @@ export const TabMenu = ({
             ...highlightStyle,
           }}
         ></div>
+
         {items.map((item) => (
           <button
             key={item}
@@ -121,7 +122,7 @@ export const TabMenu = ({
             className="px-5 py-1 relative z-10"
           >
             <h3
-              className={classNames('transition-colors duration-500', {
+              className={classNames(`transition-colors duration-500`, {
                 [gradient]:
                   item === selectedItem && variant === TabMenuVariant.default,
                 'bg-clip-text text-transparent':

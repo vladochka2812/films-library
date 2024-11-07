@@ -1,15 +1,15 @@
 import { useMemo, useState, useEffect } from 'react';
-import { TabMenu } from '../../shared/TabMenu/TabMenu';
-import { LatestDate, PathType } from './model/model';
-import { TabMenuVariant } from '../../shared/TabMenu/model/model';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../app/store/store';
-import { getLatest } from './api/getLatest';
-import { HorizontalScrollWrapper } from '../../shared/HorizontalScrollWrapper/HorizontalScrollWrapper';
-import { FilmCard } from '../../shared/FilmCard/FilmCard';
-import { FilmCardVariant } from '../../shared/FilmCard/model/model';
-import { HorizontalScrollWrapperVariant } from '../../shared/HorizontalScrollWrapper/model/model';
 import classNames from 'classnames';
+import { AppDispatch, RootState } from '@/app/store/store';
+import { FilmCard } from '@/shared/FilmCard/FilmCard';
+import { FilmCardVariant } from '@/shared/FilmCard/model/model';
+import { HorizontalScrollWrapper } from '@/shared/HorizontalScrollWrapper/HorizontalScrollWrapper';
+import { HorizontalScrollWrapperVariant } from '@/shared/HorizontalScrollWrapper/model/model';
+import { TabMenu } from '@/shared/TabMenu/TabMenu';
+import { TabMenuVariant } from '@/shared/TabMenu/model/model';
+import { getLatest } from './api/getLatest';
+import { LatestDate, PathType } from './model/model';
 
 export const LatestSection = () => {
   const [selectedTab, setSelectedTab] = useState<string>(LatestDate[0]);

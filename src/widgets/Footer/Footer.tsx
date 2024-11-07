@@ -1,9 +1,9 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../../features/AuthFirebase/firebaseConfig';
-import { routes } from '../../app/routes/routes';
 import { NavigationList } from './model/model';
+import { routes } from '@/app/routes/routes';
+import { auth } from '@/features/AuthFirebase/firebaseConfig';
 
 export const Footer = () => {
   const [isAuth, setIsAuth] = useState(false);

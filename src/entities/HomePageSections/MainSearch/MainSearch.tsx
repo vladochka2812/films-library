@@ -1,7 +1,7 @@
-import { Input } from '../../shared/Input/Input';
-import { VariantType as InputVariantType } from '../../shared/Input/model/model';
-import { Button } from '../../shared/Button/Button';
-import { VariantType as ButtonVariantType } from '../../shared/Button/model/model';
+import { Input } from '@/shared/Input/Input';
+import { VariantType as InputVariantType } from '@/shared/Input/model/model';
+import { Button } from '@/shared/Button/Button';
+import { VariantType as ButtonVariantType } from '@/shared/Input/model/model';
 import { useRandomImage } from './api/useRandomImage';
 import { mainImageSize, mainImages } from './model/model';
 import { useEffect, useState } from 'react';

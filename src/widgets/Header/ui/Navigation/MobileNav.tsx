@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { HiOutlineMenu } from 'react-icons/hi';
-import { RightBar } from '../RightBarComponent/RightBar';
 import { useState } from 'react';
 import { MobileContent } from '../Content/MobileContent';
+import { RightBar } from '../RightBarComponent/RightBar';
 
 export const MobileNav = () => {
   const [openMenu, setOpenMenu] = useState(false);

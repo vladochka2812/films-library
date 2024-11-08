@@ -6,9 +6,6 @@ import {
   signUpFormComponents,
 } from './model/model';
 import { Formik, Form, Field } from 'formik';
-import { Input } from '../../shared/Input/Input';
-import { Button } from '../../shared/Button/Button';
-import { ErrorMessage } from '../../shared/ErrorMessage/ErrorMessage';
 import {
   validateEmail,
   validateName,
@@ -16,8 +13,11 @@ import {
 } from './model/validation';
 import { useMemo } from 'react';
 import { useAuth } from './api/useAuth';
-import { routes } from '../../app/routes/routes';
 import { Link } from 'react-router-dom';
+import { routes } from '@/app/routes/routes';
+import { ErrorMessage } from '@/shared/ErrorMessage/ErrorMessage';
+import { Input } from '@/shared/Input/Input';
+import { Button } from '@/shared/Button/Button';
 
 export const AuthForm = ({ formType }: AuthFormType) => {
   const { sign } = useAuth({ formType });

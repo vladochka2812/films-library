@@ -1,5 +1,5 @@
+import { apiClient } from '@/features/AuthInterceptor/apiClient';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { apiClient } from '../../../features/AuthInterceptor/apiClient';
 
 export const getTrending = createAsyncThunk(
   'trending/getTrending',

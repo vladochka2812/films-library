@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FilmCardType,
@@ -6,6 +6,7 @@ import {
   imageBgSize,
   imageCardHorizontalSize,
   imageCardVerticalSize,
+  normalizeTitle,
 } from './model/model';
 import { CgMoreO } from 'react-icons/cg';
 import { Tooltip } from '../Tooltip/Tooltip';
@@ -20,6 +21,7 @@ export const FilmCard = ({
   const {
     vote_average,
     id,
+    name,
     title,
     release_date,
     poster_path,
@@ -28,15 +30,18 @@ export const FilmCard = ({
   } = film;
 
   const linkHref = useMemo(() => {
-    return `/${media_type}/${id}-${title.toLowerCase().split(':').join('').split(' ').join('-')}`;
-  }, [media_type, id, title]);
+    return `/${media_type}/${id}-${title ? title?.toLowerCase().replace(normalizeTitle, '-') : name?.toLowerCase().replace(normalizeTitle, '-')}`;
+  }, [media_type, id, title || name]);
 
   const formattedDate = useMemo(() => {
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-    }).format(new Date(release_date));
+    return (
+      release_date &&
+      new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+      }).format(new Date(release_date))
+    );
   }, [release_date]);
 
   const imageHref =
@@ -50,7 +55,7 @@ export const FilmCard = ({
 
   return (
     <div
-      className={classNames('w-full h-full', {
+      className={classNames({
         'w-[150px] min-w-[150px]': variant === FilmCardVariant.vertical,
         'w-[300px]': variant === FilmCardVariant.horizontal,
       })}
@@ -78,7 +83,7 @@ export const FilmCard = ({
               <img
                 loading="lazy"
                 src={imageHref}
-                alt={title}
+                alt={title || name}
                 className="w-full h-full object-cover"
               />
             </Link>
@@ -96,7 +101,7 @@ export const FilmCard = ({
       </div>
       <div
         className={classNames(
-          'flex items-start relative px-[10px]flex-wrap whitespace-normal',
+          'flex flex-col items-start relative px-[10px]flex-wrap whitespace-normal',
           {
             'pt-[26px]': variant === FilmCardVariant.vertical,
           }
@@ -113,9 +118,9 @@ export const FilmCard = ({
             'text-center': variant === FilmCardVariant.horizontal,
           })}
         >
-          <Link to={linkHref}>{title}</Link>
+          <Link to={linkHref}>{title || name}</Link>
         </h2>
-        {variant === FilmCardVariant.vertical && (
+        {variant === FilmCardVariant.vertical && formattedDate && (
           <p className="text-[16px] text-black/60">{formattedDate}</p>
         )}
       </div>

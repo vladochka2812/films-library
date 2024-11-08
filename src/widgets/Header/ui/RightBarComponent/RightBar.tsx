@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
+import { Tooltip } from '@/shared/Tooltip/Tooltip';
 import { AddList } from '../../model/model';
-import { Notification } from './Notification';
-import { Tooltip } from '../../../../shared/Tooltip/Tooltip';
 import { LanguageButton } from './LanguageButton';
 import { User } from './User';
+import { Notification } from './Notification';
 import { Search } from './Search';
 
 export const RightBar = () => {

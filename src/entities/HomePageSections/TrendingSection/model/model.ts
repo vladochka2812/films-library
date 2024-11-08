@@ -1,17 +1,8 @@
-import { FilmType } from '../../../shared/FilmCard/model/model';
-
 export const TrendingDate = ['Today', 'This Week'];
 
-export type TrendingSectionType = {
-  page: number;
-  results: FilmType[];
-  total_pages: number;
-  total_results: number;
-};
-
 export enum PathType {
-  week = 'week',
-  day = 'day',
+  'This Week' = 'week',
+  'Today' = 'day',
 }
 
 export const bgImage =

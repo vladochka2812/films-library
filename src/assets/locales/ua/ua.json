@@ -1,0 +1,30 @@
+{
+  "navigation": {
+    "movies": {
+      "main": "Фільми",
+      "popular": "Популярні",
+      "nowPlaying": "Зараз у кіно",
+      "upcoming": "Найближчі",
+      "topRated": "Найкращі"
+    },
+    "tvShows": {
+      "main": "ТВ Шоу",
+      "popular": "Популярні",
+      "airingToday": "Сьогодні в ефірі",
+      "onTv": "В ефірі",
+      "topRated": "Найкращі"
+    },
+    "people": {
+      "main": "Люди",
+      "popularPeople": "Популярні люди"
+    },
+    "more": {
+      "main": "Більше",
+      "support": "Підтримка"
+    }
+  },
+  "addList": {
+    "addNewMovie": "Додати новий фільм",
+    "addNewTvShow": "Додати нове ТВ шоу"
+  }
+}

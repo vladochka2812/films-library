@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { NavigationList } from '../../model/model';
+import { useNavigationList } from '../../model/model';
 
 export const DesktopContent = () => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
@@ -11,6 +11,8 @@ export const DesktopContent = () => {
   const handleClose = () => {
     setOpenDropdownIndex(null);
   };
+  const NavigationList = useNavigationList();
+
   return NavigationList.map((navLink, index) => (
     <div
       key={navLink.mainCategory}

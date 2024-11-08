@@ -1,0 +1,30 @@
+{
+  "navigation": {
+    "movies": {
+      "main": "Movies",
+      "popular": "Popular",
+      "nowPlaying": "Now Playing",
+      "upcoming": "Upcoming",
+      "topRated": "Top Rated"
+    },
+    "tvShows": {
+      "main": "TV Shows",
+      "popular": "Popular",
+      "airingToday": "Airing Today",
+      "onTv": "On TV",
+      "topRated": "Top Rated"
+    },
+    "people": {
+      "main": "People",
+      "popularPeople": "Popular People"
+    },
+    "more": {
+      "main": "More",
+      "support": "Support"
+    }
+  },
+  "addList": {
+    "addNewMovie": "Add New Movie",
+    "addNewTvShow": "Add New TV Show"
+  }
+}

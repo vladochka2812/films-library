@@ -50,7 +50,7 @@ export const FilmCard = ({
 
   return (
     <div
-      className={classNames('w-full h-full', {
+      className={classNames({
         'w-[150px] min-w-[150px]': variant === FilmCardVariant.vertical,
         'w-[300px]': variant === FilmCardVariant.horizontal,
       })}

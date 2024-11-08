@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getTrending } from './getTrending';
-import { TrendingSectionType } from '../model/model';
+import { FilmsResponse } from '@/shared/FilmCard/model/model';
 
 const initialState = {
-  trendingItems: {} as TrendingSectionType,
+  trendingItems: {} as FilmsResponse,
   loading: false,
   error: null,
 };

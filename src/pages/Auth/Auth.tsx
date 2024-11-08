@@ -1,8 +1,8 @@
+import { routes } from '@/app/routes/routes';
+import { AuthForm } from '@/widgets/Auth/AuthForm';
+import { FormType } from '@/widgets/Auth/model/model';
 import { useMemo } from 'react';
-import { AuthForm } from '../../widgets/Auth/AuthForm';
-import { FormType } from '../../widgets/Auth/model/model';
 import { useLocation } from 'react-router-dom';
-import { routes } from '../../app/routes/routes';
 import { BenefitsList } from './ui/BenefitsList';
 
 const Auth = () => {
@@ -13,7 +13,7 @@ const Auth = () => {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col lg:flex-row items-start lg:px-5 lg:mt-6 mt-16 my-5">
+    <div className="flex flex-col lg:flex-row items-start px-5 lg:mt-6 ">
       {pathname === routes.signUp && <BenefitsList />}
       <div className="pl-[30px] mt-5 lg:mt-0 px-5">
         <AuthForm formType={formType} />

@@ -1,26 +1,35 @@
 import { emailValidation } from './model';
 
-export const validatePassword = (password: string): string | undefined => {
+export const validatePassword = (
+  password: string,
+  t: (key: string) => string
+): string | undefined => {
   if (!password) {
-    return 'Password is required';
+    return t('errors.noPassword');
   } else if (password.length < 6) {
-    return 'Password is too short';
+    return t('errors.toShortPassword');
   }
   return undefined;
 };
 
-export const validateEmail = (email: string): string | undefined => {
+export const validateEmail = (
+  email: string,
+  t: (key: string) => string
+): string | undefined => {
   if (!email) {
-    return 'Email is required';
+    return t('errors.noEmail');
   } else if (!emailValidation.test(email)) {
-    return 'Invalid email address';
+    return t('errors.emailInvalid');
   }
   return undefined;
 };
 
-export const validateName = (name: string): string | undefined => {
+export const validateName = (
+  name: string,
+  t: (key: string) => string
+): string | undefined => {
   if (!name) {
-    return 'Name is required';
+    return t('errors.noName');
   }
   return undefined;
 };

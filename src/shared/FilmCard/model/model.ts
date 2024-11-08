@@ -3,7 +3,8 @@ type MediaType = 'tv' | 'movie';
 export type FilmType = {
   backdrop_path: string;
   id: number;
-  title: string;
+  title?: string;
+  name?: string;
   original_title: string;
   overview: string;
   poster_path: string;
@@ -12,7 +13,7 @@ export type FilmType = {
   original_language: string;
   genre_ids: number[];
   popularity: number;
-  release_date: string;
+  release_date?: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
@@ -22,6 +23,13 @@ export type FilmCardType = {
   film: FilmType;
   variant?: FilmCardVariant;
   setCurrentImage?: (img: string) => void;
+};
+
+export type FilmsResponse = {
+  page: number;
+  results: FilmType[];
+  total_pages: number;
+  total_results: number;
 };
 
 export const imageCardVerticalSize = '/w220_and_h330_face';
@@ -38,3 +46,5 @@ export enum FilmCardVariant {
   vertical = 'vertical',
   horizontal = 'horizontal',
 }
+
+export const normalizeTitle = /[:\s]/g;

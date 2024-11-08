@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Accordion } from '../../../../shared/Accordion/Accordion';
 import { useNavigationList } from '../../model/model';
+import { Accordion } from '@/shared/Accordion/Accordion';
 
 export const MobileContent = ({ handleClose }: { handleClose: () => void }) => {
   const liStyle = 'text-[16px] text-white/60 font-semibold pb-[10px]';

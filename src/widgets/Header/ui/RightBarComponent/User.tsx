@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Tooltip } from '../../../../shared/Tooltip/Tooltip';
 import classNames from 'classnames';
-import { useLogout } from '../../../../features/Logout/useLogout';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../../../features/AuthFirebase/firebaseConfig';
-import { Link } from 'react-router-dom';
-import { routes } from '../../../../app/routes/routes';
+
 import { FaUser } from 'react-icons/fa';
+import { useLogout } from '@/features/Logout/useLogout';
+import { routes } from '@/app/routes/routes';
+import { auth } from '@/features/AuthFirebase/firebaseConfig';
+import { Tooltip } from '@/shared/Tooltip/Tooltip';
+import { onAuthStateChanged } from 'firebase/auth';
+import { Link } from 'react-router-dom';
 
 export const User = () => {
   const [isHovered, setIsHovered] = useState(false);

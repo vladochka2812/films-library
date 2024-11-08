@@ -2,10 +2,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { auth, db } from '../../../features/AuthFirebase/firebaseConfig';
 import { AuthFormType, AuthType } from '../model/model';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { handleSaveAccessToken } from '../../../features/AuthFirebase/accessToken';
+import { handleSaveAccessToken } from '@/features/AuthFirebase/accessToken';
+import { auth, db } from '@/features/AuthFirebase/firebaseConfig';
 
 export const useAuth = ({ formType }: AuthFormType) => {
   const registrateUser = async ({ email, password, name }: AuthType) => {

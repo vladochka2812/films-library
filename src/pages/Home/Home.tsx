@@ -1,6 +1,9 @@
-import { LatestSection } from '../../entities/LatestSection/LatestSection';
-import { MainSearch } from '../../entities/MainSearch/MainSearch';
-import { TrendingSection } from '../../entities/TrendingSection/TrendingSection';
+import { LatestSection } from '@/entities/HomePageSections/LatestSection/LatestSection';
+import { MainSearch } from '@/entities/HomePageSections/MainSearch/MainSearch';
+import { PopularPeopleSection } from '@/entities/HomePageSections/PopularPeopleSection/PopularPeopleSection';
+import { PopularSection } from '@/entities/HomePageSections/PopularSection/PopularSection';
+import { TopRatedSection } from '@/entities/HomePageSections/TopRatedSection/TopRatedSection';
+import { TrendingSection } from '@/entities/HomePageSections/TrendingSection/TrendingSection';
 
 const Home = () => {
   return (
@@ -8,6 +11,9 @@ const Home = () => {
       <MainSearch />
       <TrendingSection />
       <LatestSection />
+      <PopularSection />
+      <TopRatedSection />
+      <PopularPeopleSection />
     </div>
   );
 };

@@ -1,49 +1,54 @@
+import { Formik, Form, Field } from 'formik';
+import { useMemo } from 'react';
+import { useAuth } from './api/useAuth';
+import { Link } from 'react-router-dom';
+import { routes } from '@/app/routes/routes';
+import { ErrorMessage } from '@/shared/ErrorMessage/ErrorMessage';
+import { Input } from '@/shared/Input/Input';
+import { Button } from '@/shared/Button/Button';
+import { useTranslation } from 'react-i18next';
+import {
+  validateName,
+  validateEmail,
+  validatePassword,
+} from './model/validation';
 import {
   AuthFormType,
   AuthType,
   FormType,
-  loginFormComponents,
-  signUpFormComponents,
+  useLoginFormComponents,
+  useSignUpFormComponents,
 } from './model/model';
-import { Formik, Form, Field } from 'formik';
-import { Input } from '../../shared/Input/Input';
-import { Button } from '../../shared/Button/Button';
-import { ErrorMessage } from '../../shared/ErrorMessage/ErrorMessage';
-import {
-  validateEmail,
-  validateName,
-  validatePassword,
-} from './model/validation';
-import { useMemo } from 'react';
-import { useAuth } from './api/useAuth';
-import { routes } from '../../app/routes/routes';
-import { Link } from 'react-router-dom';
 
 export const AuthForm = ({ formType }: AuthFormType) => {
   const { sign } = useAuth({ formType });
+  const { t } = useTranslation();
   const initialValues: AuthType = { email: '', password: '', name: '' };
 
+  const login = useLoginFormComponents();
+  const signUp = useSignUpFormComponents();
+
   const cacheFormText = useMemo(() => {
-    return formType === 'login' ? loginFormComponents : signUpFormComponents;
+    return formType === 'login' ? login : signUp;
   }, [formType]);
 
   const validate = (values: AuthType) => {
     const errors: Partial<AuthType> = {};
-
-    const nameError = validateName(values.name ? values.name : ' ');
+    const nameError = validateName(values.name ? values.name : ' ', t);
     if (nameError) {
       errors.name = nameError;
     }
 
-    const emailError = validateEmail(values.email);
+    const emailError = validateEmail(values.email, t);
     if (emailError) {
       errors.email = emailError;
     }
 
-    const passwordError = validatePassword(values.password);
+    const passwordError = validatePassword(values.password, t);
     if (passwordError) {
       errors.password = passwordError;
     }
+
     return errors;
   };
 
@@ -65,7 +70,7 @@ export const AuthForm = ({ formType }: AuthFormType) => {
             <div className="flex flex-col mt-2.5 ">
               {formType === FormType.SIGNUP && (
                 <label className="mt-4" htmlFor="name">
-                  <span>Username</span>
+                  <span>{t('formAuth.name')}</span>
                   <Field
                     id="name"
                     name="name"
@@ -78,8 +83,8 @@ export const AuthForm = ({ formType }: AuthFormType) => {
                   )}
                 </label>
               )}
-              <label className="mt-4" htmlFor="name">
-                <span>Password (6 characters minimum)</span>
+              <label className="mt-4" htmlFor="password">
+                <span>{t('formAuth.password')}</span>
                 <Field
                   id="password"
                   name="password"
@@ -93,8 +98,8 @@ export const AuthForm = ({ formType }: AuthFormType) => {
                   </ErrorMessage>
                 )}
               </label>
-              <label className="mt-4" htmlFor="name">
-                <span>Email</span>
+              <label className="mt-4" htmlFor="email">
+                <span>{t('formAuth.email')}</span>
                 <Field
                   id="email"
                   name="email"
@@ -113,13 +118,13 @@ export const AuthForm = ({ formType }: AuthFormType) => {
             <div className="flex items-center max-w-[150px] mt-[20px]">
               <Button
                 type="submit"
-                className="my-4"
+                className="my-4 px-2"
                 disabled={!isValid || !dirty}
               >
                 {cacheFormText.button}
               </Button>
               <Link className="ml-2.5 text-lightBlue" to={routes.home}>
-                Cancel
+                {t('formAuth.cancel')}
               </Link>
             </div>
           </Form>

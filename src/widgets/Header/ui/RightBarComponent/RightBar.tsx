@@ -1,6 +1,6 @@
-import { Notification } from './Notification';
 import { LanguageButton } from './LanguageButton';
 import { User } from './User';
+import { Notification } from './Notification';
 import { Search } from './Search';
 
 export const RightBar = () => {

@@ -6,6 +6,7 @@ import {
   imageBgSize,
   imageCardHorizontalSize,
   imageCardVerticalSize,
+  normalizeTitle,
 } from './model/model';
 import { CgMoreO } from 'react-icons/cg';
 import { Tooltip } from '../Tooltip/Tooltip';
@@ -29,7 +30,7 @@ export const FilmCard = ({
   } = film;
 
   const linkHref = useMemo(() => {
-    return `/${media_type}/${id}-${title ? title?.toLowerCase().replace(/[:\s]/g, '-') : name?.toLowerCase().replace(/[:\s]/g, '-')}`;
+    return `/${media_type}/${id}-${title ? title?.toLowerCase().replace(normalizeTitle, '-') : name?.toLowerCase().replace(normalizeTitle, '-')}`;
   }, [media_type, id, title || name]);
 
   const formattedDate = useMemo(() => {

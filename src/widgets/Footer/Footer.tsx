@@ -1,12 +1,15 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { NavigationList } from './model/model';
 import { routes } from '@/app/routes/routes';
 import { auth } from '@/features/AuthFirebase/firebaseConfig';
+import { useTranslation } from 'react-i18next';
+import { useNavigationList } from './model/model';
 
 export const Footer = () => {
   const [isAuth, setIsAuth] = useState(false);
+  const navigationList = useNavigationList();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -42,16 +45,16 @@ export const Footer = () => {
             </Link>
             <div className="w-[130px] md:w-full text-[21px] font-bold md:text-lightBlue text-darkBlue break-words bg-white rounded-[4px] px-4 py-2 md:mt-10 text-end">
               {isAuth ? (
-                `Hi, ${username}!`
+                `${t('footer.hello')}, ${username}!`
               ) : (
                 <Link to={routes.signUp} className="px-5 py-2">
-                  JOIN THE COMMUNITY
+                  {t('footer.join')}
                 </Link>
               )}
             </div>
           </div>
           <div className="flex md:gap-10 gap-[30px] flex-col md:flex-row text-white">
-            {NavigationList.map((item, index) => (
+            {navigationList.map((item, index) => (
               <div key={index}>
                 <h3 className="text-[22px] font-bold"> {item.mainCategory}</h3>
                 <ul className="max-w-[260px] overflow-ellipsis ">

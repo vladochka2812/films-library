@@ -6,14 +6,33 @@ import { TabMenu } from '@/shared/TabMenu/TabMenu';
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTrending } from './api/getTrending';
-import { TrendingDate, PathType, bgImage } from './model/model';
+import {
+  TrendingDate,
+  PathType,
+  bgImage,
+  useTrendingTabs,
+} from './model/model';
+import { useTranslation } from 'react-i18next';
+import { languages } from '@/assets/locales/model/model';
 
 export const TrendingSection = () => {
-  const [selectedTab, setSelectedTab] = useState<string>(TrendingDate[0]);
+  const trendingTabs = useTrendingTabs();
+  const [selectedTab, setSelectedTab] = useState<string>(trendingTabs[0]);
+
+  const { t, i18n } = useTranslation();
+  const lang = useMemo(
+    () => languages[i18n.language as keyof typeof languages],
+    [i18n.language]
+  );
 
   const path = useMemo(() => {
-    return PathType[selectedTab as keyof typeof PathType];
-  }, [selectedTab]);
+    const pathMap = {
+      [trendingTabs[0]]: PathType.week,
+      [trendingTabs[1]]: PathType.day,
+    };
+
+    return pathMap[selectedTab] || PathType.week;
+  }, [selectedTab, trendingTabs]);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -22,15 +41,17 @@ export const TrendingSection = () => {
   );
 
   useEffect(() => {
-    dispatch(getTrending(path));
+    dispatch(getTrending({ path, lang }));
   }, [path, dispatch]);
 
   return (
     <div className="flex flex-col lg:max-w-[1400px] max-w-[100vw] pt-[30px]">
       <div className="flex justify-start items-center px-5">
-        <h2 className="text-[24px] font-semibold mr-5">Trending</h2>
+        <h2 className="text-[24px] font-semibold mr-5">
+          {t('trending.title')}
+        </h2>
         <TabMenu
-          items={TrendingDate}
+          items={trendingTabs}
           selectedItem={selectedTab}
           onSelect={(tab) => setSelectedTab(tab)}
         />

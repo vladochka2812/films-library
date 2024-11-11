@@ -1,42 +1,46 @@
-import { NavigationListType } from '../../Header/model/model';
+import { NavigationListType } from '@/widgets/Header/model/model';
 
-// change links
+import { useTranslation } from 'react-i18next';
 
-export const NavigationList: NavigationListType = [
-  {
-    mainCategory: 'THE BASICS',
-    subCategories: [
-      { link: '/movie', name: 'About TMDB' },
-      { link: '/movie/now-playing', name: 'Contact Us' },
-      { link: '/movie/upcoming', name: 'Upcoming' },
-      { link: '/movie/top-rated', name: 'Support Forums' },
-      { link: '/movie/top-rated', name: 'API' },
-      { link: '/movie/top-rated', name: 'System Status' },
-    ],
-  },
-  {
-    mainCategory: 'GET INVOLVED',
-    subCategories: [
-      { link: '/tv', name: 'Contribution Bible' },
-      { link: '/tv/airing-today', name: 'Add New Movie' },
-      { link: '/tv/on-the-air', name: 'Add New TV Show' },
-    ],
-  },
-  {
-    mainCategory: 'COMMUNITY',
-    subCategories: [
-      { link: '/person', name: 'Guidelines' },
-      { link: '/person', name: 'Discussions' },
-      { link: '/person', name: 'Leaderboard' },
-    ],
-  },
-  {
-    mainCategory: 'LEGAL',
-    subCategories: [
-      { link: '/talk', name: 'Terms of Use' },
-      { link: '/talk', name: 'API Terms of Use' },
-      { link: '/talk', name: 'Privacy Policy' },
-      { link: '/talk', name: 'DMCA Policy' },
-    ],
-  },
-];
+export const useNavigationList = (): NavigationListType => {
+  const { t } = useTranslation();
+
+  return [
+    {
+      mainCategory: t('footer.THE BASICS'),
+      subCategories: [
+        { link: '/movie', name: t('footer.About TMDB') },
+        { link: '/movie/now-playing', name: t('footer.Contact Us') },
+        { link: '/movie/upcoming', name: t('footer.Upcoming') },
+        { link: '/movie/top-rated', name: t('footer.Support Forums') },
+        { link: '/movie/top-rated', name: t('footer.API') },
+        { link: '/movie/top-rated', name: t('footer.System Status') },
+      ],
+    },
+    {
+      mainCategory: t('footer.GET INVOLVED'),
+      subCategories: [
+        { link: '/tv', name: t('footer.Contribution Bible') },
+        { link: '/tv/airing-today', name: t('footer.Add New Movie') },
+        { link: '/tv/on-the-air', name: t('footer.Add New TV Show') },
+      ],
+    },
+    {
+      mainCategory: t('footer.COMMUNITY'),
+      subCategories: [
+        { link: '/person', name: t('footer.Guidelines') },
+        { link: '/person', name: t('footer.Discussions') },
+        { link: '/person', name: t('footer.Leaderboard') },
+      ],
+    },
+    {
+      mainCategory: t('footer.LEGAL'),
+      subCategories: [
+        { link: '/talk', name: t('footer.Terms of Use') },
+        { link: '/talk', name: t('footer.API Terms of Use') },
+        { link: '/talk', name: t('footer.Privacy Policy') },
+        { link: '/talk', name: t('footer.DMCA Policy') },
+      ],
+    },
+  ];
+};

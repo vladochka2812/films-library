@@ -1,6 +1,17 @@
-export const PopularDate = ['Streaming', 'On TV'];
+import { useTranslation } from 'react-i18next';
 
-export enum PathType {
-  'Streaming' = '/movie/popular',
-  'On TV' = '/tv/popular',
-}
+export const PathType = {
+  streaming: 'movie',
+  onTV: 'tv',
+};
+
+export const PopularDate = {
+  streaming: 'popularSection.streaming',
+  onTV: 'popularSection.onTV',
+};
+
+export const usePopularTabs = () => {
+  const { t } = useTranslation();
+
+  return [t(PopularDate.streaming), t(PopularDate.onTV)];
+};

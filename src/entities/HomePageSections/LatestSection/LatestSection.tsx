@@ -9,16 +9,31 @@ import { HorizontalScrollWrapperVariant } from '@/shared/HorizontalScrollWrapper
 import { TabMenu } from '@/shared/TabMenu/TabMenu';
 import { TabMenuVariant } from '@/shared/TabMenu/model/model';
 import { getLatest } from './api/getLatest';
-import { LatestDate, PathType } from './model/model';
+import { useTranslation } from 'react-i18next';
+import { PathType, useLatestTabs } from './model/model';
+import { languages } from '@/assets/locales/model/model';
 
 export const LatestSection = () => {
-  const [selectedTab, setSelectedTab] = useState<string>(LatestDate[0]);
+  const latestTabs = useLatestTabs();
+  const [selectedTab, setSelectedTab] = useState<string>(latestTabs[0]);
   const [currentImage, setCurrentImage] = useState('');
   const [currenScroll, setCurrentScroll] = useState<number>(0);
+  const { t, i18n } = useTranslation();
+
+  const lang = useMemo(() => {
+    return languages[i18n.language as keyof typeof languages];
+  }, [i18n.language]);
 
   const path = useMemo(() => {
-    return PathType[selectedTab as keyof typeof PathType];
-  }, [selectedTab]);
+    const pathMap = {
+      [latestTabs[0]]: PathType.nowPlaying,
+      [latestTabs[1]]: PathType.popular,
+      [latestTabs[2]]: PathType.topRated,
+      [latestTabs[3]]: PathType.upcoming,
+    };
+
+    return pathMap[selectedTab] || PathType.nowPlaying;
+  }, [selectedTab, latestTabs]);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -27,7 +42,7 @@ export const LatestSection = () => {
   );
 
   useEffect(() => {
-    dispatch(getLatest(path));
+    dispatch(getLatest({ path, lang }));
   }, [path, dispatch]);
 
   return (
@@ -44,10 +59,13 @@ export const LatestSection = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-darkBlue via-darkBlue to-darkBlue opacity-75 pointer-events-none" />
 
       <div className="relative z-10 flex justify-start items-center px-10 pt-[30px]">
-        <h2 className="text-[24px] font-semibold mr-5">Latest</h2>
+        <h2 className="text-[24px] font-semibold mr-5">
+          {t('latestDate.Latest')}
+        </h2>
+
         <TabMenu
           variant={TabMenuVariant.green}
-          items={LatestDate}
+          items={latestTabs}
           selectedItem={selectedTab}
           onSelect={(tab) => setSelectedTab(tab)}
         />

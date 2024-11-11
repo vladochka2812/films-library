@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import { NavigationList } from '../../model/model';
+import { useNavigationList } from '../../model/model';
 import { Accordion } from '@/shared/Accordion/Accordion';
 
 export const MobileContent = ({ handleClose }: { handleClose: () => void }) => {
   const liStyle = 'text-[16px] text-white/60 font-semibold pb-[10px]';
+  const NavigationList = useNavigationList();
+
   return (
     <div>
       {NavigationList.slice(0, 3).map((navLink, index) => (

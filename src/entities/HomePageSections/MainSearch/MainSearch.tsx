@@ -25,7 +25,7 @@ export const MainSearch = () => {
     return () => {
       window.removeEventListener('resize', updatePlaceholder);
     };
-  }, [t]);
+  }, []);
 
   return (
     <div className="flex justify-center lg:max-w-[1400px] w-full relative min-h-[300px] h-[calc(100vh / 2.5)] max-h-[360px]">

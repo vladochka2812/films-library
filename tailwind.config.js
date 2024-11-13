@@ -9,6 +9,7 @@ module.exports = {
         lightGreen: 'rgb(30, 213, 169)',
         extraLightGreen: 'rgb(192, 254, 207)',
         text: 'rgba(0, 0, 0, .6)',
+        darkBrown: 'rgba(31.5, 10.5, 10.5, 1)',
       },
       transitionProperty: {
         top: 'top',

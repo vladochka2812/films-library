@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getPopularPeople } from './api/getPopularPeople';
@@ -6,14 +6,9 @@ import { AppDispatch, RootState } from '@/app/store/store';
 import { PersonCard } from '@/shared/PersonCard/model/PersonCard';
 import { HorizontalScrollWrapper } from '@/shared/HorizontalScrollWrapper/HorizontalScrollWrapper';
 import { bgImage } from '../TrendingSection/model/model';
-import { languages } from '@/assets/locales/model/model';
 
 export const PopularPeopleSection = () => {
-  const { t, i18n } = useTranslation();
-
-  const lang = useMemo(() => {
-    return languages[i18n.language as keyof typeof languages];
-  }, [i18n.language]);
+  const { t } = useTranslation();
 
   const path = 'person/popular';
   const dispatch = useDispatch<AppDispatch>();
@@ -23,7 +18,7 @@ export const PopularPeopleSection = () => {
   );
 
   useEffect(() => {
-    dispatch(getPopularPeople({ path, lang }));
+    dispatch(getPopularPeople({ path }));
   }, [path, dispatch]);
 
   return (

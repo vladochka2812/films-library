@@ -48,3 +48,8 @@ export enum FilmCardVariant {
 }
 
 export const normalizeTitle = /[:\s]/g;
+
+export enum CircleSize {
+  big = 'big',
+  small = 'small',
+}

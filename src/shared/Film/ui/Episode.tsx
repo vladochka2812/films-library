@@ -12,15 +12,15 @@ export const Episode = ({
   runtime,
 }: EpisodeType) => {
   return (
-    <div className="flex items-center border max-w-[1000px] w-full rounded-lg">
+    <div className="flex sm:flex-row flex-col items-center border max-w-[1000px] w-full rounded-lg">
       <div className="w-[230px] h-[130px]">
         <img
           src={image}
           alt={episodeName}
-          className="w-full h-full object-cover rounded-l-md"
+          className="w-full h-full object-cover rounded-md sm:rounded-l-md"
         />
       </div>
-      <div className="py-2 px-5 max-w-[700px]">
+      <div className="py-2 px-5 lg:max-w-[700px] sm:max-w-[400px]">
         <h2 className="flex gap-3 font-semibold text-[1.1rem]">
           <span>{episodeNumber}</span>
           <span>{episodeName}</span>

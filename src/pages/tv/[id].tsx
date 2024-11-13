@@ -177,7 +177,7 @@ const TV = () => {
           language={language}
           type={type}
         />
-        <div className="py-[30px]">
+        <div className="py-[30px] md:px-0 px-4">
           <h2 className="font-semibold text-[1.4em] mb-5">
             {t('FilmPage.seasons')}
           </h2>
@@ -196,7 +196,7 @@ const TV = () => {
           ))}
         </div>
 
-        <div className="py-[30px]">
+        <div className="py-[30px] md:px-0 px-4">
           <h2 className="font-semibold text-[1.4em] mb-5">
             {t('FilmPage.episodes')}
           </h2>

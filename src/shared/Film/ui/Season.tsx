@@ -11,15 +11,15 @@ export const Season = ({
   year,
 }: SeasonType) => {
   return (
-    <div className="flex items-center border max-w-[1000px] w-full rounded-lg">
+    <div className="flex sm:flex-row flex-col items-center border lg:max-w-[1000px] w-full rounded-lg">
       <div className="w-[130px] h-[195px]">
         <img
           src={image}
           alt={season}
-          className="w-full h-full object-cover rounded-l-md"
+          className="w-full h-full object-cover sm:rounded-l-md "
         />
       </div>
-      <div className="p-5 max-w-[800px]">
+      <div className="p-5 lg:max-w-[800px] sm:max-w-[500px]">
         <h2>{season}</h2>
         <div className="mt-0.5 flex gap-4">
           <Rate rate={rate} />

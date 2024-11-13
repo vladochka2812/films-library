@@ -21,24 +21,54 @@ export const MainInfo = ({
 }: MainInfoType) => {
   const { t } = useTranslation();
 
+  const image = (
+    <div className="lg:min-w-[300px] lg:w-[300px] lg:h-[450px] min-w-[200px] w-[200px] h-[300px] lg:mt-0 mt-[400px]">
+      <img
+        src={mainImageHref}
+        alt={name}
+        className="w-full h-full object-cover rounded-3xl"
+      />
+    </div>
+  );
+
   return (
     <div
-      className="flex justify-center relative lg:max-w-[1920px] w-[calc(100vw-10px)] lg:w-[100vw] h-[500px] border-b border-primaryColor bg-no-repeat"
+      className="
+      max-w-[100vw] flex justify-center relative lg:max-w-[1920px] lg:w-[calc(100vw-10px)] w-full lg:h-[500px] border-b border-primaryColor bg-no-repeat"
       style={{
         backgroundImage: `linear-gradient(to right, rgba(31.5, 10.5, 10.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 10.5, 10.5, 0.84) 50%, rgba(31.5, 10.5, 10.5, 0.84) 100%), url(${bgImageHref})`,
-        backgroundPosition: `center, left calc((50vw - 170px) - 340px) top`,
+        backgroundPosition:
+          window.innerWidth >= 1024
+            ? `center, left calc((50vw - 170px) - 340px) top`
+            : `center`,
         backgroundSize: 'cover',
       }}
     >
-      <div className="flex items-center justify-center px-10 py-[30px] max-w-[1400px] text-white ">
-        <div className="min-w-[300px] w-[300px] h-[450px] ">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-center lg:px-10 py-[30px] lg:max-w-[1400px]  text-white ">
+        <div
+          className="lg:hidden mt-[-30px] h-[258px]"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(31.5, 10.5, 10.5, 0.9) 20%, rgba(31.5, 10.5, 10.5, 0.2) 50%), url(${bgImageHref})`,
+            backgroundSize: 'cover',
+          }}
+        >
+          <div className="w-[140px] h-[210px] sm:mx-6 sm:my-10 m-5">
+            <img
+              src={mainImageHref}
+              alt={name}
+              className="w-full h-full object-cover rounded-3xl"
+            />
+          </div>
+        </div>
+
+        <div className="lg:min-w-[300px] lg:w-[300px] lg:h-[450px]  hidden lg:flex">
           <img
             src={mainImageHref}
             alt={name}
             className="w-full h-full object-cover rounded-3xl"
           />
         </div>
-        <div className="pl-10">
+        <div className="lg:pl-10 flex flex-col lg:items-start items-center">
           <div className="mb-6">
             <div className="flex">
               <h2 className="text-[2.2rem] font-semibold">{name}</h2>
@@ -54,7 +84,7 @@ export const MainInfo = ({
               <span>{timing}</span>
             </div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center lg:mt-0 mt-[-10px]">
             <RatingRing percent={vote} size={CircleSize.big} />
             <div className="ml-1 font-bold ">
               <span className="">{t('FilmPage.user')}</span>
@@ -62,37 +92,39 @@ export const MainInfo = ({
               <span className="">{t('FilmPage.score')}</span>
             </div>
           </div>
-          <div className="mt-8">
-            <h3 className="text-[1.1rem] italic opacity-70 font-normal">
-              {tagline}
-            </h3>
-            <h3 className="mt-[10px] text-[1.3rem] font-medium mb-2">
-              {t('FilmPage.overview')}
-            </h3>
-            <p className="mb-4 leading-6 text-[16px]">{overview}</p>
-          </div>
           <div>
-            <h3 className="mt-[10px] text-[1.3rem] font-medium mb-2">
-              {t('FilmPage.production')}
-            </h3>
-            <div className="flex gap-7">
-              {production?.map((item, index) => (
-                <span key={index}>{item}</span>
-              ))}
+            <div className="lg:mt-8 lg:px-0 px-4 mt-4]">
+              <h3 className="text-[1.1rem] italic opacity-70 font-normal">
+                {tagline}
+              </h3>
+              <h3 className="mt-[10px] text-[1.3rem] font-medium mb-2">
+                {t('FilmPage.overview')}
+              </h3>
+              <p className="mb-4 leading-6 text-[16px]">{overview}</p>
             </div>
-            {createdBy && (
-              <div className="flex gap-20 mt-5">
-                {createdBy?.map((item, index) => (
-                  <Link
-                    to={item.link}
-                    key={index}
-                    className="font-semibold hover:opacity-65"
-                  >
-                    {item.name}
-                  </Link>
+            <div>
+              <h3 className="lg:mt-[10px] text-[1.3rem] font-medium mb-2 lg:px-0 px-4">
+                {t('FilmPage.production')}
+              </h3>
+              <div className="flex gap-y-2 gap-x-7 flex-wrap lg:px-0 px-4">
+                {production?.map((item, index) => (
+                  <span key={index}>{item}</span>
                 ))}
               </div>
-            )}
+              {createdBy && (
+                <div className="flex flex-wrap gap-y-2 gap-x-20 lg:mt-5 mt-3 lg:px-0 px-4">
+                  {createdBy?.map((item, index) => (
+                    <Link
+                      to={item.link}
+                      key={index}
+                      className="font-semibold hover:opacity-65"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

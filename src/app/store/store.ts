@@ -4,6 +4,8 @@ import latestItemsReducer from '@/entities/HomePageSections/LatestSection/api/sl
 import popularItemsReducer from '@/entities/HomePageSections/PopularSection/api/slice';
 import topRatedItemsReducer from '@/entities/HomePageSections/TopRatedSection/api/slice';
 import popularPeopleItemsReducer from '@/entities/HomePageSections/PopularPeopleSection/api/slice';
+import movieItemReducer from '@/pages/movie/api/slice';
+import tvItemReducer from '@/pages/tv/api/slice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +14,8 @@ export const store = configureStore({
     latestItems: latestItemsReducer,
     topRatedItems: topRatedItemsReducer,
     popularPeopleItems: popularPeopleItemsReducer,
+    movieItem: movieItemReducer,
+    tvItem: tvItemReducer,
   },
 });
 

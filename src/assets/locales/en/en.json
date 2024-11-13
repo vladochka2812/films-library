@@ -116,5 +116,28 @@
     "noPassword": "Password is required",
     "toShortPassword": "Password is too short",
     "noName": "Name is required"
+  },
+  "FilmPage": {
+    "user": "User",
+    "score": "Score",
+    "overview": "Overview",
+    "production": "Production",
+    "status": "Status",
+    "budget": "Budget",
+    "revenue": "Revenue",
+    "language": "Original language",
+    "visit": "Visit Homepage",
+    "hours": "h",
+    "min": "m",
+    "part": "Part of the",
+    "view": "VIEW THE COLLECTION",
+    "season": "ses",
+    "episode": "ep",
+    "network": "Network",
+    "type": "Type",
+    "seasons": "Seasons",
+    "episodes": "Episodes",
+    "last": "Last episode",
+    "next": "Next episode"
   }
 }

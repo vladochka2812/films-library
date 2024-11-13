@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  CircleSize,
   FilmCardType,
   FilmCardVariant,
   imageBgSize,
@@ -28,9 +29,8 @@ export const FilmCard = ({
     media_type,
     backdrop_path,
   } = film;
-
   const linkHref = useMemo(() => {
-    return `/${media_type}/${id}-${title ? title?.toLowerCase().replace(normalizeTitle, '-') : name?.toLowerCase().replace(normalizeTitle, '-')}`;
+    return `/${media_type ? media_type : 'tv'}/${id}-${title ? title?.toLowerCase().replace(normalizeTitle, '-') : name?.toLowerCase().replace(normalizeTitle, '-')}`;
   }, [media_type, id, title || name]);
 
   const formattedDate = useMemo(() => {
@@ -109,7 +109,7 @@ export const FilmCard = ({
       >
         {variant === FilmCardVariant.vertical && (
           <div className="absolute top-[-19px] left-[10px] rounded-full shadow-md">
-            <RatingRing percent={percent} />
+            <RatingRing percent={percent} size={CircleSize.small} />
           </div>
         )}
         <h2

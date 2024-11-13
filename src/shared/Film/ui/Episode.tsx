@@ -1,0 +1,41 @@
+import { GoDotFill } from 'react-icons/go';
+import { EpisodeType } from '../model/model';
+import { Rate } from './Rate';
+
+export const Episode = ({
+  image,
+  rate,
+  date,
+  overview,
+  episodeNumber,
+  episodeName,
+  runtime,
+}: EpisodeType) => {
+  return (
+    <div className="flex items-center border max-w-[1000px] w-full rounded-lg">
+      <div className="w-[230px] h-[130px]">
+        <img
+          src={image}
+          alt={episodeName}
+          className="w-full h-full object-cover rounded-l-md"
+        />
+      </div>
+      <div className="py-2 px-5 max-w-[700px]">
+        <h2 className="flex gap-3 font-semibold text-[1.1rem]">
+          <span>{episodeNumber}</span>
+          <span>{episodeName}</span>
+        </h2>
+        <div className="mt-0.5 flex gap-4">
+          <Rate rate={rate} />
+
+          <div className="flex items-center gap-1">
+            <span>{date}</span>
+            <GoDotFill size={10} />
+            <span>{runtime} </span>
+          </div>
+        </div>
+        <p className="pt-2 text-[0.9rem]">{overview}</p>
+      </div>
+    </div>
+  );
+};

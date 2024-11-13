@@ -18,11 +18,7 @@ export const LatestSection = () => {
   const [selectedTab, setSelectedTab] = useState<string>(latestTabs[0]);
   const [currentImage, setCurrentImage] = useState('');
   const [currenScroll, setCurrentScroll] = useState<number>(0);
-  const { t, i18n } = useTranslation();
-
-  const lang = useMemo(() => {
-    return languages[i18n.language as keyof typeof languages];
-  }, [i18n.language]);
+  const { t } = useTranslation();
 
   const path = useMemo(() => {
     const pathMap = {
@@ -42,7 +38,7 @@ export const LatestSection = () => {
   );
 
   useEffect(() => {
-    dispatch(getLatest({ path, lang }));
+    dispatch(getLatest({ path }));
   }, [path, dispatch]);
 
   return (

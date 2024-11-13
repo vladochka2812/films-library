@@ -11,11 +11,8 @@ import { PathType, useTopRatedTabs } from './model/model';
 import { languages } from '@/assets/locales/model/model';
 
 export const TopRatedSection = () => {
-  const { t, i18n } = useTranslation();
-  const lang = useMemo(
-    () => languages[i18n.language as keyof typeof languages],
-    [i18n.language]
-  );
+  const { t } = useTranslation();
+
   const topRatedTabs = useTopRatedTabs();
   const [selectedTab, setSelectedTab] = useState<string>(topRatedTabs[0]);
 
@@ -35,7 +32,7 @@ export const TopRatedSection = () => {
   );
 
   useEffect(() => {
-    dispatch(getTopRated({ path, lang }));
+    dispatch(getTopRated({ path }));
   }, [path, dispatch]);
 
   return (

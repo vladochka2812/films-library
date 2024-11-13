@@ -3,12 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getPopularPeople = createAsyncThunk(
   'popularPeople/getPopularPeople',
-  async (
-    { path, lang }: { path: string; lang: string },
-    { rejectWithValue }
-  ) => {
+  async ({ path }: { path: string }, { rejectWithValue }) => {
     try {
-      const response = await apiClient.get(`${path}?language=${lang}`);
+      const response = await apiClient.get(`${path}`);
       return response.data;
     } catch (error) {
       return rejectWithValue((error as string) || 'Something went wrong');

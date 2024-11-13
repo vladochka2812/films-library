@@ -8,14 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPopular } from './api/getPopular';
 import { PathType, usePopularTabs } from './model/model';
 import { useTranslation } from 'react-i18next';
-import { languages } from '@/assets/locales/model/model';
 
 export const PopularSection = () => {
-  const { t, i18n } = useTranslation();
-  const lang = useMemo(
-    () => languages[i18n.language as keyof typeof languages],
-    [i18n.language]
-  );
+  const { t } = useTranslation();
+
   const popularTabs = usePopularTabs();
   const [selectedTab, setSelectedTab] = useState<string>(popularTabs[0]);
 
@@ -34,8 +30,8 @@ export const PopularSection = () => {
   );
 
   useEffect(() => {
-    dispatch(getPopular({ path, lang }));
-  }, [path, lang, dispatch]);
+    dispatch(getPopular({ path }));
+  }, [path, dispatch]);
 
   return (
     <div className="flex flex-col lg:max-w-[1400px] max-w-[100vw] pt-[30px]">

@@ -1,8 +1,6 @@
 import { useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { languages } from '@/assets/locales/model/model';
 import { AppDispatch, RootState } from '@/app/store/store';
 import { useParams } from 'react-router-dom';
 import { bgImageSize, collectionImageSize, mainImageSize } from './model/model';
@@ -12,11 +10,7 @@ import { SubInfo } from '@/shared/Film/ui/SubInfo';
 import { Collection } from '@/shared/Film/ui/Collection';
 
 const Movie = () => {
-  const { i18n, t } = useTranslation();
-  const lang = useMemo(
-    () => languages[i18n.language as keyof typeof languages],
-    [i18n.language]
-  );
+  const { t } = useTranslation();
 
   const { id } = useParams();
   const path = useMemo(() => {
@@ -30,8 +24,8 @@ const Movie = () => {
   );
 
   useEffect(() => {
-    dispatch(getMovie({ path, lang }));
-  }, [path, dispatch, lang]);
+    dispatch(getMovie({ path }));
+  }, [path, dispatch]);
 
   const {
     backdrop_path,

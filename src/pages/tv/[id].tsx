@@ -2,7 +2,6 @@ import { useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { languages } from '@/assets/locales/model/model';
 import { AppDispatch, RootState } from '@/app/store/store';
 import { useParams } from 'react-router-dom';
 import {
@@ -10,7 +9,6 @@ import {
   networkLogoSize,
   mainImageSize,
   seasonImageSize,
-  TVShowType,
   episodeImageSize,
   EpisodeType,
 } from './model/model';
@@ -21,11 +19,7 @@ import { Season } from '@/shared/Film/ui/Season';
 import { Episode } from '@/shared/Film/ui/Episode';
 
 const TV = () => {
-  const { i18n, t } = useTranslation();
-  const lang = useMemo(
-    () => languages[i18n.language as keyof typeof languages],
-    [i18n.language]
-  );
+  const { t } = useTranslation();
 
   const { id } = useParams();
   const path = useMemo(() => {
@@ -37,8 +31,8 @@ const TV = () => {
   const { tvItem, loading } = useSelector((state: RootState) => state.tvItem);
 
   useEffect(() => {
-    dispatch(getTV({ path, lang }));
-  }, [path, dispatch, lang]);
+    dispatch(getTV({ path }));
+  }, [path, dispatch]);
 
   const {
     backdrop_path,

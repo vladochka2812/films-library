@@ -6,24 +6,14 @@ import { TabMenu } from '@/shared/TabMenu/TabMenu';
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTrending } from './api/getTrending';
-import {
-  TrendingDate,
-  PathType,
-  bgImage,
-  useTrendingTabs,
-} from './model/model';
+import { PathType, bgImage, useTrendingTabs } from './model/model';
 import { useTranslation } from 'react-i18next';
-import { languages } from '@/assets/locales/model/model';
 
 export const TrendingSection = () => {
   const trendingTabs = useTrendingTabs();
   const [selectedTab, setSelectedTab] = useState<string>(trendingTabs[0]);
 
-  const { t, i18n } = useTranslation();
-  const lang = useMemo(
-    () => languages[i18n.language as keyof typeof languages],
-    [i18n.language]
-  );
+  const { t } = useTranslation();
 
   const path = useMemo(() => {
     const pathMap = {
@@ -41,9 +31,9 @@ export const TrendingSection = () => {
   );
 
   useEffect(() => {
-    dispatch(getTrending({ path, lang }));
+    dispatch(getTrending({ path }));
   }, [path, dispatch]);
-
+  console.log(trendingItems);
   return (
     <div className="flex flex-col lg:max-w-[1400px] max-w-[100vw] pt-[30px]">
       <div className="flex justify-start items-center px-5">

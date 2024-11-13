@@ -139,13 +139,9 @@ const TV = () => {
       overview: episode.overview,
     };
   };
-  const lastEpisode = useMemo(() => {
-    return last_episode_to_air && getEpisode(last_episode_to_air);
-  }, [last_episode_to_air]);
+  const lastEpisode = last_episode_to_air && getEpisode(last_episode_to_air);
 
-  const nextEpisode = useMemo(() => {
-    return next_episode_to_air && getEpisode(next_episode_to_air);
-  }, [next_episode_to_air]);
+  const nextEpisode = next_episode_to_air && getEpisode(next_episode_to_air);
 
   return (
     !loading && (

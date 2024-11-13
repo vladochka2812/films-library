@@ -34,22 +34,16 @@ export const MainInfo = ({
   return (
     <div
       className="
-      max-w-[100vw] flex justify-center relative lg:max-w-[1920px] lg:w-[calc(100vw-10px)] w-full lg:h-[500px] border-b border-primaryColor bg-no-repeat"
+      max-w-[100vw] flex justify-center relative lg:max-w-[1920px] lg:bg-[center, left calc((50vw - 170px) - 340px) top] bg-center bg-cover lg:w-[calc(100vw-10px)] w-full lg:h-[500px] border-b border-primaryColor bg-no-repeat"
       style={{
         backgroundImage: `linear-gradient(to right, rgba(31.5, 10.5, 10.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 10.5, 10.5, 0.84) 50%, rgba(31.5, 10.5, 10.5, 0.84) 100%), url(${bgImageHref})`,
-        backgroundPosition:
-          window.innerWidth >= 1024
-            ? `center, left calc((50vw - 170px) - 340px) top`
-            : `center`,
-        backgroundSize: 'cover',
       }}
     >
       <div className="flex flex-col lg:flex-row lg:items-center justify-center lg:px-10 py-[30px] lg:max-w-[1400px]  text-white ">
         <div
-          className="lg:hidden mt-[-30px] h-[258px]"
+          className="lg:hidden mt-[-30px] h-[258px] bg-cover"
           style={{
             backgroundImage: `linear-gradient(to right, rgba(31.5, 10.5, 10.5, 0.9) 20%, rgba(31.5, 10.5, 10.5, 0.2) 50%), url(${bgImageHref})`,
-            backgroundSize: 'cover',
           }}
         >
           <div className="w-[140px] h-[210px] sm:mx-6 sm:my-10 m-5">

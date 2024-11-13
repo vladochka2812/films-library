@@ -8,14 +8,9 @@ export const Collection = ({ name, link, bgImage }: CollectionType) => {
 
   return (
     <div
-      className="max-w-[1000px] w-[800px] h-[258px] rounded-2xl mt-10 text-white"
+      className={`"lg:max-w-[1000px] lg:w-[800px] h-[258px] rounded-2xl mt-10 text-white bg-cover bg-no-repeat bg-[center, left calc((50vw - 170px) - 340px) top]"`}
       style={{
         backgroundImage: `linear-gradient(to right, rgba(3, 37, 65, 1) 0%, rgba(3, 37, 65, 0.6) 100%), url(${bgImage})`,
-        backgroundPosition: `center, left calc((50vw - 170px) - 340px) top`,
-        backgroundSize: 'cover',
-        backgroundPositionX: '50%',
-        backgroundPositionY: '50%',
-        backgroundRepeat: 'no-repeat',
       }}
     >
       <div className="px-5 flex flex-col h-full justify-center">

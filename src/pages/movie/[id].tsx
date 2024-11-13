@@ -71,9 +71,7 @@ const Movie = () => {
 
   const minutes = 60;
 
-  const genresList = useMemo(() => {
-    return genres?.map((genre) => genre.name).join(', ');
-  }, [genres]);
+  const genresList = genres?.map((genre) => genre.name).join(', ');
 
   const timing = useMemo(() => {
     return runtime
@@ -94,9 +92,7 @@ const Movie = () => {
     return formatPrice({ price: revenue });
   }, [revenue]);
 
-  const language = useMemo(() => {
-    return spoken_languages?.map((lang) => lang.name).join(', ');
-  }, [spoken_languages]);
+  const language = spoken_languages?.map((lang) => lang.name).join(', ');
 
   const { collectionName, collectionLink, collectionBgImage } = useMemo(() => {
     if (belongs_to_collection) {
@@ -107,6 +103,7 @@ const Movie = () => {
     }
     return { collectionName: '', collectionBgImage: '', collectionLink: ' ' };
   }, [belongs_to_collection]);
+
   return (
     !loading && (
       <div className="flex flex-col items-center mb-10">

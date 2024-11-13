@@ -92,15 +92,11 @@ const TV = () => {
     return { formattedDate, year };
   };
 
-  const genresList = useMemo(() => {
-    return genres?.map((genre) => genre.name).join(', ');
-  }, [genres]);
+  const genresList = genres?.map((genre) => genre.name).join(', ');
 
   const timing = `${number_of_seasons}${t('FilmPage.season')} ${number_of_episodes}${t('FilmPage.episode')}`;
 
-  const language = useMemo(() => {
-    return spoken_languages?.map((lang) => lang.name).join(', ');
-  }, [spoken_languages]);
+  const language = spoken_languages?.map((lang) => lang.name).join(', ');
 
   const network = networks?.map(
     (item) =>

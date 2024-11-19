@@ -13,4 +13,11 @@ export type ReviewType = {
   url: string;
 };
 
+export type ReviewCardType = {
+  author: string;
+  content: string;
+  avatar: string;
+  date: string;
+  rate: number;
+};
 export const avatarSize = 'w45_and_h45_face';

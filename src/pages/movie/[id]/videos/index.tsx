@@ -7,6 +7,7 @@ import { VideosPageSections } from '@/entities/VideosPageSections/VideosPageSect
 import { useTranslation } from 'react-i18next';
 import { getMovie } from '../../api/gets/getMovie';
 import { VideoTypes } from '@/entities/VideosPageSections/model/model';
+import { formatDate } from '@/shared/Date/Date';
 
 const VideosMovie = () => {
   const { pathname } = useLocation();
@@ -22,7 +23,7 @@ const VideosMovie = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const { videos, movieItem, loading } = useSelector(
+  const { videos, movieItem } = useSelector(
     (state: RootState) => state.movieItem
   );
 
@@ -31,6 +32,18 @@ const VideosMovie = () => {
     dispatch(getVideos({ path }));
     dispatch(getMovie({ path }));
   }, [path, dispatch]);
+
+  const videosList = videos?.results?.map((video) => ({
+    image: `${import.meta.env.VITE_YOUTUBE_PHOTO_LINK}/${video.key}/${import.meta.env.VITE_YOUTUBE_PHOTO_NAME}`,
+    link: `${import.meta.env.VITE_YOUTUBE_VIDEO}/${video.key}`,
+    date: formatDate(video.published_at),
+    type: video.type,
+    name: video.name,
+  }));
+
+  const getFilteredVideos = (type: VideoTypes) => {
+    return videosList?.filter((video) => video.type === type);
+  };
 
   const titleInfo = useMemo(() => {
     return {
@@ -41,25 +54,12 @@ const VideosMovie = () => {
     };
   }, [title, poster_path, release_date]);
 
-  const trailers = videos?.results?.filter(
-    (video) => video.type === VideoTypes.trailer
-  );
-
-  const teasers = videos?.results?.filter(
-    (video) => video.type === VideoTypes.teaser
-  );
-  const clips = videos?.results?.filter(
-    (video) => video.type === VideoTypes.clip
-  );
-  const behindTheScenes = videos?.results?.filter(
-    (video) => video.type === VideoTypes.behindTheScene
-  );
-  const bloopers = videos?.results?.filter(
-    (video) => video.type === VideoTypes.blooper
-  );
-  const featurettes = videos?.results?.filter(
-    (video) => video.type === VideoTypes.featurette
-  );
+  const trailers = getFilteredVideos(VideoTypes.trailer);
+  const teasers = getFilteredVideos(VideoTypes.teaser);
+  const clips = getFilteredVideos(VideoTypes.clip);
+  const behindTheScenes = getFilteredVideos(VideoTypes.behindTheScene);
+  const bloopers = getFilteredVideos(VideoTypes.blooper);
+  const featurettes = getFilteredVideos(VideoTypes.featurette);
 
   const tabMenuInfo = useMemo(() => {
     return {
@@ -101,11 +101,11 @@ const VideosMovie = () => {
   }, [type]);
 
   return (
-      <VideosPageSections
-        title={titleInfo}
-        tabMenu={tabMenuInfo}
-        videos={selectedVideos || trailers}
-      />
+    <VideosPageSections
+      title={titleInfo}
+      tabMenu={tabMenuInfo}
+      videos={selectedVideos || trailers}
+    />
   );
 };
 

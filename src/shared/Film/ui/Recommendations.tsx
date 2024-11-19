@@ -17,7 +17,7 @@ export const Recommendations = ({ films }: { films: FilmType[] }) => {
           variant={HorizontalScrollWrapperVariant.simple}
         >
           <div className="flex lg:max-w-[1000px] max-w-[300px] items-center">
-            {films &&
+            {!!films?.length &&
               films.map((film, index) => (
                 <div key={index} className="mr-[15px]">
                   <FilmCard variant={FilmCardVariant.hover} film={film} />

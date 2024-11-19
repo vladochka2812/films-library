@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { ReviewCard } from '@/shared/ReviewCard/ReviewCard';
 import { Link, useLocation } from 'react-router-dom';
-import { ReviewType } from '@/shared/ReviewCard/model/model';
+import { ReviewCardType } from '@/shared/ReviewCard/model/model';
 
-export const Reviews = ({ review }: { review: ReviewType }) => {
+export const Reviews = ({ review }: { review: ReviewCardType }) => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
 

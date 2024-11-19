@@ -13,7 +13,8 @@ export type VideoType = {
 
 export type VideoCardType = {
   name: string;
-  videoKey: string;
+  image: string;
+  link: string;
   type: string;
-  published_at: string;
+  date: string;
 };

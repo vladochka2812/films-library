@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { getMovie } from '../../api/gets/getMovie';
 import { ReviewsPageSections } from '@/entities/ReviewsPageSwctions/ReviewsPageSections';
 import { getReviews } from '../../api/gets/getReviews';
+import { formatDate } from '@/shared/Date/Date';
+import { avatarSize } from '@/shared/ReviewCard/model/model';
 
 const ReviewsMovie = () => {
   const { pathname } = useLocation();
@@ -40,7 +42,17 @@ const ReviewsMovie = () => {
     };
   }, [title, poster_path, release_date]);
 
-  return <ReviewsPageSections title={titleInfo} reviews={reviews.results} />;
+  const reviewsList = reviews?.results?.map((review) => ({
+    date: formatDate(review.created_at),
+    avatar: review.author_details?.avatar_path
+      ? `${import.meta.env.VITE_IMAGE_API_LINK}/${avatarSize}/${review.author_details.avatar_path}`
+      : '',
+    rate: Math.round(review.author_details?.rating ?? 0),
+    content: review.content,
+    author: review.author,
+  }));
+
+  return <ReviewsPageSections title={titleInfo} reviews={reviewsList} />;
 };
 
 export default ReviewsMovie;

@@ -1,25 +1,13 @@
 import { FaPlay } from 'react-icons/fa';
-import { formatDate } from '../Date/Date';
 import { GoDotFill } from 'react-icons/go';
 import { VideoCardType } from './model/model';
 
-export const VideoCard = ({
-  name,
-  videoKey,
-  type,
-  published_at,
-}: VideoCardType) => {
-  const imageUrl = `${import.meta.env.VITE_YOUTUBE_PHOTO_LINK}/${videoKey}/${import.meta.env.VITE_YOUTUBE_PHOTO_NAME}`;
-
-  const link = `${import.meta.env.VITE_YOUTUBE_VIDEO}/${videoKey}`;
-
-  const date = formatDate(published_at);
-
+export const VideoCard = ({ name, image, type, date, link }: VideoCardType) => {
   return (
     <div className="flex flex-col lg:flex-row lg:h-[200px] lg:w-full w-[352px] border rounded-lg">
       <div className="w-[350px] h-[200px] relative ">
         <img
-          src={imageUrl}
+          src={image}
           alt={name}
           className="object-cover w-full h-full lg:rounded-l-lg rounded-t-lg"
         />

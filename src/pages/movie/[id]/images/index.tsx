@@ -6,6 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { getMovie } from '../../api/gets/getMovie';
 import { ImagesPageSections } from '@/entities/ImagesPageSections/ImagesPageSections';
 import { getImages } from '../../api/gets/getImages';
+import {
+  ImageCardVariant,
+  backdropImageSize,
+  originalImageSize,
+} from '@/shared/ImageCard/model/model';
+import { posterImageSize } from '../../model/model';
 
 const ImagesMovie = () => {
   const { pathname } = useLocation();
@@ -40,8 +46,21 @@ const ImagesMovie = () => {
     };
   }, [title, poster_path, release_date]);
 
-  const posters = images?.posters;
-  const backdrops = images?.backdrops;
+  const posters = images?.posters?.map((poster) => ({
+    height: poster.height,
+    width: poster.width,
+    type: ImageCardVariant.poster,
+    imageHref: `${import.meta.env.VITE_IMAGE_API_LINK}/${posterImageSize}/${poster.file_path}`,
+    originalImageHref: `${import.meta.env.VITE_IMAGE_API_LINK}/${originalImageSize}/${poster.file_path}`,
+  }));
+
+  const backdrops = images?.backdrops?.map((backdrop) => ({
+    height: backdrop.height,
+    width: backdrop.width,
+    type: ImageCardVariant.backdrop,
+    imageHref: `${import.meta.env.VITE_IMAGE_API_LINK}/${backdropImageSize}/${backdrop.file_path}`,
+    originalImageHref: `${import.meta.env.VITE_IMAGE_API_LINK}/${originalImageSize}/${backdrop.file_path}`,
+  }));
 
   const tabMenuInfo = useMemo(() => {
     return {
@@ -55,13 +74,13 @@ const ImagesMovie = () => {
     };
   }, [images.backdrops, images.posters]);
 
-  const videoCollections = {
+  const imageCollections = {
     [t('imagesPage.posters')]: posters,
     [t('imagesPage.backdrops')]: backdrops,
   };
 
-  const selectedVideos = useMemo(() => {
-    return videoCollections[type];
+  const selectedImages = useMemo(() => {
+    return imageCollections[type];
   }, [type]);
 
   return (
@@ -69,7 +88,7 @@ const ImagesMovie = () => {
       <ImagesPageSections
         title={titleInfo}
         tabMenu={tabMenuInfo}
-        images={selectedVideos || posters}
+        images={selectedImages || posters}
       />
     )
   );

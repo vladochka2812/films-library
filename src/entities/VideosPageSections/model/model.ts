@@ -1,11 +1,11 @@
 import { PageTitleType } from '@/shared/PageTitle/model/model';
 import { TabMenuType } from '@/shared/TabMenu/model/model';
-import { VideoType } from '@/shared/VideoCard/model/model';
+import { VideoCardType } from '@/shared/VideoCard/model/model';
 
 export type VideoPageSectionsType = {
   title: PageTitleType;
   tabMenu: TabMenuType;
-  videos: VideoType[];
+  videos: VideoCardType[];
 };
 
 export enum VideoTypes {

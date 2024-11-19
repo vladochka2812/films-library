@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { Reviews } from '@/shared/Film/ui/Reviews';
 import { Media } from '@/shared/Film/ui/Media';
 import { Recommendations } from '@/shared/Film/ui/Recommendations';
-import { dateUsual, getYear } from '@/shared/Date/Date';
+import { dateUsual, formatDate, getYear } from '@/shared/Date/Date';
 import { Collection } from '@/shared/Film/ui/Collection';
 import { MainInfo } from '@/shared/Film/ui/MainInfo';
 import { SubInfo } from '@/shared/Film/ui/SubInfo';
@@ -24,6 +24,7 @@ import {
   posterImageSize,
   backdropImageSize,
 } from '../model/model';
+import { avatarSize } from '@/shared/ReviewCard/model/model';
 
 const Movie = () => {
   const { t } = useTranslation();
@@ -154,6 +155,16 @@ const Movie = () => {
   const backdropsAmount = images?.posters?.length.toString();
   const videoAmount = videos?.results?.length.toString();
 
+  const review = reviews?.results?.[0] && {
+    date: formatDate(reviews.results[0].created_at || ''),
+    avatar: reviews.results[0].author_details?.avatar_path
+      ? `${import.meta.env.VITE_IMAGE_API_LINK}/${avatarSize}/${reviews.results[0].author_details.avatar_path}`
+      : '',
+    rate: Math.round(reviews.results[0].author_details?.rating ?? 0),
+    content: reviews.results[0].content,
+    author: reviews.results[0].author,
+  };
+
   return (
     !loading && (
       <div className="flex flex-col items-center mb-10">
@@ -172,7 +183,11 @@ const Movie = () => {
         />
         <div className="flex lg:flex-row flex-col max-w-[1400px] lg:w-[1400px] justify-center">
           <div className="flex flex-col lg:pr-[30px] lg:p-0 px-2">
-            {reviews.results && <Reviews review={reviews.results[0]} />}
+            {review ? (
+              <Reviews review={review} />
+            ) : (
+              <h4>{t('emptyMessages.reviews')}</h4>
+            )}
             <Media
               posters={postersList}
               videos={videoList}

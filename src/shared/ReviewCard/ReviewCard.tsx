@@ -1,31 +1,22 @@
 import { useTranslation } from 'react-i18next';
-import React from 'react';
-import { ReviewType, avatarSize } from './model/model';
-import { formatDate } from '../Date/Date';
 import { Rate } from '../Film/ui/Rate';
+import { ReviewCardType } from './model/model';
 
 export const ReviewCard = ({
   author,
   content,
-  author_details,
-  created_at,
-}: ReviewType) => {
+  avatar,
+  date,
+  rate,
+}: ReviewCardType) => {
   const { t } = useTranslation();
-
-  const date = formatDate(created_at);
-
-  const avatar = author_details?.avatar_path
-    ? `${import.meta.env.VITE_IMAGE_API_LINK}/${avatarSize}/${author_details.avatar_path}`
-    : undefined;
-
-  const rate = Math.round(author_details?.rating);
 
   return (
     <div className="w-full">
       <div className="p-5 rounded-lg border mb-5">
         <div className="flex items-center">
           <span className="mr-4 w-[45px] h-[45px] rounded-full text-white bg-darkBlue flex justify-center items-center">
-            {author_details?.avatar_path ? (
+            {avatar ? (
               <img
                 src={avatar}
                 alt={author[0].toUpperCase()}

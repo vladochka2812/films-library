@@ -13,7 +13,8 @@ export enum ImageCardVariant {
 }
 export type ImageCardType = {
   height: number;
-  file_path: string;
+  originalImageHref: string;
+  imageHref: string;
   width: number;
   type: ImageCardVariant;
 };

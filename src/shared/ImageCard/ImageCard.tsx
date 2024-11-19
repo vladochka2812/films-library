@@ -10,14 +10,12 @@ import { FaCheck } from 'react-icons/fa';
 import { LuX } from 'react-icons/lu';
 
 export const ImageCard = ({
-  file_path,
   height,
   width,
   type,
+  imageHref,
+  originalImageHref,
 }: ImageCardType) => {
-  const imageHref = `${import.meta.env.VITE_IMAGE_API_LINK}/${type === ImageCardVariant.backdrop ? backdropImageSize : posterImageSize}/${file_path}`;
-  const originalImageHref = `${import.meta.env.VITE_IMAGE_API_LINK}/${originalImageSize}/${file_path}`;
-
   return (
     <div
       className={classNames('rounded-lg border ', {

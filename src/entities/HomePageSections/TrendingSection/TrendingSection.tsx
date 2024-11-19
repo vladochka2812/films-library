@@ -33,7 +33,7 @@ export const TrendingSection = () => {
   useEffect(() => {
     dispatch(getTrending({ path }));
   }, [path, dispatch]);
-  console.log(trendingItems);
+
   return (
     <div className="flex flex-col lg:max-w-[1400px] max-w-[100vw] pt-[30px]">
       <div className="flex justify-start items-center px-5">

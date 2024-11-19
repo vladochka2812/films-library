@@ -12,7 +12,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="lg:hidden">
-        <div className="flex px-5 w-[100vw]">
+        <div className="flex px-5 w-[100vw] h-[100vh]">
           <MobileNav />
         </div>
       </div>

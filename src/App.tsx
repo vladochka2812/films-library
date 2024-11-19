@@ -4,13 +4,12 @@ import { store } from './app/store/store';
 import { Header } from './widgets/Header/Header';
 import { RoutesList } from './app/routes/RoutesList';
 import { Footer } from './widgets/Footer/Footer';
-import { PersonCard } from './shared/PersonCard/model/PersonCard';
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen w-full">
           <Header />
           <RoutesList />
           <Footer />

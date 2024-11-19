@@ -137,6 +137,32 @@
     "seasons": "Сезони",
     "episodes": "Серії",
     "last": "Остання серія",
-    "next": "Наступна серія"
+    "next": "Наступна серія",
+    "facts": "Факти",
+    "keywords": "Ключові слова",
+    "reviews": "Огляди",
+    "reviewFrom": "Огляд від",
+    "writtenBy": "Написаний",
+    "backdrops": "Фони",
+    "video": "Відео",
+    "poster": "Постери",
+    "media": "Медіа",
+    "viewMore": "Переглянути більше",
+    "recommendations": "Рекомендації"
+  },
+  "backToMenu": "Назад до головного",
+  "videosPage": {
+    "title": "Відео",
+    "trailers": "Трейлери",
+    "teasers": "Тізери",
+    "clips": "Кліпи",
+    "behindTheScenes": "Закулісся",
+    "bloopers": "Курйози",
+    "featurettes": "Фічуретки"
+  },
+  "imagesPage": {
+    "title": "Зображення",
+    "backdrops": "Фони",
+    "posters": "Постери"
   }
 }

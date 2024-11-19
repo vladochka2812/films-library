@@ -8,6 +8,7 @@ export const TabMenu = ({
   selectedItem,
   onSelect,
   variant = TabMenuVariant.default,
+  afterContent,
 }: TabMenuType) => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightStyle, setHighlightStyle] = useState({});
@@ -46,6 +47,7 @@ export const TabMenu = ({
             [gradient]: isOpen,
             'border-darkBlue': variant === TabMenuVariant.default,
             'border-lightGreen': variant === TabMenuVariant.green,
+            hidden: variant === TabMenuVariant.simple,
           }
         )}
       >
@@ -94,10 +96,13 @@ export const TabMenu = ({
 
       <div
         className={classNames(
-          'hidden lg:flex border rounded-[30px] overflow-hidden text-[14px] leading-6 items-center font-semibold relative',
+          'rounded-[30px] overflow-hidden text-[14px] leading-6 items-center font-semibold relative',
           {
-            ' border-darkBlue': variant === TabMenuVariant.default,
-            'border-lightGreen': variant === TabMenuVariant.green,
+            'hidden lg:flex border border-darkBlue':
+              variant === TabMenuVariant.default,
+            'hidden lg:flex border border-lightGreen':
+              variant === TabMenuVariant.green,
+            '': variant === TabMenuVariant.simple,
           }
         )}
       >
@@ -107,6 +112,7 @@ export const TabMenu = ({
             {
               'bg-darkBlue': variant === TabMenuVariant.default,
               [gradient]: variant === TabMenuVariant.green,
+              hidden: variant === TabMenuVariant.simple,
             }
           )}
           style={{
@@ -115,11 +121,16 @@ export const TabMenu = ({
           }}
         ></div>
 
-        {items.map((item) => (
+        {items.map((item, index) => (
           <button
-            key={item}
+            key={index}
             onClick={() => onSelect(item)}
-            className="px-5 py-1 relative z-10"
+            className={classNames('py-1 relative z-10', {
+              'px-5':
+                variant === TabMenuVariant.default ||
+                variant === TabMenuVariant.green,
+              'px-4': variant === TabMenuVariant.simple,
+            })}
           >
             <h3
               className={classNames(`transition-colors duration-500`, {
@@ -133,9 +144,16 @@ export const TabMenu = ({
                   item === selectedItem && variant === TabMenuVariant.green,
                 'text-white':
                   item !== selectedItem && variant === TabMenuVariant.green,
+                'font-semibold text-[16px] text-black':
+                  variant === TabMenuVariant.simple,
+                'border-b-4 border-black':
+                  item === selectedItem && variant === TabMenuVariant.simple,
               })}
             >
               {item}
+              <span className="text-black/70 ml-1">
+                {afterContent && afterContent[index]}
+              </span>
             </h3>
           </button>
         ))}

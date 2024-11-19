@@ -8,16 +8,22 @@ export const apiClient = axios.create({
   },
 });
 
+const excludedPaths = ['/images', '/videos', '/reviews'];
+
 apiClient.interceptors.request.use(
   (config) => {
     const lang =
       languages[localStorage.getItem('language') as keyof typeof languages];
-      
+    const shouldExcludeLanguage = excludedPaths.some((path) =>
+      config.url?.includes(path)
+    );
+
     config.params = {
       ...config.params,
       api_key: import.meta.env.VITE_API_KEY,
-      language: lang,
+      ...(shouldExcludeLanguage ? {} : { language: lang }),
     };
+
     return config;
   },
   (error) => {

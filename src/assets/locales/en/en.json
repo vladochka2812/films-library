@@ -138,6 +138,32 @@
     "seasons": "Seasons",
     "episodes": "Episodes",
     "last": "Last episode",
-    "next": "Next episode"
+    "next": "Next episode",
+    "facts": "Facts",
+    "keywords": "Keywords",
+    "reviews": "Reviews",
+    "reviewFrom": "A review by",
+    "writtenBy": "Written by",
+    "backdrops": "Backdrops",
+    "video": "Videos",
+    "poster": "Posters",
+    "media": "Media",
+    "viewMore": "View More",
+    "recommendations": "Recommendations"
+  },
+  "backToMenu": "Back to main",
+  "videosPage": {
+    "title": "Videos",
+    "trailers": "Trailers",
+    "teasers": "Teasers",
+    "clips": "Clips",
+    "behindTheScenes": "Behind the Scenes",
+    "bloopers": "Bloopers",
+    "featurettes": "Featurettes"
+  },
+  "imagesPage": {
+    "title": "Images",
+    "backdrops": "Backdrops",
+    "posters": "Posters"
   }
 }

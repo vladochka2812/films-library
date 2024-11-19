@@ -16,7 +16,7 @@ export const MobileNav = () => {
       <div onClick={handleMenu} className="relative">
         <HiOutlineMenu className="text-white" size={30} />
         <div
-          className={`fixed top-[64px] left-0 sm:w-[90%] w-full h-full bg-darkBlue/90 backdrop-blur-md z-[9999] transition-transform ease-in-out duration-300 p-5 transform ${
+          className={`fixed top-[64px] left-0 sm:w-[90%] w-full h-[100vh] bg-darkBlue/90 backdrop-blur-md z-[9999] transition-transform ease-in-out duration-300 p-5 transform ${
             openMenu ? 'translate-x-0' : '-translate-x-full'
           }`}
           onClick={(e) => e.stopPropagation()}

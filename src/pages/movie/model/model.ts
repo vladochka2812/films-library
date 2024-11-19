@@ -1,6 +1,12 @@
+import { ImageType } from '@/shared/ImageCard/model/model';
+import { ReviewType } from '@/shared/ReviewCard/model/model';
+import { VideoType } from '@/shared/VideoCard/model/model';
+
 export const mainImageSize = 'w300_and_h450_bestv2';
 export const bgImageSize = 'w1920_and_h800_multi_faces';
 export const collectionImageSize = 'w1440_and_h320_multi_faces';
+export const backdropImageSize = 'w533_and_h300_bestv2';
+export const posterImageSize = 'w220_and_h330_face';
 
 export type MovieType = {
   adult: boolean;
@@ -22,7 +28,7 @@ export type MovieType = {
   original_title: string;
   overview: string | null;
   popularity: number;
-  poster_path: string | null;
+  poster_path: string;
   production_companies: {
     id: number;
     logo_path: string | null;
@@ -47,4 +53,34 @@ export type MovieType = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+};
+
+export type ImagesType = {
+  id: number;
+  backdrops: ImageType[];
+  logos: ImageType[];
+  posters: ImageType[];
+};
+
+export type KeywordType = {
+  id: number;
+  name: string;
+};
+
+export type KeywordsType = {
+  id: number;
+  keywords: KeywordType[];
+};
+
+
+export type ReviewsType = {
+  page: number;
+  results: ReviewType[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type VideosType = {
+  id: number;
+  results: VideoType[];
 };

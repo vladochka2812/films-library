@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   CircleSize,
@@ -9,16 +9,27 @@ import {
   imageCardVerticalSize,
   normalizeTitle,
 } from './model/model';
-import { CgMoreO } from 'react-icons/cg';
-import { Tooltip } from '../Tooltip/Tooltip';
 import { RatingRing } from './ui/RatingRing';
 import classNames from 'classnames';
+import { dateUsual, formatDate } from '../Date/Date';
+import { BsCalendar3 } from 'react-icons/bs';
 
 export const FilmCard = ({
   film,
   variant = FilmCardVariant.vertical,
   setCurrentImage,
 }: FilmCardType) => {
+  const [isHover, setIsHover] = useState(false);
+
+  const handleMouseOver = () => {
+    setCurrentImage && setCurrentImage(currentImage || '');
+    setIsHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
+
   const {
     vote_average,
     id,
@@ -33,16 +44,9 @@ export const FilmCard = ({
     return `/${media_type ? media_type : 'tv'}/${id}-${title ? title?.toLowerCase().replace(normalizeTitle, '-') : name?.toLowerCase().replace(normalizeTitle, '-')}`;
   }, [media_type, id, title || name]);
 
-  const formattedDate = useMemo(() => {
-    return (
-      release_date &&
-      new Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit',
-      }).format(new Date(release_date))
-    );
-  }, [release_date]);
+  const formattedDate = release_date && formatDate(release_date);
+
+  const date = release_date && dateUsual(release_date);
 
   const imageHref =
     variant === FilmCardVariant.vertical
@@ -58,6 +62,7 @@ export const FilmCard = ({
       className={classNames({
         'w-[150px] min-w-[150px]': variant === FilmCardVariant.vertical,
         'w-[300px]': variant === FilmCardVariant.horizontal,
+        'w-[250px]': variant === FilmCardVariant.hover,
       })}
     >
       <div
@@ -65,6 +70,7 @@ export const FilmCard = ({
           'h-auto': variant === FilmCardVariant.horizontal,
           'min-h-[calc(150px*1.5)] h-[calc(150px*1.5)] bg-gray-300 ':
             variant === FilmCardVariant.vertical,
+          'w-[250px] h-[141px]': variant === FilmCardVariant.hover,
         })}
       >
         <div className={classNames('w-full h-full relative top-0 left-0')}>
@@ -75,9 +81,8 @@ export const FilmCard = ({
                 'hover:scale-105': variant === FilmCardVariant.horizontal,
               }
             )}
-            onMouseOver={() =>
-              setCurrentImage && setCurrentImage(currentImage || '')
-            }
+            onMouseOver={handleMouseOver}
+            onMouseLeave={handleMouseLeave}
           >
             <Link to={linkHref}>
               <img
@@ -87,15 +92,11 @@ export const FilmCard = ({
                 className="w-full h-full object-cover"
               />
             </Link>
-          </div>
-
-          <div className="absolute top-2 right-2  z-[4]">
-            <Tooltip position="bottom" content={''}>
-              <CgMoreO
-                className="text-white/60 hover:text-sky-400 "
-                size={26}
-              />
-            </Tooltip>
+            {variant === FilmCardVariant.hover && isHover && (
+              <div className="absolute bottom-0 rounded-b-md h-10 z-10 bg-white/90 w-full flex items-center px-2.5 text-[1rem] gap-1">
+                <BsCalendar3 /> {date}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -112,10 +113,19 @@ export const FilmCard = ({
             <RatingRing percent={percent} size={CircleSize.small} />
           </div>
         )}
+        {variant === FilmCardVariant.hover && (
+          <div className="flex w-full justify-between mt-3 font-normal">
+            <h2 className={classNames('text-[16px] w-full')}>
+              <Link to={linkHref}>{title || name}</Link>
+            </h2>
+            <span>{percent}%</span>
+          </div>
+        )}
         <h2
           className={classNames('text-[16px] w-full font-bold ', {
             'hover:text-sky-400': variant === FilmCardVariant.vertical,
             'text-center': variant === FilmCardVariant.horizontal,
+            hidden: variant === FilmCardVariant.hover,
           })}
         >
           <Link to={linkHref}>{title || name}</Link>

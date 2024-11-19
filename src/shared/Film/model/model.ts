@@ -21,6 +21,7 @@ export type SubInfoType = {
   status: string;
   network?: string[];
   type?: string;
+  keywords: { link: string; name: string }[];
 };
 
 export type CollectionType = {
@@ -36,7 +37,7 @@ export type SeasonType = {
   season: string;
   overview: string;
   episodes: number;
-  year: number;
+  year: string;
 };
 
 export type EpisodeType = {
@@ -47,4 +48,13 @@ export type EpisodeType = {
   episodeNumber: number;
   runtime: string;
   episodeName: string;
+};
+
+export type MediaType = {
+  videos: string[];
+  posters: string[];
+  backdrops: string[];
+  videoAmount: string;
+  postersAmount: string;
+  backdropsAmount: string;
 };

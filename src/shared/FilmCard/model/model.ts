@@ -35,6 +35,7 @@ export type FilmsResponse = {
 export const imageCardVerticalSize = '/w220_and_h330_face';
 export const imageCardHorizontalSize = 'w355_and_h200_multi_faces';
 export const imageBgSize = 'w1920_and_h427_multi_faces';
+export const imageHoverSize = 'w250_and_h141_face';
 
 export const colorRingSets = {
   small: { main: '#e01919', sub: '#300b0b' },
@@ -45,6 +46,7 @@ export const colorRingSets = {
 export enum FilmCardVariant {
   vertical = 'vertical',
   horizontal = 'horizontal',
+  hover = 'hover',
 }
 
 export const normalizeTitle = /[:\s]/g;

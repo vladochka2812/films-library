@@ -17,6 +17,7 @@ import { SubInfo } from '@/shared/Film/ui/SubInfo';
 import { getTV } from './api/getTV';
 import { Season } from '@/shared/Film/ui/Season';
 import { Episode } from '@/shared/Film/ui/Episode';
+import { dateUsual, formatDate, getYear } from '@/shared/Date/Date';
 
 const TV = () => {
   const { t } = useTranslation();
@@ -72,25 +73,9 @@ const TV = () => {
     }));
   }, [created_by]);
 
-  const { date, year } = useMemo(() => {
-    if (first_air_date) {
-      const [year, month, day] = first_air_date?.split('-');
-      const date = `${day}/${month}/${year}`;
-      return { date, year };
-    }
-    return { date: '', year: '' };
-  }, [first_air_date]);
+  const date = first_air_date && dateUsual(first_air_date);
 
-  const formatDate = ({ dateStr }: { dateStr: string }) => {
-    const date = new Date(dateStr);
-    const formattedDate = date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-    const year = date.getFullYear();
-    return { formattedDate, year };
-  };
+  const year = first_air_date && getYear(first_air_date);
 
   const genresList = genres?.map((genre) => genre.name).join(', ');
 
@@ -105,12 +90,13 @@ const TV = () => {
 
   const seasonsList = useMemo(() => {
     return seasons?.map((season) => {
-      const { formattedDate, year } = formatDate({ dateStr: season.air_date });
+      const formattedDate = formatDate(season.air_date);
+      const yearS = getYear(season.air_date);
       return {
         image: `${import.meta.env.VITE_IMAGE_API_LINK}/${seasonImageSize}/${season.poster_path}`,
         rate: Math.round(season.vote_average * 10),
         date: formattedDate,
-        year: year,
+        year: yearS,
         season: season.name,
         overview: season.overview,
         episodes: season.episode_count,
@@ -129,7 +115,7 @@ const TV = () => {
             (episode.runtime % hour) +
             t('FilmPage.min')
           : (episode.runtime % hour) + t('FilmPage.min'),
-      date: formatDate({ dateStr: episode.air_date }).formattedDate,
+      date: formatDate(episode.air_date),
       episodeName: episode.name,
       episodeNumber: episode.episode_number,
       overview: episode.overview,
@@ -162,6 +148,7 @@ const TV = () => {
           network={network}
           language={language}
           type={type}
+          keywords={[]}
         />
         <div className="py-[30px] md:px-0 px-4">
           <h2 className="font-semibold text-[1.4em] mb-5">

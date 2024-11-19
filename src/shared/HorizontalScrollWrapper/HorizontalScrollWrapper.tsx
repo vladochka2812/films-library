@@ -10,6 +10,7 @@ export const HorizontalScrollWrapper = ({
   bgImage,
   variant = HorizontalScrollWrapperVariant.default,
   setCurrentScroll,
+  className,
 }: HorizontalScrollWrapperType) => {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -47,11 +48,15 @@ export const HorizontalScrollWrapper = ({
       <div
         ref={scrollRef}
         className={classNames(
-          'relative overflow-x-auto scrollbar-hide py-5 flex after:absolute after:right-0 after:top-0 after:bottom-0 after:w-[60px] after:bg-gradient-to-l after:from-white after:to-transparent',
+          'relative overflow-x-auto scrollbar-hide flex after:absolute after:right-0 after:top-0 after:bottom-0 after:w-[60px] after:bg-gradient-to-l after:from-white after:to-transparent',
+          className,
           {
             'after:hidden':
               scrollPosition !== 0 ||
               variant === HorizontalScrollWrapperVariant.shadow,
+            'py-5':
+              variant === HorizontalScrollWrapperVariant.shadow ||
+              variant === HorizontalScrollWrapperVariant.default,
           }
         )}
       >

@@ -1,4 +1,5 @@
-import { CastMember, CrewMember } from '@/pages/movie/model/model';
+import { CastMember, CrewMember } from '@/shared/CastCrewCard/model/model';
+import { EpisodeType } from '@/shared/EpisodeCard/model/model';
 import { ImageType } from '@/shared/ImageCard/model/model';
 import { ReviewType } from '@/shared/ReviewCard/model/model';
 import { VideoType } from '@/shared/VideoCard/model/model';
@@ -79,20 +80,7 @@ export type TVShowType = {
   vote_count: number;
 };
 
-export type EpisodeType = {
-  id: number;
-  name: string;
-  overview: string;
-  vote_average: number;
-  vote_count: number;
-  air_date: string;
-  episode_number: number;
-  production_code: string;
-  runtime: number;
-  season_number: number;
-  show_id: number;
-  still_path: string;
-};
+
 
 export type ImagesType = {
   id: number;

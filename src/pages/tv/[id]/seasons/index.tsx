@@ -43,6 +43,10 @@ const SeasonsTV = () => {
       season: season.name,
       overview: season.overview,
       episodes: season.episode_count,
+      link: pathname.replace(
+        '/seasons',
+        `/season/${season.name.split(' ')[1]}`
+      ),
     }));
   }, [seasons]);
 

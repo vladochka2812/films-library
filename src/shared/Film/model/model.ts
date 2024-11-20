@@ -30,17 +30,6 @@ export type CollectionType = {
   bgImage: string;
 };
 
-
-export type EpisodeType = {
-  image: string;
-  rate: number;
-  date: string;
-  overview: string;
-  episodeNumber: number;
-  runtime: string;
-  episodeName: string;
-};
-
 export type MediaType = {
   videos: string[];
   posters: string[];

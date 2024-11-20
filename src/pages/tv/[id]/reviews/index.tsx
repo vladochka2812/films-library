@@ -11,7 +11,6 @@ import { getTV } from '../../api/gets/getTV';
 
 const ReviewsTV = () => {
   const { pathname } = useLocation();
-  const { t } = useTranslation();
 
   const { id } = useParams();
 

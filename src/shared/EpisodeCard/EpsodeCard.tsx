@@ -1,16 +1,16 @@
 import { GoDotFill } from 'react-icons/go';
-import { EpisodeType } from '../model/model';
-import { Rate } from './Rate';
+import { EpisodeCardType } from './model/model';
+import { Rate } from '../Film/ui/Rate';
 
-export const Episode = ({
+export const EpisodeCard = ({
   image,
+  episodeName,
+  episodeNumber,
   rate,
   date,
-  overview,
-  episodeNumber,
-  episodeName,
   runtime,
-}: EpisodeType) => {
+  overview,
+}: EpisodeCardType) => {
   return (
     <div className="flex sm:flex-row flex-col items-center border max-w-[1400px] w-full rounded-lg">
       <div className="w-[230px] h-[130px]">

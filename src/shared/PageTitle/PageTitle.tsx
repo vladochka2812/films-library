@@ -1,10 +1,15 @@
 import { PageTitleType, imageSize } from './model/model';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useMemo } from 'react';
 
 export const PageTitle = ({ image, year, title, link }: PageTitleType) => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
+  const linkName = useMemo(() => {
+    return link.includes('/season/') ? t('backToSeasons') : t('backToMenu');
+  }, [pathname]);
 
   const imageLink = `${import.meta.env.VITE_IMAGE_API_LINK}/${imageSize}/${image}`;
 
@@ -29,7 +34,7 @@ export const PageTitle = ({ image, year, title, link }: PageTitleType) => {
             className="flex items-center gap-2 text-[1.1rem] font-semibold mt-1.5 opacity-60"
           >
             <FaArrowLeft />
-            {t('backToMenu')}
+            {linkName}
           </Link>
         </div>
       </div>

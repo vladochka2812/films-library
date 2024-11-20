@@ -1,8 +1,8 @@
 import { PageTitle } from '@/shared/PageTitle/PageTitle';
-
-import { ReviewsPageSectionsType } from './model/model';
-import { useTranslation } from 'react-i18next';
 import { ReviewCard } from '@/shared/ReviewCard/ReviewCard';
+
+import { useTranslation } from 'react-i18next';
+import { ReviewsPageSectionsType } from './model/model';
 
 export const ReviewsPageSections = ({
   title,

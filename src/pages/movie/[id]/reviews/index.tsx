@@ -2,24 +2,20 @@ import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store/store';
-import { useTranslation } from 'react-i18next';
 import { getMovie } from '../../api/gets/getMovie';
-import { ReviewsPageSections } from '@/entities/ReviewsPageSwctions/ReviewsPageSections';
+import { ReviewsPageSections } from '@/entities/ReviewsPageSections/ReviewsPageSections';
 import { getReviews } from '../../api/gets/getReviews';
 import { formatDate } from '@/shared/Date/Date';
 import { avatarSize } from '@/shared/ReviewCard/model/model';
 
 const ReviewsMovie = () => {
   const { pathname } = useLocation();
-  const { t } = useTranslation();
 
   const { id } = useParams();
 
   const path = useMemo(() => {
     return `${id?.split('-')[0]}`;
   }, []);
-
-  const [type, setType] = useState(t('videosPage.trailers'));
 
   const dispatch = useDispatch<AppDispatch>();
 

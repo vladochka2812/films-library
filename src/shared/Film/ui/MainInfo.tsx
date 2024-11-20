@@ -21,15 +21,15 @@ export const MainInfo = ({
 }: MainInfoType) => {
   const { t } = useTranslation();
 
-  const image = (
-    <div className="lg:min-w-[300px] lg:w-[300px] lg:h-[450px] min-w-[200px] w-[200px] h-[300px] lg:mt-0 mt-[400px]">
-      <img
-        src={mainImageHref}
-        alt={name}
-        className="w-full h-full object-cover rounded-3xl"
-      />
-    </div>
-  );
+  // const image = (
+  //   <div className="lg:min-w-[300px] lg:w-[300px] lg:h-[450px] min-w-[200px] w-[200px] h-[300px] lg:mt-0 mt-[400px]">
+  //     <img
+  //       src={mainImageHref}
+  //       alt={name}
+  //       className="w-full h-full object-cover rounded-3xl"
+  //     />
+  //   </div>
+  // );
 
   return (
     <div
@@ -79,12 +79,16 @@ export const MainInfo = ({
             </div>
           </div>
           <div className="flex items-center lg:mt-0 mt-[-10px]">
-            <RatingRing percent={vote} size={CircleSize.big} />
-            <div className="ml-1 font-bold ">
-              <span className="">{t('FilmPage.user')}</span>
-              <br />
-              <span className="">{t('FilmPage.score')}</span>
-            </div>
+            {vote > 0 && (
+              <>
+                <RatingRing percent={vote} size={CircleSize.big} />
+                <div className="ml-1 font-bold ">
+                  <span className="">{t('FilmPage.user')}</span>
+                  <br />
+                  <span className="">{t('FilmPage.score')}</span>
+                </div>
+              </>
+            )}
           </div>
           <div>
             <div className="lg:mt-8 lg:px-0 px-4 mt-4]">

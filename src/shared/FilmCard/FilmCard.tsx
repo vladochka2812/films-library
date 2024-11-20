@@ -39,14 +39,19 @@ export const FilmCard = ({
     poster_path,
     media_type,
     backdrop_path,
+    first_air_date,
   } = film;
   const linkHref = useMemo(() => {
     return `/${media_type ? media_type : 'tv'}/${id}-${title ? title?.toLowerCase().replace(normalizeTitle, '-') : name?.toLowerCase().replace(normalizeTitle, '-')}`;
   }, [media_type, id, title || name]);
 
-  const formattedDate = release_date && formatDate(release_date);
+  const formattedDate = release_date
+    ? formatDate(release_date)
+    : formatDate(first_air_date);
 
-  const date = release_date && dateUsual(release_date);
+  const date = release_date
+    ? dateUsual(release_date)
+    : dateUsual(first_air_date);
 
   const imageHref =
     variant === FilmCardVariant.vertical

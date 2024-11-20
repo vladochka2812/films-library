@@ -2,7 +2,7 @@ import { useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store/store';
-import { useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 import { Reviews } from '@/shared/Film/ui/Reviews';
 import { Media } from '@/shared/Film/ui/Media';
@@ -25,9 +25,16 @@ import {
   backdropImageSize,
 } from '../model/model';
 import { avatarSize } from '@/shared/ReviewCard/model/model';
+import { Cast } from '@/shared/Film/ui/Cast';
+import {
+  CastCrewCardVariant,
+  verticalImageSize,
+} from '@/shared/CastCrewCard/model/model';
+import { getCastCrew } from '../api/gets/getCastCrew';
 
 const Movie = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
 
   const { id } = useParams();
   const path = useMemo(() => {
@@ -43,6 +50,7 @@ const Movie = () => {
     recommendations,
     reviews,
     videos,
+    castCrew,
     loading,
   } = useSelector((state: RootState) => state.movieItem);
 
@@ -53,6 +61,7 @@ const Movie = () => {
     dispatch(getRecommendations({ path }));
     dispatch(getReviews({ path }));
     dispatch(getVideos({ path }));
+    dispatch(getCastCrew({ path }));
   }, [path, dispatch]);
 
   const {
@@ -133,10 +142,7 @@ const Movie = () => {
       name: keyword.name,
     };
   });
-  const videoList = videos?.results
-    ?.filter((video) => video.type === 'Trailer')
-    ?.map((video) => video?.key);
-
+  const videoList = videos?.results?.map((video) => video?.key)?.slice(0, 6);
   const postersList = images?.posters
     ?.slice(0, 6)
     .map(
@@ -165,6 +171,15 @@ const Movie = () => {
     author: reviews.results[0].author,
   };
 
+  const castList = castCrew?.cast?.slice(0, 9).map((person) => {
+    return {
+      image: `${import.meta.env.VITE_IMAGE_API_LINK}/${verticalImageSize}/${person.profile_path}`,
+      description: [{ job: person.character }],
+      name: person.name,
+      variant: CastCrewCardVariant.vertical,
+    };
+  });
+
   return (
     !loading && (
       <div className="flex flex-col items-center mb-10">
@@ -182,12 +197,22 @@ const Movie = () => {
           production={production}
         />
         <div className="flex lg:flex-row flex-col max-w-[1400px] lg:w-[1400px] justify-center">
-          <div className="flex flex-col lg:pr-[30px] lg:p-0 px-2">
-            {review ? (
-              <Reviews review={review} />
-            ) : (
-              <h4>{t('emptyMessages.reviews')}</h4>
-            )}
+          <div className="flex w-full flex-col lg:pr-[30px] lg:p-0 px-2 max-w-[1100px]">
+            <div className="w-full py-[30px] md:px-0 px-4">
+              <h2 className="font-semibold text-[1.4em] mb-5">
+                {t('FilmPage.cast')}
+              </h2>
+              <div className="max-w-[1400px]">
+                <Cast cast={castList} />
+              </div>
+              <Link
+                to={`${pathname}/cast`}
+                className="flex mt-5 text-[1rem] text-black font-semibold"
+              >
+                {t('FilmPage.castViewMore')}
+              </Link>
+            </div>
+            {review && <Reviews review={review} />}
             <Media
               posters={postersList}
               videos={videoList}
@@ -201,7 +226,7 @@ const Movie = () => {
               bgImage={collectionBgImage}
               link={collectionLink}
             />
-            {recommendations && (
+            {!!recommendations?.results?.length && (
               <Recommendations films={recommendations.results} />
             )}
           </div>

@@ -1,3 +1,8 @@
+import { CastMember, CrewMember } from '@/pages/movie/model/model';
+import { ImageType } from '@/shared/ImageCard/model/model';
+import { ReviewType } from '@/shared/ReviewCard/model/model';
+import { VideoType } from '@/shared/VideoCard/model/model';
+
 export const mainImageSize = 'w300_and_h450_bestv2';
 export const bgImageSize = 'w1920_and_h800_multi_faces';
 export const networkLogoSize = 'h30';
@@ -87,4 +92,39 @@ export type EpisodeType = {
   season_number: number;
   show_id: number;
   still_path: string;
+};
+
+export type ImagesType = {
+  id: number;
+  backdrops: ImageType[];
+  logos: ImageType[];
+  posters: ImageType[];
+};
+
+export type KeywordType = {
+  id: number;
+  name: string;
+};
+
+export type KeywordsType = {
+  id: number;
+  results: KeywordType[];
+};
+
+export type ReviewsType = {
+  page: number;
+  results: ReviewType[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type VideosType = {
+  id: number;
+  results: VideoType[];
+};
+
+export type CastCrewType = {
+  id: number;
+  cast: CastMember[];
+  crew: CrewMember[];
 };

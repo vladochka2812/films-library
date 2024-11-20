@@ -1,9 +1,8 @@
-import { PageTitle } from '@/shared/PageTitle/PageTitle';
-import { TableTabMenu } from '@/shared/TabMenu/TableTabMenu';
-
 import { ImagePageSectionsType } from './model/model';
 import { useTranslation } from 'react-i18next';
 import { ImageCard } from '@/shared/ImageCard/ImageCard';
+import { TableTabMenu } from '@/shared/TabMenu/TableTabMenu';
+import { PageTitle } from '@/shared/PageTitle/PageTitle';
 
 export const ImagesPageSections = ({
   title,

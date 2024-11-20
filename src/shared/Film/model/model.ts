@@ -30,15 +30,6 @@ export type CollectionType = {
   bgImage: string;
 };
 
-export type SeasonType = {
-  image: string;
-  rate: number;
-  date: string;
-  season: string;
-  overview: string;
-  episodes: number;
-  year: string;
-};
 
 export type EpisodeType = {
   image: string;

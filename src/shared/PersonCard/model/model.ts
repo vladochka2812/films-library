@@ -31,9 +31,12 @@ export type PersonType = {
   known_for: KnownForType[];
 };
 
+export enum PersonCardVariant {
+  default = 'default',
+}
 export type PersonCardType = {
   person: PersonType;
-  variant?: PersonCardType;
+  variant?: PersonCardVariant;
 };
 
 export type PersonsResponse = {
@@ -47,8 +50,3 @@ export const imageCardSmallSize = '/w150_and_h150_face';
 export const imageCardVerticalSize = '/w220_and_h330_face';
 export const imageCardHorizontalSize = 'w355_and_h200_multi_faces';
 export const imageBgSize = 'w1920_and_h427_multi_faces';
-
-export enum PersonCardVariant {
-  vertical = 'vertical',
-  horizontal = 'horizontal',
-}

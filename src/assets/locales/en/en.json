@@ -135,13 +135,13 @@
     "episode": "ep",
     "network": "Network",
     "type": "Type",
-    "seasons": "Seasons",
+    "seasons": "Current Season",
+    "seasonsViewAll": "View All Seasons",
     "episodes": "Episodes",
-    "last": "Last episode",
-    "next": "Next episode",
     "facts": "Facts",
     "keywords": "Keywords",
     "reviews": "Reviews",
+    "reviewsViewAll": "Read All Reviews",
     "reviewFrom": "A review by",
     "writtenBy": "Written by",
     "backdrops": "Backdrops",
@@ -149,7 +149,13 @@
     "poster": "Posters",
     "media": "Media",
     "viewMore": "View More",
-    "recommendations": "Recommendations"
+    "recommendations": "Recommendations",
+    "castTV": "Series Cast",
+    "crewTV": "Series Crew",
+    "cast": "Cast",
+    "crew": "Crew",
+    "castMovie": "Top Billed Cast",
+    "castViewMore": "Full Cast & Crew"
   },
   "backToMenu": "Back to main",
   "videosPage": {
@@ -169,6 +175,7 @@
   "emptyMessages": {
     "reviews": "There no reviews yet.",
     "videos": "There no videos yet.",
-    "images": "There no images yet."
+    "images": "There no images yet.",
+    "media": "There no media yet."
   }
 }

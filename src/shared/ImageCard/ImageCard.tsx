@@ -35,19 +35,22 @@ export const ImageCard = ({
           className="w-full h-full object-cover rounded-t-lg"
         />
       </div>
-      <div className="flex items-center gap-4 hover:underline p-2">
+
+      <div className="flex flex-col justify-center p-2">
+        <span className="text-[16px] italic">Size</span>
         <a
           href={originalImageHref}
           target="_blank"
-          className="flex items-center gap-0.5"
+          className="flex items-center gap-0.5  hover:underline"
         >
           {width}
           <LuX size={10} />
           {height}
+
+          <span className="ml-2">
+            <FaCheck />
+          </span>
         </a>
-        <span>
-          <FaCheck />
-        </span>
       </div>
     </div>
   );

@@ -1,6 +1,13 @@
-import { PersonCardType, imageCardSmallSize } from './model';
+import {
+  PersonCardType,
+  PersonCardVariant,
+  imageCardSmallSize,
+} from './model/model';
 
-export const PersonCard = ({ person }: PersonCardType) => {
+export const PersonCard = ({
+  person,
+  variant = PersonCardVariant.default,
+}: PersonCardType) => {
   const { name, profile_path } = person;
   const imageHref = `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardSmallSize}/${profile_path}`;
 

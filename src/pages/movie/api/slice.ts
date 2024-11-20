@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getMovie } from './gets/getMovie';
 import {
+  CastCrewType,
   ImagesType,
   KeywordsType,
   MovieType,
@@ -13,6 +14,7 @@ import { getRecommendations } from './gets/getRecommendations';
 import { getReviews } from './gets/getReviews';
 import { getVideos } from './gets/getVideos';
 import { getKeywords } from './gets/getKeywords';
+import { getCastCrew } from './gets/getCastCrew';
 
 const initialState = {
   movieItem: {} as MovieType,
@@ -21,6 +23,7 @@ const initialState = {
   recommendations: {} as FilmsResponse,
   reviews: {} as ReviewsType,
   videos: {} as VideosType,
+  castCrew: {} as CastCrewType,
   loading: false,
   error: null,
 };
@@ -67,6 +70,11 @@ const movieSlice = createSlice({
       .addCase(getVideos.fulfilled, (state, action) => {
         state.loading = false;
         state.videos = action.payload;
+      })
+
+      .addCase(getCastCrew.fulfilled, (state, action) => {
+        state.loading = false;
+        state.castCrew = action.payload;
       });
   },
 });

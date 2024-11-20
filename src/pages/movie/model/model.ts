@@ -1,3 +1,4 @@
+import { CastMember, CrewMember } from '@/shared/CastCrewCard/model/model';
 import { ImageType } from '@/shared/ImageCard/model/model';
 import { ReviewType } from '@/shared/ReviewCard/model/model';
 import { VideoType } from '@/shared/VideoCard/model/model';
@@ -72,7 +73,6 @@ export type KeywordsType = {
   keywords: KeywordType[];
 };
 
-
 export type ReviewsType = {
   page: number;
   results: ReviewType[];
@@ -83,4 +83,11 @@ export type ReviewsType = {
 export type VideosType = {
   id: number;
   results: VideoType[];
+};
+
+
+export type CastCrewType = {
+  id: number;
+  cast: CastMember[];
+  crew: CrewMember[];
 };

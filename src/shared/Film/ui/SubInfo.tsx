@@ -19,7 +19,7 @@ export const SubInfo = ({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className=" flex-col flex lg:px-10 px-5 py-[30px] border-b lg:max-w-[250px]">
+    <div className=" flex-col flex lg:px-10 px-5 py-[30px] lg:max-w-[250px]">
       {homepage && (
         <div
           className="relative flex flex-col  mb-[30px]"
@@ -87,7 +87,7 @@ export const SubInfo = ({
         </div>
       )}
       {keywords && (
-        <div className="mb-[30px]">
+        <div className="mb-[30px] border-b">
           <h4 className="text-[1.1rem] font-semibold mb-2.5">
             {t('FilmPage.keywords')}
           </h4>

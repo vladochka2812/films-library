@@ -12,7 +12,7 @@ export const Episode = ({
   runtime,
 }: EpisodeType) => {
   return (
-    <div className="flex sm:flex-row flex-col items-center border max-w-[1000px] w-full rounded-lg">
+    <div className="flex sm:flex-row flex-col items-center border max-w-[1400px] w-full rounded-lg">
       <div className="w-[230px] h-[130px]">
         <img
           src={image}

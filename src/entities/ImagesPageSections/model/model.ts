@@ -8,7 +8,7 @@ export type ImagePageSectionsType = {
   images: ImageCardType[];
 };
 
-export enum VideoTypes {
+export enum ImageTypes {
   backdrops = 'Backdrops',
   posters = 'Posters',
 }

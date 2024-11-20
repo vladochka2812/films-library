@@ -39,7 +39,7 @@ export const ReviewCard = ({
           </div>
         </div>
 
-        <p className="mx-1 my-2 text-[1rem] text-black font-normal">
+        <p className="mx-1 my-2 text-[1rem] text-black font-normal max-h-[250px] overflow-auto">
           {content}
         </p>
       </div>

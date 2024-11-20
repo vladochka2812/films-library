@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getPopularPeople } from './api/getPopularPeople';
 import { AppDispatch, RootState } from '@/app/store/store';
-import { PersonCard } from '@/shared/PersonCard/model/PersonCard';
+import { PersonCard } from '@/shared/PersonCard/PersonCard';
 import { HorizontalScrollWrapper } from '@/shared/HorizontalScrollWrapper/HorizontalScrollWrapper';
 import { bgImage } from '../TrendingSection/model/model';
 

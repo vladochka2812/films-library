@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { TabMenuVariant } from '@/shared/TabMenu/model/model';
 import { TabMenu } from '@/shared/TabMenu/TabMenu';
 import { MediaType } from '../model/model';
 import { HorizontalScrollWrapper } from '@/shared/HorizontalScrollWrapper/HorizontalScrollWrapper';
 import { FaLongArrowAltRight } from 'react-icons/fa';
-import { Video } from './Video';
 import { Link, useLocation } from 'react-router-dom';
 import { HorizontalScrollWrapperVariant } from '@/shared/HorizontalScrollWrapper/model/model';
+import { Video } from './Video';
 
 export const Media = ({
   posters,
@@ -42,16 +42,18 @@ export const Media = ({
     switch (selectedTab) {
       case items[0]:
         return (
-          <div className="flex lg:max-w-[1000px] max-w-[300px] items-center">
+          <div className="flex items-center">
             {videos?.map((video, index) => <Video video={video} key={index} />)}
-            <Link to={`${pathname}/videos`} className="ml-10">
-              {viewMore}
-            </Link>
+            {parseInt(videoAmount) > 6 && (
+              <Link to={`${pathname}/videos`} className="ml-10">
+                {viewMore}
+              </Link>
+            )}
           </div>
         );
       case items[1]:
         return (
-          <div className="flex lg:max-w-[1000px] max-w-[300px] items-center">
+          <div className="flex items-center">
             {backdrops.map((backdrop, index) => (
               <div
                 key={index}
@@ -64,14 +66,16 @@ export const Media = ({
                 />
               </div>
             ))}
-            <Link to={`${pathname}/images`} className="ml-10">
-              {viewMore}
-            </Link>
+            {parseInt(backdropsAmount) > 6 && (
+              <Link to={`${pathname}/images`} className="ml-10">
+                {viewMore}
+              </Link>
+            )}
           </div>
         );
       case items[2]:
         return (
-          <div className="flex lg:max-w-[1000px] max-w-[300px] items-center">
+          <div className="flex items-center">
             {posters.map((poster, index) => (
               <div
                 key={index}
@@ -84,9 +88,11 @@ export const Media = ({
                 />
               </div>
             ))}
-            <Link to={`${pathname}/images`} className="ml-10">
-              {viewMore}
-            </Link>
+            {parseInt(postersAmount) > 6 && (
+              <Link to={`${pathname}/images`} className="ml-10">
+                {viewMore}
+              </Link>
+            )}
           </div>
         );
       default:
@@ -97,7 +103,7 @@ export const Media = ({
   const content = getContent();
 
   return (
-    <div className="py-[30px] max-w-[1000px] border-b">
+    <div className="py-[30px]">
       <div className="flex lg:justify-start justify-between lg:mx-0 mx-4">
         <h3 className="mb-[30px] mr-[50px] font-semibold text-[1.4rem] ">
           {t('FilmPage.media')}
@@ -121,7 +127,7 @@ export const Media = ({
           </HorizontalScrollWrapper>
         </div>
       ) : (
-        <div>No media available.</div>
+        <div>{t('emptyMessages.media')}</div>
       )}
     </div>
   );

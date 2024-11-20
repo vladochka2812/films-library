@@ -8,7 +8,7 @@ export const Recommendations = ({ films }: { films: FilmType[] }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="mt-[30px] py-[30px] lg:max-w-[1000px] border-b border-t">
+    <div className="mt-[30px] py-[30px] border-t">
       <h3 className="mb-[30px] mr-[50px] font-semibold text-[1.4rem] ">
         {t('FilmPage.recommendations')}
       </h3>
@@ -16,7 +16,7 @@ export const Recommendations = ({ films }: { films: FilmType[] }) => {
         <HorizontalScrollWrapper
           variant={HorizontalScrollWrapperVariant.simple}
         >
-          <div className="flex lg:max-w-[1000px] max-w-[300px] items-center">
+          <div className="flex  items-center">
             {!!films?.length &&
               films.map((film, index) => (
                 <div key={index} className="mr-[15px]">

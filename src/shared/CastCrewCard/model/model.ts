@@ -1,3 +1,5 @@
+import { ImageType } from '@/shared/ImageCard/model/model';
+
 export type Role = {
   credit_id: string;
   character: string;
@@ -50,6 +52,11 @@ export type CastCrewCardType = {
   description: { job: string; episodeAmount?: string }[];
   variant: CastCrewCardVariant;
   image: string;
+};
+
+export type EpisodeImagesType = {
+  id: number;
+  still: ImageType[];
 };
 
 export const verticalImageSize = 'w138_and_h175_face';

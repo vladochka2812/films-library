@@ -144,6 +144,7 @@
     "reviewsViewAll": "Read All Reviews",
     "reviewFrom": "A review by",
     "writtenBy": "Written by",
+    "directedBy": "Directed by",
     "backdrops": "Backdrops",
     "video": "Videos",
     "poster": "Posters",
@@ -155,7 +156,10 @@
     "cast": "Cast",
     "crew": "Crew",
     "castMovie": "Top Billed Cast",
-    "castViewMore": "Full Cast & Crew"
+    "castViewMore": "Full Cast & Crew",
+    "episodeImages": "Episode Images",
+    "episodeVideos": "Episode Videos",
+    "guestStars": "Guest Stars"
   },
   "backToMenu": "Back to main",
   "backToSeasons": "Back to season list",
@@ -177,6 +181,12 @@
     "reviews": "There no reviews yet.",
     "videos": "There no videos yet.",
     "images": "There no images yet.",
-    "media": "There no media yet."
-  }
+    "media": "There no media yet.",
+    "directed": "No director has been added.",
+    "person": "No person has been added.",
+    "written": "No writer has been added.",
+    "guest": "No guest stars have been added.",
+    "episodeImage": "No episode images have been added."
+  },
+  "expand": "Expand"
 }

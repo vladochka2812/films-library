@@ -17,6 +17,8 @@ import { getTV } from './gets/getTV';
 import { getCastCrew } from './gets/getCastCrew';
 import { SeasonType } from '@/shared/SeasonCard/model/model';
 import { getSeasonInfo } from './gets/getSeasonInfo';
+import { getEpisodeInfo } from './gets/getEpisodeInfo';
+import { EpisodeImagesType } from '@/shared/CastCrewCard/model/model';
 
 const initialState = {
   tvItem: {} as TVShowType,
@@ -27,6 +29,7 @@ const initialState = {
   videos: {} as VideosType,
   castCrew: {} as CastCrewType,
   season: {} as SeasonType,
+  episodeInfo: {} as EpisodeImagesType,
   loading: false,
   error: null,
 };
@@ -85,6 +88,11 @@ const tvSlice = createSlice({
       .addCase(getSeasonInfo.fulfilled, (state, action) => {
         state.loading = false;
         state.season = action.payload;
+      })
+
+      .addCase(getEpisodeInfo.fulfilled, (state, action) => {
+        state.loading = false;
+        state.episodeInfo = action.payload;
       });
   },
 });

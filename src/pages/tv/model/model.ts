@@ -8,7 +8,6 @@ export const mainImageSize = 'w300_and_h450_bestv2';
 export const bgImageSize = 'w1920_and_h800_multi_faces';
 export const networkLogoSize = 'h30';
 export const seasonImageSize = 'w130_and_h195_bestv2';
-export const episodeImageSize = 'w227_and_h127_bestv2';
 
 export type TVShowType = {
   adult: boolean;
@@ -79,8 +78,6 @@ export type TVShowType = {
   vote_average: number;
   vote_count: number;
 };
-
-
 
 export type ImagesType = {
   id: number;

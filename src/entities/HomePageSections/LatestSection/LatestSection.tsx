@@ -11,7 +11,6 @@ import { TabMenuVariant } from '@/shared/TabMenu/model/model';
 import { getLatest } from './api/getLatest';
 import { useTranslation } from 'react-i18next';
 import { PathType, useLatestTabs } from './model/model';
-import { languages } from '@/assets/locales/model/model';
 
 export const LatestSection = () => {
   const latestTabs = useLatestTabs();

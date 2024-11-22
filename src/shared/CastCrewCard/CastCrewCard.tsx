@@ -1,11 +1,13 @@
 import classNames from 'classnames';
 import { CastCrewCardType, CastCrewCardVariant } from './model/model';
+import { Link } from 'react-router-dom';
 
 export const CastCrewCard = ({
   name,
   variant,
   description,
   image,
+  link,
 }: CastCrewCardType) => {
   return (
     <div
@@ -31,7 +33,12 @@ export const CastCrewCard = ({
         />
       </div>
       <div className="flex flex-col p-2">
-        <h4 className="font-semibold text-[15px] ">{name}</h4>
+        <Link to={link}>
+          <h4 className="font-semibold text-[15px] text-black hover:text-black/70">
+            {name}
+          </h4>
+        </Link>
+
         <span
           className={classNames('w-full h-full object-cover', {
             'flex flex-col': variant === CastCrewCardVariant.vertical,
@@ -41,9 +48,14 @@ export const CastCrewCard = ({
           {description?.map((item, index) => (
             <div key={index}>
               <span className="text-[0.9rem]">{item.job}</span>
-              <span className={classNames('text-[0.9rem] ml-1 text-black/50')}>
-                {item.episodeAmount} {index + 1 !== description?.length && ','}
-              </span>
+              {variant === CastCrewCardVariant.horizontal && (
+                <span
+                  className={classNames('text-[0.9rem] ml-1 text-black/50')}
+                >
+                  {item.episodeAmount}{' '}
+                  {index + 1 !== description?.length && ','}
+                </span>
+              )}
             </div>
           ))}
         </span>

@@ -13,6 +13,8 @@ import {
 } from '@/shared/CastCrewCard/model/model';
 import { CastCrewPageSections } from '@/entities/CastCrewPageSections/CastCrewPageSections';
 import { getMovie } from '../../api/gets/getMovie';
+import { normalizeTitle } from '@/shared/FilmCard/model/model';
+import { routes } from '@/app/routes/routes';
 
 const CastMovie = () => {
   const { pathname } = useLocation();
@@ -60,6 +62,7 @@ const CastMovie = () => {
           job: item.character,
         },
       ],
+      link: `${routes.person}/${item.id}-${item.name?.toLowerCase().replace(normalizeTitle, '-')}`,
     };
   });
 
@@ -78,6 +81,7 @@ const CastMovie = () => {
             : malePlaceHolder,
         variant: CastCrewCardVariant.horizontal,
         description: [{ job: item.job }],
+        link: `${routes.person}/${item.id}-${item.name?.toLowerCase().replace(normalizeTitle, '-')}`,
       };
       acc[key].push(itemToAdd);
       return acc;

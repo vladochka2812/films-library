@@ -52,6 +52,7 @@ export type CastCrewCardType = {
   description: { job: string; episodeAmount?: string }[];
   variant: CastCrewCardVariant;
   image: string;
+  link: string;
 };
 
 export type EpisodeImagesType = {

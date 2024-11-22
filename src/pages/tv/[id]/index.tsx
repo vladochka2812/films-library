@@ -39,6 +39,8 @@ import {
   verticalImageSize,
 } from '@/shared/CastCrewCard/model/model';
 import { Cast } from '@/shared/Film/ui/Cast';
+import { normalizeTitle } from '@/shared/FilmCard/model/model';
+import { routes } from '@/app/routes/routes';
 
 const TV = () => {
   const { t } = useTranslation();
@@ -191,6 +193,7 @@ const TV = () => {
               : role.episode_count + ' Episodes',
         };
       }),
+      link: `${routes.person}/${person.id}-${person.name?.toLowerCase().replace(normalizeTitle, '-')}`,
       name: person.name,
       variant: CastCrewCardVariant.vertical,
     };

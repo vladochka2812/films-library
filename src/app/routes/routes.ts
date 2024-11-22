@@ -16,4 +16,7 @@ export const routes = {
   tv_cast: '/tv/:id/cast',
   tv_seasons: '/tv/:id/seasons',
   tv_season: '/tv/:id/season/:seasonNumber',
+
+  person: '/person',
+  personId: '/person/:id',
 };

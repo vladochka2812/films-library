@@ -7,7 +7,7 @@ import {
   imageFromEpisodeSize,
 } from '@/shared/EpisodeCard/model/model';
 import { PageTitle } from '@/shared/PageTitle/PageTitle';
-import { useMemo, useEffect, useCallback } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +22,8 @@ import {
 } from '@/shared/CastCrewCard/model/model';
 import { getEpisodeInfo } from '@/pages/tv/api/gets/getEpisodeInfo';
 import { ImageType } from '@/shared/ImageCard/model/model';
+import { routes } from '@/app/routes/routes';
+import { normalizeTitle } from '@/shared/FilmCard/model/model';
 
 const Season = () => {
   const { t } = useTranslation();
@@ -148,11 +150,11 @@ const Season = () => {
               : malePlaceHolder,
           variant: CastCrewCardVariant.horizontal,
           description: [{ job: item.character }],
+          link: `${routes.person}/${item.id}-${item.name?.toLowerCase().replace(normalizeTitle, '-')}`,
         };
       }),
     };
   });
-
   return (
     <div className="w-full flex flex-col items-center">
       <PageTitle {...titleInfo} />

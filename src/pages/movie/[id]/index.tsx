@@ -31,6 +31,8 @@ import {
   verticalImageSize,
 } from '@/shared/CastCrewCard/model/model';
 import { getCastCrew } from '../api/gets/getCastCrew';
+import { routes } from '@/app/routes/routes';
+import { normalizeTitle } from '@/shared/FilmCard/model/model';
 
 const Movie = () => {
   const { t } = useTranslation();
@@ -177,6 +179,7 @@ const Movie = () => {
       description: [{ job: person.character }],
       name: person.name,
       variant: CastCrewCardVariant.vertical,
+      link: `${routes.person}/${person.id}-${person.name?.toLowerCase().replace(normalizeTitle, '-')}`,
     };
   });
 

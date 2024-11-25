@@ -4,7 +4,7 @@ import { Rate } from '../Film/ui/Rate';
 import { useTranslation } from 'react-i18next';
 import { Accordion } from '../Accordion/Accordion';
 import { IoIosArrowDown } from 'react-icons/io';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { CastCrewCard } from '../CastCrewCard/CastCrewCard';
 import { HorizontalScrollWrapper } from '../HorizontalScrollWrapper/HorizontalScrollWrapper';
 import { HorizontalScrollWrapperVariant } from '../HorizontalScrollWrapper/model/model';
@@ -29,6 +29,14 @@ export const EpisodeCard = ({
     setImages(res);
   };
 
+  const memoizedCrew = useMemo(() => {
+    if (!crew) return [];
+    return Object.keys(crew).map((param) => ({
+      param,
+      items: crew[param].join(', '),
+    }));
+  }, [crew]);
+
   return (
     <div className="w-full flex flex-col items-center">
       <div className="flex lg:flex-row flex-col items-center border max-w-[1400px] lg:w-[1300px] w-full rounded-t-lg">
@@ -46,11 +54,10 @@ export const EpisodeCard = ({
           </h2>
           <div className="mt-0.5 flex gap-4">
             <Rate rate={rate} />
-
             <div className="flex items-center gap-1">
               <span>{date}</span>
               <GoDotFill size={10} />
-              <span>{runtime} </span>
+              <span>{runtime}</span>
             </div>
           </div>
           <p className="pt-2 text-[0.9rem]">{overview}</p>
@@ -71,35 +78,26 @@ export const EpisodeCard = ({
               <div className="lg:w-[30%]">
                 <h3 className="text-[1rem] mb-2 font-semibold">
                   {t('FilmPage.crew')}
-
                   <span className="ml-1 font-medium text-text/70">
-                    {Object.keys(crew).length !== 0
-                      ? Object.keys(crew).length
+                    {memoizedCrew.length
+                      ? memoizedCrew.length
                       : t('emptyMessages.person')}
                   </span>
                 </h3>
-                {crew &&
-                  Object?.keys(crew)?.map((param, index) => {
-                    const items = crew[param].join(', ');
-                    return (
-                      <div key={index} className="flex">
-                        <h4 className="text-[0.9rem] font-semibold mb-2">
-                          {param}:
-                        </h4>
-                        {items && (
-                          <h4 className="text-[0.9rem] ml-1">{items}</h4>
-                        )}
-                      </div>
-                    );
-                  })}
+                {memoizedCrew.map(({ param, items }, index) => (
+                  <div key={index} className="flex">
+                    <h4 className="text-[0.9rem] font-semibold mb-2">
+                      {param}:
+                    </h4>
+                    {items && <h4 className="text-[0.9rem] ml-1">{items}</h4>}
+                  </div>
+                ))}
               </div>
               <div className="lg:w-[70%]">
                 <h3 className="text-[1rem] mb-2 font-semibold">
                   {t('FilmPage.guestStars')}
                   <span className="ml-1 font-medium text-text/70">
-                    {cast?.length !== 0
-                      ? cast?.length
-                      : t('emptyMessages.guest')}
+                    {cast?.length ? cast.length : t('emptyMessages.guest')}
                   </span>
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
@@ -113,7 +111,7 @@ export const EpisodeCard = ({
                 {t('FilmPage.episodeImages')}
                 <span className="ml-1 font-medium text-text/70">
                   {images?.length
-                    ? image?.length
+                    ? images.length
                     : t('emptyMessages.episodeImage')}
                 </span>
               </h3>
@@ -121,7 +119,9 @@ export const EpisodeCard = ({
                 <HorizontalScrollWrapper
                   variant={HorizontalScrollWrapperVariant.simple}
                 >
-                  <div className="flex w-[10000px] gap-2">
+                  <div
+                    className={`flex w-[calc(160 * ${images.length})px] gap-2`}
+                  >
                     {images.map((image, index) => (
                       <div key={index} className="w-[160px] h-[90px]">
                         <img

@@ -20,7 +20,10 @@ import { getRecommendations } from '../api/gets/getRecommendations';
 import { getReviews } from '../api/gets/getReviews';
 import { getVideos } from '../api/gets/getVideos';
 import { SeasonCard } from '@/shared/SeasonCard/SeasonCard';
-import { SeasonCardVariant, SeasonType } from '@/shared/SeasonCard/model/model';
+import {
+  SeasonCardVariant,
+  SeasonCardType,
+} from '@/shared/SeasonCard/model/model';
 import { Reviews } from '@/shared/Film/ui/Reviews';
 import { avatarSize } from '@/shared/ReviewCard/model/model';
 import { Media } from '@/shared/Film/ui/Media';
@@ -36,6 +39,8 @@ import {
   verticalImageSize,
 } from '@/shared/CastCrewCard/model/model';
 import { Cast } from '@/shared/Film/ui/Cast';
+import { normalizeTitle } from '@/shared/FilmCard/model/model';
+import { routes } from '@/app/routes/routes';
 
 const TV = () => {
   const { t } = useTranslation();
@@ -120,7 +125,7 @@ const TV = () => {
       `${import.meta.env.VITE_IMAGE_API_LINK}/${networkLogoSize}/${item.logo_path}`
   );
 
-  const season: SeasonType = useMemo(() => {
+  const season: SeasonCardType = useMemo(() => {
     return (
       seasons && {
         image: `${import.meta.env.VITE_IMAGE_API_LINK}/${seasonImageSize}/${seasons.slice(-1)[0].poster_path}`,
@@ -131,6 +136,10 @@ const TV = () => {
         overview: seasons.slice(-1)[0].overview,
         episodes: seasons.slice(-1)[0].episode_count,
         variant: SeasonCardVariant.outline,
+        link: pathname.replace(
+          '/seasons',
+          `/season/${seasons.slice(-1)[0].name.split(' ')[1]}`
+        ),
       }
     );
   }, [seasons]);
@@ -184,6 +193,7 @@ const TV = () => {
               : role.episode_count + ' Episodes',
         };
       }),
+      link: `${routes.person}/${person.id}-${person.name?.toLowerCase().replace(normalizeTitle, '-')}`,
       name: person.name,
       variant: CastCrewCardVariant.vertical,
     };

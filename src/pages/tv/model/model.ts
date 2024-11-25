@@ -1,4 +1,5 @@
-import { CastMember, CrewMember } from '@/pages/movie/model/model';
+import { CastMember, CrewMember } from '@/shared/CastCrewCard/model/model';
+import { EpisodeType } from '@/shared/EpisodeCard/model/model';
 import { ImageType } from '@/shared/ImageCard/model/model';
 import { ReviewType } from '@/shared/ReviewCard/model/model';
 import { VideoType } from '@/shared/VideoCard/model/model';
@@ -7,7 +8,6 @@ export const mainImageSize = 'w300_and_h450_bestv2';
 export const bgImageSize = 'w1920_and_h800_multi_faces';
 export const networkLogoSize = 'h30';
 export const seasonImageSize = 'w130_and_h195_bestv2';
-export const episodeImageSize = 'w227_and_h127_bestv2';
 
 export type TVShowType = {
   adult: boolean;
@@ -77,21 +77,6 @@ export type TVShowType = {
   type: string;
   vote_average: number;
   vote_count: number;
-};
-
-export type EpisodeType = {
-  id: number;
-  name: string;
-  overview: string;
-  vote_average: number;
-  vote_count: number;
-  air_date: string;
-  episode_number: number;
-  production_code: string;
-  runtime: number;
-  season_number: number;
-  show_id: number;
-  still_path: string;
 };
 
 export type ImagesType = {

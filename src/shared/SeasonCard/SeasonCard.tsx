@@ -1,7 +1,8 @@
 import { GoDotFill } from 'react-icons/go';
-import { SeasonCardVariant, SeasonType } from './model/model';
+import { SeasonCardVariant, SeasonCardType } from './model/model';
 import { Rate } from '../Film/ui/Rate';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 export const SeasonCard = ({
   season,
@@ -10,8 +11,9 @@ export const SeasonCard = ({
   episodes,
   overview,
   year,
+  link,
   variant = SeasonCardVariant.default,
-}: SeasonType) => {
+}: SeasonCardType) => {
   return (
     <div
       className={classNames('flex sm:flex-row flex-col items-center w-full', {
@@ -29,7 +31,9 @@ export const SeasonCard = ({
         />
       </div>
       <div className="p-5 lg:max-w-[900px] sm:max-w-[500px]">
-        <h2 className="font-semibold text-[20px]">{season}</h2>
+        <Link to={link} className="hover:text-black/70">
+          <h2 className="font-semibold text-[20px]">{season}</h2>
+        </Link>
         <div className="mt-0.5 flex gap-4">
           <Rate rate={rate} />
           <div className="flex items-center gap-1">

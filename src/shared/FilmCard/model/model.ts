@@ -48,7 +48,7 @@ export enum FilmCardVariant {
   vertical = 'vertical',
   horizontal = 'horizontal',
   hover = 'hover',
-  simple = 'simple',
+  pages = 'pages',
 }
 
 export const normalizeTitle = /[:\s]/g;

@@ -189,5 +189,19 @@
     "episodeImage": "Зображення серій не додані.",
     "episodeVideo": "Відео серій не додані."
   },
+
+  "person": {
+    "personalInfo": "Особиста інформація",
+    "knownFor": "Відомий (-а) за",
+    "knownCredits": "Кількість робіт",
+    "gender": "Стать",
+    "birthday": "День народження",
+    "dateOfDeath": "День смерті",
+    "placeOfBirth": "Місце народження",
+    "alsoKnownAs": "Також відомий (-а) як",
+    "biography": "Біографія",
+    "readLess": "Приховати",
+    "readMore": "Розгорнути"
+  },
   "expand": "Розширити"
 }

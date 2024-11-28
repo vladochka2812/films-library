@@ -188,5 +188,20 @@
     "guest": "No guest stars have been added.",
     "episodeImage": "No episode images have been added."
   },
+  "person": {
+    "personalInfo": "Personal Info",
+    "knownFor": "Known For",
+    "knownCredits": "Known Credits",
+    "gender": "Gender",
+    "female": "Female",
+    "male": "Male",
+    "dateOfDeath": "Day of Death",
+    "birthday": "Birthday",
+    "placeOfBirth": "Place of Birth",
+    "alsoKnownAs": "Also Known As",
+    "biography": "Biography",
+    "readLess": "Read less",
+    "readMore": "Read more"
+  },
   "expand": "Expand"
 }

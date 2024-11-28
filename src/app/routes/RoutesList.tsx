@@ -14,6 +14,8 @@ import ImagesTV from '@/pages/tv/[id]/images';
 import CastTV from '@/pages/tv/[id]/cast';
 import CastMovie from '@/pages/movie/[id]/cast';
 import Season from '@/pages/tv/[id]/season/[seasonNumber]';
+import Persons from '@/pages/Person';
+import Person from '@/pages/Person/[id]';
 
 export const RoutesList = () => {
   return (
@@ -36,6 +38,10 @@ export const RoutesList = () => {
         <Route path={routes.movie_images} element={<ImagesMovie />} />
         <Route path={routes.movie_reviews} element={<ReviewsMovie />} />
         <Route path={routes.movie_cast} element={<CastMovie />} />
+
+        <Route path={routes.person} element={<Persons />} />
+        <Route path={routes.personId} element={<Person />} />
+
       </Routes>
     </div>
   );

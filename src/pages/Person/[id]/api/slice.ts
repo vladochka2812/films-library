@@ -43,46 +43,6 @@ const personSlice = createSlice({
         state.loading = false;
         state.credits = action.payload;
       });
-
-    // .addCase(getImages.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.images = action.payload;
-    // })
-
-    // .addCase(getKeywords.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.keywords = action.payload;
-    // })
-
-    // .addCase(getRecommendations.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.recommendations = action.payload;
-    // })
-
-    // .addCase(getReviews.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.reviews = action.payload;
-    // })
-
-    // .addCase(getVideos.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.videos = action.payload;
-    // })
-
-    // .addCase(getCastCrew.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.castCrew = action.payload;
-    // })
-
-    // .addCase(getSeasonInfo.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.season = action.payload;
-    // })
-
-    // .addCase(getEpisodeInfo.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.episodeInfo = action.payload;
-    // });
   },
 });
 

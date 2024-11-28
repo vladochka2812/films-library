@@ -24,6 +24,7 @@ export const Job = ({ name, job, character, episode, year, link }: JobType) => {
             <span className="ml-1">{character}</span>
           </div>
         )}
+
         {job && (
           <div className="flex pl-[14px]">
             <span className="text-black/60">...</span>

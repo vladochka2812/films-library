@@ -7,7 +7,7 @@ export const Biography = ({ text }: { text: string }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleReadMore = () => setIsExpanded(!isExpanded);
 
-  const maxTextLength = 250;
+  const maxTextLength = 750;
 
   const sliceText =
     text?.length > maxTextLength ? text?.slice(0, maxTextLength) + '...' : text;

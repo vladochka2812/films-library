@@ -44,7 +44,7 @@ export enum SocialLinks {
 
 export const mainImageSize = 'w300_and_h450_bestv2';
 
-type CastMember = {
+export type CastMember = {
   id: number;
   poster_path: string;
   title?: string;
@@ -56,7 +56,7 @@ type CastMember = {
   media_type: 'movie' | 'tv';
 };
 
-type CrewMember = {
+export type CrewMember = {
   id: number;
   title?: string;
   name?: string;

@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '@/app/store/store';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getPerson } from './api/get/getPerson';
 import { PersonPageSections } from '@/entities/PersonPageSections/PersonPageSections';
-import { fullDate, getAge, getYear } from '@/shared/Date/Date';
+import { fullDate, getAge } from '@/shared/Date/Date';
 import { getSocial } from './api/get/getSocial';
 import { SocialLinks, YearsGroupsType, mainImageSize } from '../model/model';
 import {
@@ -21,18 +21,18 @@ import {
   JobType,
   SocialInfoType,
   SocialType,
-  knowForCardSize,
 } from '@/shared/Person/model/model';
 import {
   femalePlaceHolder,
   malePlaceHolder,
 } from '@/shared/CastCrewCard/model/model';
 import { getCredits } from './api/get/getCredits';
-import { normalizeTitle } from '@/shared/FilmCard/model/model';
+import useCreditsList from './api/hooks/useCreditsList';
+import { useActingList } from './api/hooks/useActingList';
+import { useJobsList } from './api/hooks/useJobsList';
 
 const Person = () => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
 
   const { id } = useParams();
   const path = useMemo(() => {
@@ -41,18 +41,9 @@ const Person = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const {
-    person,
-    social,
-    credits,
-    // images,
-    // keywords,
-    // recommendations,
-    // reviews,
-    // videos,
-    // castCrew,
-    loading,
-  } = useSelector((state: RootState) => state.personInfo);
+  const { person, social, credits } = useSelector(
+    (state: RootState) => state.personInfo
+  );
 
   const {
     gender,
@@ -79,12 +70,6 @@ const Person = () => {
     dispatch(getPerson({ path }));
     dispatch(getSocial({ path }));
     dispatch(getCredits({ path }));
-    // dispatch(getImages({ path }));
-    // dispatch(getKeywords({ path }));
-    // dispatch(getRecommendations({ path }));
-    // dispatch(getReviews({ path }));
-    // dispatch(getVideos({ path }));
-    // dispatch(getCastCrew({ path }));
   }, [path, dispatch]);
 
   const groupByYear = (items: JobType[]): YearsGroupsType => {
@@ -152,61 +137,13 @@ const Person = () => {
       ? femalePlaceHolder
       : malePlaceHolder;
 
-  const creditsList = credits?.cast
-    ?.map((item) => {
-      return {
-        link: `/${item.media_type ? item.media_type : 'tv'}/${item.id}-${item?.title ? item?.title?.toLowerCase().replace(normalizeTitle, '-') : item?.name?.toLowerCase().replace(normalizeTitle, '-')}`,
-        image: `${import.meta.env.VITE_IMAGE_API_LINK}${knowForCardSize}${item.poster_path}`,
-        name: item?.name || item?.title || '',
-      };
-    })
-    .slice(0, 8);
+  const creditsList = cast && useCreditsList(cast);
 
-  const acting = useMemo(() => {
-    return groupByYear(
-      cast?.map((item) => {
-        return {
-          year:
-            (item?.first_air_date && getYear(item.first_air_date)) ||
-            (item?.release_date && getYear(item.release_date)) ||
-            '-',
-          name: item?.name || item?.title || '',
-          episode: item?.episode_count
-            ? `${item.episode_count} ${item.episode_count === 1 ? 'Episode' : 'Episodes'}`
-            : '',
-          character: item?.character,
-          link: `/${item.media_type ? item.media_type : 'tv'}/${item.id}-${
-            item?.title
-              ? item?.title?.toLowerCase().replace(normalizeTitle, '-')
-              : item?.name?.toLowerCase().replace(normalizeTitle, '-')
-          }`,
-        };
-      }) ?? []
-    );
-  }, [cast]);
+  const actingList = cast && useActingList(cast);
 
-  const jobs = useMemo(() => {
-    return crew?.reduce<{ [key: string]: any }>((acc, item) => {
-      const department = item?.department || 'Unknown';
-      if (!acc[department]) {
-        acc[department] = [];
-      }
-      const data = {
-        year:
-          (item?.first_air_date && getYear(item.first_air_date)) ||
-          (item?.release_date && getYear(item.release_date)) ||
-          '-',
-        name: item?.name || item?.title || '',
-        episode: item?.episode_count
-          ? `${item.episode_count} ${item.episode_count === 1 ? 'Episode' : 'Episodes'}`
-          : '',
-        job: item?.job,
-        link: `/${item.media_type ? item.media_type : 'tv'}/${item.id}-${item?.title ? item?.title?.toLowerCase().replace(normalizeTitle, '-') : item?.name?.toLowerCase().replace(normalizeTitle, '-')}`,
-      };
-      acc[department].push(data);
-      return acc;
-    }, {});
-  }, [crew]);
+  const acting = actingList && groupByYear(actingList);
+
+  const jobs = useJobsList(crew);
 
   const jobGroup =
     jobs &&

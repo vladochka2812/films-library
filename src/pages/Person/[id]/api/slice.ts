@@ -9,13 +9,6 @@ const initialState = {
   person: {} as PersonType,
   social: {} as SocialType,
   credits: {} as CreditsType,
-  // images: {} as ImagesType,
-  // keywords: {} as KeywordsType,
-  // recommendations: {} as FilmsResponse,
-  // reviews: {} as ReviewsType,
-  // videos: {} as VideosType,
-  // castCrew: {} as CastCrewType,
-  // season: {} as SeasonType,
   loading: false,
   error: null,
 };

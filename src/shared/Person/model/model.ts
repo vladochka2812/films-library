@@ -1,6 +1,11 @@
 import { YearsGroupsType } from '@/pages/Person/model/model';
 import { ReactNode } from 'react';
 
+export type InfoItemType = {
+  title: string;
+  content: ReactNode;
+};
+
 export type InfoType = {
   knowingFor: string;
   gender: string;

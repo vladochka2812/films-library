@@ -9,7 +9,7 @@ export const Social = ({ items, home }: SocialInfoType) => {
         items.map((item, index) => (
           <TooltipHover
             key={index}
-            position="bottom"
+            position="top"
             content="gggg"
             className="bg-darkBlue text-white text-[14px] text-nowrap"
           >
@@ -19,7 +19,7 @@ export const Social = ({ items, home }: SocialInfoType) => {
       {home && (
         <div className="px-4 border-l">
           <TooltipHover
-            position="bottom"
+            position="top"
             content={home.text}
             className="bg-darkBlue text-white text-[14px] text-nowrap"
           >

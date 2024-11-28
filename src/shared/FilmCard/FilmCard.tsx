@@ -54,7 +54,7 @@ export const FilmCard = ({
     : dateUsual(first_air_date);
 
   const imageHref =
-    variant === FilmCardVariant.vertical
+    variant === FilmCardVariant.vertical || variant === FilmCardVariant.simple
       ? `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardVerticalSize}/${poster_path}`
       : `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardHorizontalSize}/${backdrop_path}`;
 

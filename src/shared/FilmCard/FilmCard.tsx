@@ -37,13 +37,13 @@ export const FilmCard = ({
     title,
     release_date,
     poster_path,
-    media_type,
     backdrop_path,
     first_air_date,
   } = film;
+
   const linkHref = useMemo(() => {
-    return `/${media_type ? media_type : 'tv'}/${id}-${title ? title?.toLowerCase().replace(normalizeTitle, '-') : name?.toLowerCase().replace(normalizeTitle, '-')}`;
-  }, [media_type, id, title || name]);
+    return `/${title ? 'movie' : 'tv'}/${id}-${title ? title?.toLowerCase().replace(normalizeTitle, '-') : name?.toLowerCase().replace(normalizeTitle, '-')}`;
+  }, [id, title || name]);
 
   const formattedDate = release_date
     ? formatDate(release_date)
@@ -54,7 +54,7 @@ export const FilmCard = ({
     : dateUsual(first_air_date);
 
   const imageHref =
-    variant === FilmCardVariant.vertical || variant === FilmCardVariant.simple
+    variant === FilmCardVariant.vertical || variant === FilmCardVariant.pages
       ? `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardVerticalSize}/${poster_path}`
       : `${import.meta.env.VITE_IMAGE_API_LINK}/${imageCardHorizontalSize}/${backdrop_path}`;
 
@@ -66,8 +66,10 @@ export const FilmCard = ({
     <div
       className={classNames({
         'w-[150px] min-w-[150px]': variant === FilmCardVariant.vertical,
+        'w-[180px] min-w-[180px]': variant === FilmCardVariant.pages,
         'w-[300px]': variant === FilmCardVariant.horizontal,
         'w-[250px]': variant === FilmCardVariant.hover,
+        'bg-white rounded-md shadow-lg': variant === FilmCardVariant.pages,
       })}
     >
       <div
@@ -75,6 +77,8 @@ export const FilmCard = ({
           'h-auto': variant === FilmCardVariant.horizontal,
           'min-h-[calc(150px*1.5)] h-[calc(150px*1.5)] bg-gray-300 ':
             variant === FilmCardVariant.vertical,
+          'min-h-[calc(180px*1.5)] h-[calc(180px*1.5)] bg-gray-300 rounded-b-none':
+            variant === FilmCardVariant.pages,
           'w-[250px] h-[141px]': variant === FilmCardVariant.hover,
         })}
       >
@@ -109,15 +113,19 @@ export const FilmCard = ({
         className={classNames(
           'flex flex-col items-start relative px-[10px]flex-wrap whitespace-normal',
           {
-            'pt-[26px]': variant === FilmCardVariant.vertical,
+            'pt-[26px]':
+              variant === FilmCardVariant.vertical ||
+              variant === FilmCardVariant.pages,
+            'px-2': variant === FilmCardVariant.pages,
           }
         )}
       >
-        {variant === FilmCardVariant.vertical && (
-          <div className="absolute top-[-19px] left-[10px] rounded-full shadow-md">
-            <RatingRing percent={percent} size={CircleSize.small} />
-          </div>
-        )}
+        {variant === FilmCardVariant.vertical ||
+          (variant === FilmCardVariant.pages && (
+            <div className="absolute top-[-19px] left-[10px] rounded-full shadow-md">
+              <RatingRing percent={percent} size={CircleSize.small} />
+            </div>
+          ))}
         {variant === FilmCardVariant.hover && (
           <div className="flex w-full justify-between mt-3 font-normal">
             <h2 className={classNames('text-[16px] w-full')}>
@@ -128,16 +136,19 @@ export const FilmCard = ({
         )}
         <h2
           className={classNames('text-[16px] w-full font-bold ', {
-            'hover:text-sky-400': variant === FilmCardVariant.vertical,
+            'hover:text-sky-400':
+              variant === FilmCardVariant.vertical ||
+              variant === FilmCardVariant.pages,
             'text-center': variant === FilmCardVariant.horizontal,
             hidden: variant === FilmCardVariant.hover,
           })}
         >
           <Link to={linkHref}>{title || name}</Link>
         </h2>
-        {variant === FilmCardVariant.vertical && formattedDate && (
-          <p className="text-[16px] text-black/60">{formattedDate}</p>
-        )}
+        {variant === FilmCardVariant.vertical ||
+          (variant === FilmCardVariant.pages && formattedDate && (
+            <p className="text-[16px] text-black/60">{formattedDate}</p>
+          ))}
       </div>
     </div>
   );

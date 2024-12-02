@@ -16,6 +16,14 @@ import CastMovie from '@/pages/movie/[id]/cast';
 import Season from '@/pages/tv/[id]/season/[seasonNumber]';
 import Persons from '@/pages/Person';
 import Person from '@/pages/Person/[id]';
+import Popular from '@/pages/Movies/Popular';
+import NowPlaying from '@/pages/Movies/NowPlaying';
+import TopRated from '@/pages/Movies/TopRated';
+import Upcoming from '@/pages/Movies/Upcoming';
+import PopularTV from '@/pages/TVShows/Popular';
+import TopRatedTV from '@/pages/TVShows/TopRated';
+import AiringToday from '@/pages/TVShows/AiringToday';
+import OnTV from '@/pages/TVShows/OnTV';
 
 export const RoutesList = () => {
   return (
@@ -39,9 +47,18 @@ export const RoutesList = () => {
         <Route path={routes.movie_reviews} element={<ReviewsMovie />} />
         <Route path={routes.movie_cast} element={<CastMovie />} />
 
+        <Route path={routes.movies_popular} element={<Popular />} />
+        <Route path={routes.movies_now_playing} element={<NowPlaying />} />
+        <Route path={routes.movies_top_rated} element={<TopRated />} />
+        <Route path={routes.movies_upcoming} element={<Upcoming />} />
+
+        <Route path={routes.tv_popular} element={<PopularTV />} />
+        <Route path={routes.tv_top_rated} element={<TopRatedTV />} />
+        <Route path={routes.tv_today} element={<AiringToday />} />
+        <Route path={routes.tv_onTV} element={<OnTV />} />
+
         <Route path={routes.person} element={<Persons />} />
         <Route path={routes.personId} element={<Person />} />
-
       </Routes>
     </div>
   );

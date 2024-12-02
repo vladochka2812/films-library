@@ -20,6 +20,8 @@ export const Button = ({
             variant === VariantType.ROUNDED,
           'text-[16px] rounded-md bg-lightBlue py-1.5 hover:bg-darkBlue':
             variant === VariantType.DEFAULT,
+          'bg-darkBlue px-3 py-1 rounded-md':
+            variant === VariantType.PAGINATION,
         }
       )}
     >

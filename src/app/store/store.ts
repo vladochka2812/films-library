@@ -7,6 +7,8 @@ import popularPeopleItemsReducer from '@/entities/HomePageSections/PopularPeople
 import movieItemReducer from '@/pages/movie/api/slice';
 import tvItemReducer from '@/pages/tv/api/slice';
 import personItemReducer from '@/pages/Person/[id]/api/slice';
+import moviesListReducer from '@/pages/Movies/api/slice';
+import tvListReducer from '@/pages/TVShows/api/slice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +20,8 @@ export const store = configureStore({
     movieItem: movieItemReducer,
     tvItem: tvItemReducer,
     personInfo: personItemReducer,
+    moviesList: moviesListReducer,
+    tvList: tvListReducer,
   },
 });
 

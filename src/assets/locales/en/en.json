@@ -203,5 +203,17 @@
     "readLess": "Read less",
     "readMore": "Read more"
   },
-  "expand": "Expand"
+  "expand": "Expand",
+  "movies": {
+    "popular": "Popular Movies",
+    "nowPlaying": "Now Playing",
+    "upcoming": "Upcoming Movies",
+    "topRated": "Top Rated Movies"
+  },
+  "tv": {
+    "popular": "Popular TV Shows",
+    "airingToday": "TV Shows Airing today",
+    "onTV": "Currently Airing TV Shows",
+    "topRated": "Top Rated TV Shows"
+  }
 }

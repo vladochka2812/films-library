@@ -5,14 +5,16 @@
       "popular": "Popular",
       "nowPlaying": "Now Playing",
       "upcoming": "Upcoming",
-      "topRated": "Top Rated"
+      "topRated": "Top Rated",
+      "filtered": "Filtered"
     },
     "tvShows": {
       "main": "TV Shows",
       "popular": "Popular",
       "airingToday": "Airing Today",
       "onTv": "On TV",
-      "topRated": "Top Rated"
+      "topRated": "Top Rated",
+      "filtered": "Filtered"
     },
     "people": {
       "main": "People",
@@ -208,12 +210,28 @@
     "popular": "Popular Movies",
     "nowPlaying": "Now Playing",
     "upcoming": "Upcoming Movies",
-    "topRated": "Top Rated Movies"
+    "topRated": "Top Rated Movies",
+    "discover": "Discover Movies"
   },
   "tv": {
     "popular": "Popular TV Shows",
     "airingToday": "TV Shows Airing today",
     "onTV": "Currently Airing TV Shows",
-    "topRated": "Top Rated TV Shows"
+    "topRated": "Top Rated TV Shows",
+    "discover": "Discover TV Shows"
+  },
+  "filter": {
+    "sort": "Sort",
+    "sortBy": "Sort Results By",
+    "filters": "Filters",
+    "releaseDates": "Release Dates",
+    "from": "from",
+    "to": "to",
+    "genres": "Genres",
+    "userScore": "User Score",
+    "vote": "Minimum User Votes",
+    "runtime": "Runtime",
+    "keywords": "Keywords",
+    "byKeywords": "Filter by keywords..."
   }
 }

@@ -9,6 +9,11 @@ export const collectionImageSize = 'w1440_and_h320_multi_faces';
 export const backdropImageSize = 'w533_and_h300_bestv2';
 export const posterImageSize = 'w220_and_h330_face';
 
+export type GenreType = {
+  id: number;
+  name: string;
+};
+
 export type MovieType = {
   adult: boolean;
   backdrop_path: string | null;
@@ -19,10 +24,7 @@ export type MovieType = {
     backdrop_path: string;
   };
   budget: number;
-  genres: {
-    id: number;
-    name: string;
-  }[];
+  genres: GenreType[];
   homepage: string;
   id: number;
   original_language: string;
@@ -84,7 +86,6 @@ export type VideosType = {
   id: number;
   results: VideoType[];
 };
-
 
 export type CastCrewType = {
   id: number;

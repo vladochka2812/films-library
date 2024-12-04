@@ -9,3 +9,7 @@ export type InputType = {
   className?: string;
   variant?: VariantType;
 };
+
+export type DateInputType = {
+  changeEventHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};

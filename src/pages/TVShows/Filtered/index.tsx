@@ -11,6 +11,7 @@ import { SortedBy } from '../model/model';
 import { getGenres } from '../api/gets/getGenres';
 import { getKeywords } from '../api/gets/getKeywords';
 import { getFiltered } from '../api/gets/getFiltered';
+import { useGenres } from '@/pages/Movies/api/hooks/useGenres';
 
 const FilteredTV = () => {
   const { t } = useTranslation();
@@ -104,11 +105,8 @@ const FilteredTV = () => {
   };
 
   const handleAddGenres = (genre: number) => {
-    if (selectedGenres.findIndex((g) => g === genre) === -1) {
-      setSelectedGenres((prevState) => [...prevState, genre]);
-    } else {
-      setSelectedGenres((prevState) => prevState.filter((g) => g !== genre));
-    }
+    const newGenres = useGenres({ array: selectedGenres, num: genre });
+    setSelectedGenres(newGenres);
   };
 
   const userScore = {
@@ -119,8 +117,8 @@ const FilteredTV = () => {
     caption: 'Rated',
     captionPosition: CaptionPosition.before,
     subSteps: true,
-    setMin: (min: number) => setMinScore(min),
-    setMax: (max: number) => setMaxScore(max),
+    handleSetMin: (min: number) => setMinScore(min),
+    handleSetMax: (max: number) => setMaxScore(max),
   };
 
   const voteScore = {
@@ -131,8 +129,8 @@ const FilteredTV = () => {
     caption: '',
     captionPosition: CaptionPosition.before,
     subSteps: false,
-    setMin: (min: number) => setMinVote(min),
-    setMax: (max: number) => setMaxVote(max),
+    handleSetMin: (min: number) => setMinVote(min),
+    handleSetMax: (max: number) => setMaxVote(max),
   };
 
   const runtimeScore = {
@@ -143,8 +141,8 @@ const FilteredTV = () => {
     caption: 'minutes',
     captionPosition: CaptionPosition.after,
     subSteps: true,
-    setMin: (min: number) => setMinRuntime(min),
-    setMax: (max: number) => setMaxRuntime(max),
+    handleSetMin: (min: number) => setMinRuntime(min),
+    handleSetMax: (max: number) => setMaxRuntime(max),
   };
 
   return (

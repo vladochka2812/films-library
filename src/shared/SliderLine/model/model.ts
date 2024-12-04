@@ -6,8 +6,8 @@ export type SliderLineType = {
   caption: string;
   captionPosition: CaptionPosition;
   subSteps: boolean;
-  setMin: (min: number) => void;
-  setMax: (min: number) => void;
+  handleSetMin: (min: number) => void;
+  handleSetMax: (min: number) => void;
 };
 
 export enum CaptionPosition {

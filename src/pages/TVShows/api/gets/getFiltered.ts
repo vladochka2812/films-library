@@ -34,24 +34,26 @@ export const getFiltered = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      let link = `discover/tv?page=${page}`;
-      link += sortBy && `&sort_by=${sortBy}`;
-      link += startDate ? `&first_air_date.gte=${startDate}` : '';
-      link += endDate ? `&first_air_date.lte=${endDate}` : '';
-      link += genres ? `&with_genres=${genres}` : '';
+      const params = new URLSearchParams();
 
-      link += voteCountGte ? `&vote_count.gte=${voteCountGte}` : '';
-      link += voteCountLte ? `&vote_count.lte=${voteCountLte}` : '';
+      params.append('page', page.toString());
+      if (sortBy) params.append('sort_by', sortBy);
+      if (startDate) params.append('first_air_date.gte', startDate);
+      if (endDate) params.append('first_air_date.lte', endDate);
+      if (genres) params.append('with_genres', genres.join(','));
+      if (keywords) params.append('with_keywords', keywords.join(','));
+      if (voteCountGte)
+        params.append('vote_count.gte', voteCountGte.toString());
+      if (voteCountLte)
+        params.append('vote_count.lte', voteCountLte.toString());
+      if (voteAverageGte)
+        params.append('vote_average.gte', voteAverageGte.toString());
+      if (voteAverageLte)
+        params.append('vote_average.lte', voteAverageLte.toString());
+      if (runtimeGte) params.append('with_runtime.gte', runtimeGte.toString());
+      if (runtimeLte) params.append('with_runtime.lte', runtimeLte.toString());
 
-      link += voteAverageGte ? `&vote_average.gte=${voteAverageGte}` : '';
-      link += voteAverageLte ? `&vote_average.lte=${voteAverageLte}` : '';
-
-      link += runtimeGte ? `&with_runtime.gte=${runtimeGte}` : '';
-      link += runtimeLte ? `&with_runtime.lte=${runtimeLte}` : '';
-
-      link += keywords ? `&with_keywords=${keywords}` : '';
-
-      const response = await apiClient.get(link);
+      const response = await apiClient.get(`discover/tv?${params.toString()}`);
 
       return response.data;
     } catch (error) {

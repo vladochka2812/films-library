@@ -5,7 +5,7 @@ export const getGenres = createAsyncThunk(
   'tv/getGenres',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiClient.get(`genre/movie/list`);
+      const response = await apiClient.get(`genre/tv/list`);
       return response.data;
     } catch (error) {
       return rejectWithValue((error as string) || 'Something went wrong');

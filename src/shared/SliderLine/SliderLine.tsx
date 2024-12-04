@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import './ui/style.css';
 import MultiRangeSlider from 'multi-range-slider-react';
 import {
@@ -15,8 +15,8 @@ export const SliderLine = ({
   min,
   max,
   subSteps,
-  setMin,
-  setMax,
+  handleSetMin,
+  handleSetMax,
 }: SliderLineType) => {
   const [minValue, setMinValue] = useState(min);
   const [maxValue, setMaxValue] = useState(max);
@@ -24,14 +24,13 @@ export const SliderLine = ({
   const handleInput = (e: SliderEventType) => {
     setMinValue(e.minValue);
     setMaxValue(e.maxValue);
-    setMax(e.maxValue);
-    setMin(e.minValue);
+    handleSetMax(e.maxValue);
+    handleSetMin(e.minValue);
   };
-  const captionText = useMemo(() => {
-    return captionPosition === CaptionPosition.after
+  const captionText =
+    captionPosition === CaptionPosition.after
       ? `${minValue} ${caption} - ${maxValue} ${caption}`
       : `${caption} ${minValue} - ${maxValue}`;
-  }, [caption, minValue, maxValue]);
 
   return (
     <div className="">

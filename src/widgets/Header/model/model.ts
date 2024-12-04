@@ -28,6 +28,10 @@ export const useNavigationList = (): NavigationListType => {
           link: routes.movies_top_rated,
           name: t('navigation.movies.topRated'),
         },
+        {
+          link: routes.movies_filtered,
+          name: t('navigation.movies.filtered'),
+        },
       ],
     },
     {
@@ -37,6 +41,10 @@ export const useNavigationList = (): NavigationListType => {
         { link: routes.tv_today, name: t('navigation.tvShows.airingToday') },
         { link: routes.tv_onTV, name: t('navigation.tvShows.onTv') },
         { link: routes.tv_top_rated, name: t('navigation.tvShows.topRated') },
+        {
+          link: routes.tv_filtered,
+          name: t('navigation.tvShows.filtered'),
+        },
       ],
     },
     {

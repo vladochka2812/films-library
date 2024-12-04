@@ -24,6 +24,8 @@ import PopularTV from '@/pages/TVShows/Popular';
 import TopRatedTV from '@/pages/TVShows/TopRated';
 import AiringToday from '@/pages/TVShows/AiringToday';
 import OnTV from '@/pages/TVShows/OnTV';
+import Filtered from '@/pages/Movies/Filtered';
+import FilteredTV from '@/pages/TVShows/Filtered';
 
 export const RoutesList = () => {
   return (
@@ -51,11 +53,13 @@ export const RoutesList = () => {
         <Route path={routes.movies_now_playing} element={<NowPlaying />} />
         <Route path={routes.movies_top_rated} element={<TopRated />} />
         <Route path={routes.movies_upcoming} element={<Upcoming />} />
+        <Route path={routes.movies_filtered} element={<Filtered />} />
 
         <Route path={routes.tv_popular} element={<PopularTV />} />
         <Route path={routes.tv_top_rated} element={<TopRatedTV />} />
         <Route path={routes.tv_today} element={<AiringToday />} />
         <Route path={routes.tv_onTV} element={<OnTV />} />
+        <Route path={routes.tv_filtered} element={<FilteredTV />} />
 
         <Route path={routes.person} element={<Persons />} />
         <Route path={routes.personId} element={<Person />} />
